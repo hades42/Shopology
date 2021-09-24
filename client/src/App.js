@@ -1,14 +1,14 @@
-import "./App.css";
-import { BrowserRouter as Router } from "react-router-dom";
-import Navigation from "./Components/Navigation/Navigation"
+import classes from "./App.module.css";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import HomeScreen from "./screens/HomeScreen/HomeScreen";
 
 function App() {
   return (
-    <div className="App">
-      <Router>
-        <Navigation cartQty={"0"} />
-      </Router>
-    </div>
+    <Router>
+      <main className={classes.mainSection}>
+        <Route path="/" component={HomeScreen} exact></Route>
+      </main>
+    </Router>
   );
 }
 

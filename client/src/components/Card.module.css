@@ -1,0 +1,41 @@
+.card {
+  position: relative;
+}
+.slideOver {
+  position: absolute;
+  bottom: 70px;
+  background-color: #384aeb;
+  padding: 23px 60px 23px 25px;
+  transform: translateY(50px);
+  opacity: 0;
+  z-index: -1;
+  transition: all 0.4s ease-in-out;
+  left: 0;
+  color: white;
+  text-decoration: none;
+}
+.card::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.8);
+  transform: translateY(50px);
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+.card img {
+  width: 98%;
+}
+.card:hover .slideOver {
+  opacity: 1;
+  z-index: 10;
+}
+.card:hover::after {
+  opacity: 1;
+  transform: translateY(0px);
+  z-index: 1;
+}

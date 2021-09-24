@@ -1,0 +1,76 @@
+.heroBanner {
+  background-color: #f1f6f7;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.heroBanner::before {
+  content: "";
+  display: block;
+  height: 100%;
+  background-color: #384aeb;
+  position: absolute;
+  top: -0.99px;
+  left: 0;
+}
+
+@media (min-width: 575px) {
+  .heroBanner::before {
+    width: 20%;
+  }
+}
+
+@media (min-width: 991px) {
+  .heroBanner::before {
+    width: 35%;
+  }
+}
+
+.content {
+  padding-top: 60px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+.imageFluid {
+  max-width: 100%;
+  height: auto;
+}
+.intro {
+  max-width: 495px;
+  margin-left: 50px;
+}
+.intro h4 {
+  font-size: 30px;
+  font-family: "Roboto", sans-serif;
+  color: #555;
+  margin-bottom: 12px;
+}
+.intro h1 {
+  font-size: 50px;
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin-bottom: 25px;
+  color: #222;
+}
+.intro p {
+  color: #777;
+  margin-bottom: 40px;
+}
+
+.intro a {
+  display: inline-block;
+  border: 1px solid #384aeb;
+  border-radius: 30px;
+  font-weight: 500;
+  color: white;
+  background-color: #384aeb;
+  padding: 15px 35px;
+  text-decoration: none;
+  transition: all 0.2s linear;
+}
+.intro a:hover {
+  background-color: white;
+  color: #384aeb;
+}
