@@ -1,10 +1,14 @@
-import "./App.css";
+import classes from "./App.module.css";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import HomeScreen from "./screens/HomeScreen/HomeScreen";
 
 function App() {
   return (
-    <div className="App">
-      <h1>COMP3120 Groups Assignment new feature</h1>
-    </div>
+    <Router>
+      <main className={classes.mainSection}>
+        <Route path="/" component={HomeScreen} exact></Route>
+      </main>
+    </Router>
   );
 }
 
