@@ -9,7 +9,6 @@ export const Nav = styled.nav`
     position: sticky;
     top: 0;
     z-index: 999;
-    border: 1px solid black;
 `
 
 export const NavbarContainer = styled.div`
