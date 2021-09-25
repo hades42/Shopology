@@ -1,0 +1,16 @@
+.intro {
+  margin: 100px 0 50px 0;
+}
+.intro p {
+  margin-bottom: 3px;
+  color: #777;
+}
+.intro h2 {
+  font-size: 36px;
+  font-weight: 800;
+  color: #222;
+  position: relative;
+  display: inline-block;
+  border-bottom: 2px solid #384aeb;
+  padding-bottom: 8px;
+}
