@@ -7,7 +7,7 @@
 }
 .intro h2 {
   font-size: 36px;
-  font-weight: 600;
+  font-weight: 800;
   color: #222;
   position: relative;
   display: inline-block;
@@ -17,6 +17,6 @@
 .showcase {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
+  gap: 10px;
   margin-bottom: 100px;
 }
