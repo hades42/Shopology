@@ -2,7 +2,8 @@ import classes from "./App.module.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen/HomeScreen";
 import Navigation from "./components/Navigation/Navigation";
-
+import FooterArea from "./screens/HomeScreen/FooterArea";
+import FooterBottom from "./screens/HomeScreen/FooterBottom";
 function App() {
   return (
     <Router>
@@ -10,9 +11,10 @@ function App() {
       <main className={classes.mainSection}>
         <Route path="/" component={HomeScreen} exact></Route>
       </main>
+      <FooterArea></FooterArea>
+      <FooterBottom></FooterBottom>
     </Router>
   );
 }
 
 export default App;
-
