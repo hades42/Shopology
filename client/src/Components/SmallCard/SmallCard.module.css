@@ -1,3 +1,6 @@
+.container {
+  margin: 0 15px 0 0;
+}
 .container,
 .content {
   display: flex;
