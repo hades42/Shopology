@@ -1,0 +1,65 @@
+.container {
+  background-color: #002347;
+  color: white;
+  padding: 50px 0 50px;
+}
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: initial;
+}
+.mission {
+  flex: 1;
+}
+.mission h2 {
+  font-size: 36px;
+  font-weight: 700;
+}
+.mission p {
+  margin: 20px 0;
+}
+
+.quickLink {
+  flex: 1;
+  margin-left: 100px;
+}
+.quickLink h3,
+.contact h3 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+.quickLink ul {
+  display: flex;
+  flex-direction: column;
+}
+.quickLink ul a {
+  text-decoration: none;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.contact .card {
+  display: flex;
+  margin-bottom: 20px;
+}
+.contact .icon {
+  position: relative;
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  background: #384aeb;
+  color: #fff;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+.card-content h4 {
+  margin-bottom: 5px;
+}
+
+@media (min-width: 1000px) {
+  .container {
+    padding: 195px 0 120px;
+  }
+}
