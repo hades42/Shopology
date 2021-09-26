@@ -9,7 +9,7 @@ export const Nav = styled.nav`
   font-size: 1.2rem;
   position: sticky;
   top: 0;
-  z-index: 999;
+  z-index: 1001;
 `;
 
 export const NavbarContainer = styled.div`
@@ -44,7 +44,7 @@ export const HamBurgerIcon = styled.div`
     position: absolute;
     top: 0;
     right: 0;
-    transform: translate(-100%, 60%);
+    transform: translate(-50%, 60%);
     font-size: 1.8rem;
     cursor: pointer;
   }
@@ -58,13 +58,14 @@ export const NavMenu = styled.ul`
   text-align: center;
   min-width: 800px;
   @media screen and (max-width: 960px) {
+    background: #fff;
     display: flex;
     flex-direction: column;
     height: 90vh;
     width: 100%;
     position: absolute;
-    top: 60px;
-    left: ${({ click }) => (click ? "-5%" : "-110%")};
+    top: 70px;
+    left: ${({ click }) => (click ? "-50%" : "-215%")};
     opacity: 1;
     transition: all 0.5s ease;
   }
