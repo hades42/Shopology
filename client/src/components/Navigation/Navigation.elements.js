@@ -9,7 +9,7 @@ export const Nav = styled.nav`
   font-size: 1.2rem;
   position: sticky;
   top: 0;
-  z-index: 999;
+  z-index: 1001;
 `;
 
 export const NavbarContainer = styled.div`
@@ -44,7 +44,7 @@ export const HamBurgerIcon = styled.div`
     position: absolute;
     top: 0;
     right: 0;
-    transform: translate(-100%, 60%);
+    transform: translate(-50%, 60%);
     font-size: 1.8rem;
     cursor: pointer;
   }
@@ -58,13 +58,14 @@ export const NavMenu = styled.ul`
   text-align: center;
   min-width: 800px;
   @media screen and (max-width: 960px) {
+    background: #fff;
     display: flex;
     flex-direction: column;
     height: 90vh;
     width: 100%;
     position: absolute;
-    top: 60px;
-    left: ${({ click }) => (click ? "-5%" : "-110%")};
+    top: 70px;
+    left: ${({ click }) => (click ? "-50%" : "-215%")};
     opacity: 1;
     transition: all 0.5s ease;
   }
@@ -85,17 +86,7 @@ export const SubMenu = styled.ul`
   border: 1px solid rgba(0,0,0,.15);
   border-radius: .25rem;
   transform: translateY(20%);
-  transition: all 0.2s ease-in;
-    /* &:before {
-        content: "";
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 10px 10px 0 10px;
-        border-color: #eee transparent transparent transparent;
-        position: absolute;
-        z-index: 3;
-    } */
+  transition: all 0.4s ease-in;
 `
 export const NavItem = styled.li`
   height: 80px;
@@ -125,23 +116,31 @@ export const NavLinks = styled(Link)`
 `;
 export const NavSearch = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
 `;
 export const SearchIcon = styled(ImSearch)`
-  margin-top: 40px;
+  margin-top: 27px;
+  font-size: 25px;
 `;
 export const SearchInput = styled.input`
-  height: 20px;
-  margin-top: 37px;
-  border: 1px solid black;
+  margin-top: 22px;
+  width: 100px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
   border-radius: 15px;
-  &:focus,
-  &:active {
+  font-size: 14px;
+  padding: 6px 12px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+  :focus,
+  :active {
     outline: none;
+    width: 300px;
   }
 `;
 export const CartIcon = styled(ImCart)`
   margin-top: 7px;
+  font-size: 25px;
   position: relative;
 `;
 export const SubItem = styled.li`
@@ -154,12 +153,12 @@ export const SubItem = styled.li`
 `;
 export const CartCircle = styled.div`
   position: absolute;
-  width: 12px;
-  height: 12px;
+  width: 15px;
+  height: 15px;
   background-color: #4b59f7;
   border-radius: 50%;
-  margin-top: -20px;
-  margin-left: 20px;
+  margin-top: -27px;
+  margin-left: 27px;
   color: #fff;
   font-size: 9px;
 `;
