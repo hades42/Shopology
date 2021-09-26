@@ -165,7 +165,7 @@ const Navigation = ({ cartQty }) => {
             <NavItem>
               <NavSearch>
                 <SearchIcon />
-                <SearchInput placeholder="Search..." />
+                <SearchInput placeholder="Search..." type="text" name="search"/>
               </NavSearch>
             </NavItem>
             <NavItem>
