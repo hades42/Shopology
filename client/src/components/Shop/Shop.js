@@ -8,7 +8,6 @@ import {
     ShopDescCategory,
     ShopContent,
     SideBar,
-    Products,
     SideBarCategories,
     CategoryHeading,
     CategoryList,
@@ -18,10 +17,21 @@ import {
     FormListItem,
     FilterSelection,
     FilterLabel,
-    RadioSelection
+    SidebarFilters,
+    SidebarFilterHeading,
+    ProductFilter,
+    FilterHeading,
+    PriceRangeContainer,
+    MainContent,
+    FilterBar,
+    Sorting,
+    SortingSelector,
+    SortingOptions,
+    SortingDefault
 } from './Shop.elements.js'
 
 const Shop = () => {
+    
     return (
         <div>
             <ShopCategory>
@@ -92,8 +102,129 @@ const Shop = () => {
                             </CategoryListItem>
                         </CategoryList>
                     </SideBarCategories>
+                    <SidebarFilters>
+                        <SidebarFilterHeading>
+                            Product Filters
+                        </SidebarFilterHeading>
+                        <ProductFilter>
+                            <FilterHeading>
+                                Brands
+                            </FilterHeading>
+                            <CategoryList>
+                                <CategoryListItem>
+                                    <CategoryForm action="#">
+                                        <FormList>
+                                            <FormListItem>
+                                                <FilterLabel>
+                                                    <FilterSelection type="radio" id="brand1" value="brand1" name="filters" />
+                                                    Brand - 1 (0)
+                                                </FilterLabel>
+                                            </FormListItem>
+                                            <FormListItem>
+                                                <FilterLabel>
+                                                    <FilterSelection type="radio" id="brand2" value="brand2" name="filters" />
+                                                    Brand - 2 (0)
+                                                </FilterLabel>
+                                            </FormListItem>
+                                            <FormListItem>
+                                                <FilterLabel>
+                                                    <FilterSelection type="radio" id="brand3" value="brand3" name="filters" />
+                                                    Brand - 3 (0)
+                                                </FilterLabel>
+                                            </FormListItem>
+                                            <FormListItem>
+                                                <FilterLabel>
+                                                    <FilterSelection type="radio" id="brand4" value="brand4" name="filters" />
+                                                    Brand - 4 (0)
+                                                </FilterLabel>
+                                            </FormListItem>
+                                            <FormListItem>
+                                                <FilterLabel>
+                                                    <FilterSelection type="radio" id="brand5" value="brand5" name="filters" />
+                                                    Brand - 5 (0)
+                                                </FilterLabel>
+                                            </FormListItem>
+                                        </FormList>
+                                    </CategoryForm>
+                                </CategoryListItem>
+                            </CategoryList>
+                        </ProductFilter>
+                        <ProductFilter>
+                            <FilterHeading>
+                                Colour
+                            </FilterHeading>
+                            <CategoryList>
+                                <CategoryListItem>
+                                    <CategoryForm action="#">
+                                        <FormList>
+                                            <FormListItem>
+                                                <FilterLabel>
+                                                    <FilterSelection type="radio" id="color1" value="color1" name="filters" />
+                                                    Colour - 1 (0)
+                                                </FilterLabel>
+                                            </FormListItem>
+                                            <FormListItem>
+                                                <FilterLabel>
+                                                    <FilterSelection type="radio" id="color2" value="color2" name="filters" />
+                                                    Colour - 2 (0)
+                                                </FilterLabel>
+                                            </FormListItem>
+                                            <FormListItem>
+                                                <FilterLabel>
+                                                    <FilterSelection type="radio" id="color3" value="color3" name="filters" />
+                                                    Colour - 3 (0)
+                                                </FilterLabel>
+                                            </FormListItem>
+                                            <FormListItem>
+                                                <FilterLabel>
+                                                    <FilterSelection type="radio" id="color4" value="color4" name="filters" />
+                                                    Colour - 4 (0)
+                                                </FilterLabel>
+                                            </FormListItem>
+                                            <FormListItem>
+                                                <FilterLabel>
+                                                    <FilterSelection type="radio" id="color5" value="color5" name="filters" />
+                                                    Colour - 5 (0)
+                                                </FilterLabel>
+                                            </FormListItem>
+                                        </FormList>
+                                    </CategoryForm>
+                                </CategoryListItem>
+                            </CategoryList>
+                        </ProductFilter>
+                        <ProductFilter>
+                            <FilterHeading>
+                                Price
+                            </FilterHeading>
+                            <PriceRangeContainer>
+                                
+                            </PriceRangeContainer>
+                        </ProductFilter>
+                    </SidebarFilters>
                 </SideBar>
-                <Products />
+                <MainContent>
+                    <FilterBar>
+                        <Sorting>
+                            <SortingSelector>
+                                <SortingOptions value="0" >Default Sorting</SortingOptions>
+                                <SortingOptions value="1" >Price: Low to High</SortingOptions>
+                                <SortingOptions value="2" >Price: High to Low</SortingOptions>
+                                <SortingOptions value="3" >Avg. Customer Review</SortingOptions>
+                                <SortingOptions value="3" >Newest Arrivals</SortingOptions>
+                            </SortingSelector>
+                            <SortingDefault>
+                                <span>Default Sorting</span>
+                                <ul>
+                                    <li data-value="0">Default Sorting</li>
+                                    <li data-value="1">Price: Low to High</li>
+                                    <li data-value="2">Price: High to Low</li>
+                                    <li data-value="3">Avg. Customer Review</li>
+                                    <li data-value="4">Newest Arrivals</li>
+                                </ul>
+                            </SortingDefault>
+                        </Sorting>
+                    </FilterBar>
+                </MainContent>
             </ShopContent>
             <Subscribe />
         </div>

@@ -109,13 +109,8 @@ const Navigation = ({ cartQty }) => {
               </NavLinks>
               <SubMenu>
                 <SubItem>
-                  <NavLinks active={shopCategory} to="/shop-category">
+                  <NavLinks active={shopCategory} to="/shop">
                     Shop Category
-                  </NavLinks>
-                </SubItem>
-                <SubItem>
-                  <NavLinks active={productDetails} to="/product-details">
-                    Product Details
                   </NavLinks>
                 </SubItem>
                 <SubItem>

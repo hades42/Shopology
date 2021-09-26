@@ -152,6 +152,84 @@ export const FilterLabel = styled.label`
 	cursor: pointer; 
 	font-weight: 400;
 `
-export const Products = styled.div`
-    
+export const SidebarFilters = styled.div`
+    margin-top: 30px;
+    display: block;
+`
+export const SidebarFilterHeading = styled.h1`
+    font-family: 'Oswald',sans-serif;
+    line-height: 50px;
+    background: #384aeb;
+    padding: 0 30px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #fff;
+`
+export const ProductFilter = styled.div`
+    background: #f1f6f7;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 25px;
+`
+export const FilterHeading = styled.h3`
+    padding: 20px 30px 0px 30px;
+    font-size: 15px;
+    color: #000;
+`
+export const PriceRangeContainer = styled.div`
+    padding: 15px 30px 0 30px;
+`
+export const MainContent = styled.div`
+    flex: 0 0 80%;
+    max-width: 80%;
+`
+export const FilterBar = styled.div`
+    padding: 0 20px 10px 20px;
+    background: #f1f6f7;
+    margin-bottom: 30px;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+`
+export const Sorting = styled.div`
+    margin-top: 10px;
+    margin-right: 10px;
+`
+export const SortingSelector = styled.select`
+    display: none;
+`
+export const SortingOptions = styled.option`
+    font-weight: normal;
+    display: block;
+    white-space: nowrap;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+`
+export const SortingDefault = styled.div`
+    -webkit-tap-highlight-color: transparent;
+    background-color: #fff;
+    border-radius: 5px;
+    border: solid 1px #e8e8e8;
+    box-sizing: border-box;
+    clear: both;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: normal;
+    height: 42px;
+    line-height: 40px;
+    outline: none;
+    padding-left: 18px;
+    padding-right: 30px;
+    position: relative;
+    text-align: left!important;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    white-space: nowrap;
+    width: auto;
 `

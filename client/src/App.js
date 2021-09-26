@@ -12,8 +12,7 @@ function App() {
       <Navigation cartQty={"0"}></Navigation>
       <main className={classes.mainSection}>
         <Route path="/" component={HomeScreen} exact></Route>
-        <Route path="/shop"><Shop /></Route>
-        <Route path="/shop-category"><Shop /></Route>
+        <Route path="/shop" component={Shop}></Route>
       </main>
       <FooterArea></FooterArea>
       <FooterBottom></FooterBottom>
