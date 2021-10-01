@@ -240,3 +240,11 @@ export const StyledInputBase = sty(InputBase)(({ theme }) => ({
       },
     },
   }));
+
+export const ProductsContainer = styled.div`
+    margin: 3%;
+`
+export const PageNav = styled.div`
+    display: flex;
+    justify-content: center;
+`

@@ -26,19 +26,38 @@ import {
     Sorting,
     Search,
     SearchIconWrapper,
-    StyledInputBase
+    StyledInputBase,
+    ProductsContainer,
+    PageNav
 } from './Shop.elements.js'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import SearchIcon from '@mui/icons-material/Search';
+import SmallCard from '../SmallCard/SmallCard'
+import classes from '../../screens/HomeScreen/TrendingSection.module.css'
+import Pagination from '@mui/material/Pagination'
+import Stack from '@mui/material/Stack'
 
 const Shop = () => {
+    //temp
+    const products = 160
+
     const [sortBy, setSortBy] = useState('')
+    const [page, setPage] = useState(1)
+    const pageCount = Math.ceil(products/16)
+
     const selectHandler = (e) => {
         setSortBy(e.target.value)
     }
+
+    const pageHandler = (e, value) => {
+        setPage(value)
+    }
+    
+    //filter products based on page number
+
     return (
         <div>
             <ShopCategory>
@@ -231,6 +250,31 @@ const Shop = () => {
                             />
                         </Search>    
                     </FilterBar>
+                    <ProductsContainer>
+                        <div class={classes.showcase}>
+                            <SmallCard></SmallCard>
+                            <SmallCard></SmallCard>
+                            <SmallCard></SmallCard>
+                            <SmallCard></SmallCard>
+                            <SmallCard></SmallCard>
+                            <SmallCard></SmallCard>
+                            <SmallCard></SmallCard>
+                            <SmallCard></SmallCard>
+                            <SmallCard></SmallCard>
+                            <SmallCard></SmallCard>
+                            <SmallCard></SmallCard>
+                            <SmallCard></SmallCard>
+                            <SmallCard></SmallCard>
+                            <SmallCard></SmallCard>
+                            <SmallCard></SmallCard>
+                            <SmallCard></SmallCard>
+                        </div>
+                        <PageNav>
+                            <Stack spacing={2}>
+                                <Pagination count={pageCount} size="large" page={page} onChange={pageHandler}/>
+                            </Stack>
+                        </PageNav>
+                    </ProductsContainer>
                 </MainContent>
             </ShopContent>
             <Subscribe />
