@@ -1,5 +1,7 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components"
+import { styled as sty, alpha } from '@mui/material/styles';
 import { Link } from 'react-router-dom'
+import InputBase from '@mui/material/InputBase'
 
 export const ShopCategory = styled.div`
     display:flex;
@@ -184,6 +186,7 @@ export const MainContent = styled.div`
 `
 export const FilterBar = styled.div`
     padding: 0 20px 10px 20px;
+    margin-left: 20px;
     background: #f1f6f7;
     margin-bottom: 30px;
     align-items: center;
@@ -193,43 +196,47 @@ export const FilterBar = styled.div`
 export const Sorting = styled.div`
     margin-top: 10px;
     margin-right: 10px;
+    min-width: 200px;
 `
-export const SortingSelector = styled.select`
-    display: none;
-`
-export const SortingOptions = styled.option`
-    font-weight: normal;
-    display: block;
-    white-space: nowrap;
-    min-height: 1.2em;
-    padding: 0px 2px 1px;
-`
-export const SortingDefault = styled.div`
-    -webkit-tap-highlight-color: transparent;
-    background-color: #fff;
-    border-radius: 5px;
-    border: solid 1px #e8e8e8;
-    box-sizing: border-box;
-    clear: both;
-    cursor: pointer;
-    display: block;
-    float: left;
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: normal;
-    height: 42px;
-    line-height: 40px;
-    outline: none;
-    padding-left: 18px;
-    padding-right: 30px;
-    position: relative;
-    text-align: left!important;
-    -webkit-transition: all .2s ease-in-out;
-    transition: all .2s ease-in-out;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    white-space: nowrap;
-    width: auto;
-`
+export const Search = sty('div')(({ theme }) => ({
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    '&:hover': {
+      backgroundColor: alpha(theme.palette.common.white, 0.25),
+    },
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(1),
+      width: 'auto',
+    },
+  }));
+
+export const SearchIconWrapper = sty('div')(({ theme }) => ({
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }));
+
+export const StyledInputBase = sty(InputBase)(({ theme }) => ({
+    color: 'inherit',
+    '& .MuiInputBase-input': {
+      padding: theme.spacing(1, 1, 1, 0),
+      // vertical padding + font size from searchIcon
+      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+      transition: theme.transitions.create('width'),
+      'border-radius': '15px',
+      background: '#fff',
+      [theme.breakpoints.up('sm')]: {
+        width: '30rem',
+        '&:focus': {
+          width: '59rem',
+        },
+      },
+    },
+  }));

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Subscribe from '../../screens/HomeScreen/Subscribe'
 import {
     ShopCategory,
@@ -21,17 +21,24 @@ import {
     SidebarFilterHeading,
     ProductFilter,
     FilterHeading,
-    PriceRangeContainer,
     MainContent,
     FilterBar,
     Sorting,
-    SortingSelector,
-    SortingOptions,
-    SortingDefault
+    Search,
+    SearchIconWrapper,
+    StyledInputBase
 } from './Shop.elements.js'
+import InputLabel from '@mui/material/InputLabel'
+import MenuItem from '@mui/material/MenuItem'
+import FormControl from '@mui/material/FormControl'
+import Select from '@mui/material/Select'
+import SearchIcon from '@mui/icons-material/Search';
 
 const Shop = () => {
-    
+    const [sortBy, setSortBy] = useState('')
+    const selectHandler = (e) => {
+        setSortBy(e.target.value)
+    }
     return (
         <div>
             <ShopCategory>
@@ -108,49 +115,6 @@ const Shop = () => {
                         </SidebarFilterHeading>
                         <ProductFilter>
                             <FilterHeading>
-                                Brands
-                            </FilterHeading>
-                            <CategoryList>
-                                <CategoryListItem>
-                                    <CategoryForm action="#">
-                                        <FormList>
-                                            <FormListItem>
-                                                <FilterLabel>
-                                                    <FilterSelection type="radio" id="brand1" value="brand1" name="filters" />
-                                                    Brand - 1 (0)
-                                                </FilterLabel>
-                                            </FormListItem>
-                                            <FormListItem>
-                                                <FilterLabel>
-                                                    <FilterSelection type="radio" id="brand2" value="brand2" name="filters" />
-                                                    Brand - 2 (0)
-                                                </FilterLabel>
-                                            </FormListItem>
-                                            <FormListItem>
-                                                <FilterLabel>
-                                                    <FilterSelection type="radio" id="brand3" value="brand3" name="filters" />
-                                                    Brand - 3 (0)
-                                                </FilterLabel>
-                                            </FormListItem>
-                                            <FormListItem>
-                                                <FilterLabel>
-                                                    <FilterSelection type="radio" id="brand4" value="brand4" name="filters" />
-                                                    Brand - 4 (0)
-                                                </FilterLabel>
-                                            </FormListItem>
-                                            <FormListItem>
-                                                <FilterLabel>
-                                                    <FilterSelection type="radio" id="brand5" value="brand5" name="filters" />
-                                                    Brand - 5 (0)
-                                                </FilterLabel>
-                                            </FormListItem>
-                                        </FormList>
-                                    </CategoryForm>
-                                </CategoryListItem>
-                            </CategoryList>
-                        </ProductFilter>
-                        <ProductFilter>
-                            <FilterHeading>
                                 Colour
                             </FilterHeading>
                             <CategoryList>
@@ -196,33 +160,76 @@ const Shop = () => {
                             <FilterHeading>
                                 Price
                             </FilterHeading>
-                            <PriceRangeContainer>
-                                
-                            </PriceRangeContainer>
+                            <CategoryList> 
+                                <CategoryListItem>
+                                    <CategoryForm action="#">
+                                        <FormList>
+                                            <FormListItem>
+                                                <FilterLabel>
+                                                    <FilterSelection type="radio" id="price1" value="price1" name="filters" />
+                                                    $0 - $999
+                                                </FilterLabel>
+                                            </FormListItem>
+                                            <FormListItem>
+                                                <FilterLabel>
+                                                    <FilterSelection type="radio" id="price2" value="price2" name="filters" />
+                                                    $1000 - $2499
+                                                </FilterLabel>
+                                            </FormListItem>
+                                            <FormListItem>
+                                                <FilterLabel>
+                                                    <FilterSelection type="radio" id="price3" value="price3" name="filters" />
+                                                    $2499 - $4999
+                                                </FilterLabel>
+                                            </FormListItem>
+                                            <FormListItem>
+                                                <FilterLabel>
+                                                    <FilterSelection type="radio" id="price4" value="price4" name="filters" />
+                                                    $5000 - $8000
+                                                </FilterLabel>
+                                            </FormListItem>
+                                            <FormListItem>
+                                                <FilterLabel>
+                                                    <FilterSelection type="radio" id="price5" value="price5" name="filters" />
+                                                    $8000 - ∞
+                                                </FilterLabel>
+                                            </FormListItem>
+                                        </FormList>
+                                    </CategoryForm>
+                                </CategoryListItem>
+                            </CategoryList>
                         </ProductFilter>
                     </SidebarFilters>
                 </SideBar>
                 <MainContent>
                     <FilterBar>
                         <Sorting>
-                            <SortingSelector>
-                                <SortingOptions value="0" >Default Sorting</SortingOptions>
-                                <SortingOptions value="1" >Price: Low to High</SortingOptions>
-                                <SortingOptions value="2" >Price: High to Low</SortingOptions>
-                                <SortingOptions value="3" >Avg. Customer Review</SortingOptions>
-                                <SortingOptions value="3" >Newest Arrivals</SortingOptions>
-                            </SortingSelector>
-                            <SortingDefault>
-                                <span>Default Sorting</span>
-                                <ul>
-                                    <li data-value="0">Default Sorting</li>
-                                    <li data-value="1">Price: Low to High</li>
-                                    <li data-value="2">Price: High to Low</li>
-                                    <li data-value="3">Avg. Customer Review</li>
-                                    <li data-value="4">Newest Arrivals</li>
-                                </ul>
-                            </SortingDefault>
+                            <FormControl fullWidth>
+                                <InputLabel id="sortBy-label">Sort</InputLabel>
+                                <Select
+                                    labelId="sortBy-label"
+                                    id="sortBy" 
+                                    value={sortBy} 
+                                    label = "Sort" 
+                                    onChange={selectHandler}
+                                    style={{'background': '#fff'}}
+                                >
+                                    <MenuItem value={1}>Option - 1</MenuItem>
+                                    <MenuItem value={2}>Option - 2</MenuItem>
+                                    <MenuItem value={3}>Option - 3</MenuItem>
+                                    <MenuItem value={4}>Option - 4</MenuItem>
+                                </Select>
+                            </FormControl>     
                         </Sorting>
+                        <Search>
+                            <SearchIconWrapper>
+                            <SearchIcon style={{'z-index': '1'}}/>
+                            </SearchIconWrapper>
+                            <StyledInputBase
+                                placeholder="Search…"
+                                inputProps={{ 'aria-label': 'search' }}
+                            />
+                        </Search>    
                     </FilterBar>
                 </MainContent>
             </ShopContent>
