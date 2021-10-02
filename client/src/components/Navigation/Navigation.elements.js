@@ -71,6 +71,7 @@ export const NavMenu = styled.ul`
   }
 `;
 export const SubMenu = styled.ul`
+  pointer-events: none;
   position: absolute;
   z-index: 998;
   opacity: 0;
@@ -87,16 +88,15 @@ export const SubMenu = styled.ul`
   border-radius: .25rem;
   transform: translateY(20%);
   transition: all 0.4s ease-in;
+  :hover {
+    pointer-events: auto;
+    opacity: 1;
+    transform: translateY(0%);
+  }
 `
 export const NavItem = styled.li`
   height: 80px;
   border-bottom: 2px solid transparent;
-  :hover {
-    ${SubMenu} {
-      opacity: 1;
-      transform: translateY(0%);
-    }
-  }
 `;
 export const NavLinks = styled(Link)`
   color: ${({ active }) => (active ? "#4b59f7" : "#000")};
@@ -107,6 +107,12 @@ export const NavLinks = styled(Link)`
   height: 100%;
   :hover {
     color: #4b59f7;
+  }
+  :hover + ${SubMenu} {
+    pointer-events: auto;
+    opacity: 1;
+    transform: translateY(0%);
+  
   }
   @media screen and (max-width: 960px) {
     text-align: center;

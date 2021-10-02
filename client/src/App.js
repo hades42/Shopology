@@ -4,12 +4,15 @@ import HomeScreen from "./screens/HomeScreen/HomeScreen";
 import Navigation from "./components/Navigation/Navigation";
 import FooterArea from "./screens/HomeScreen/FooterArea";
 import FooterBottom from "./screens/HomeScreen/FooterBottom";
+import Shop from './components/Shop/Shop'
+
 function App() {
   return (
     <Router>
       <Navigation cartQty={"0"}></Navigation>
       <main className={classes.mainSection}>
         <Route path="/" component={HomeScreen} exact></Route>
+        <Route path="/shop" component={Shop}></Route>
       </main>
       <FooterArea></FooterArea>
       <FooterBottom></FooterBottom>
