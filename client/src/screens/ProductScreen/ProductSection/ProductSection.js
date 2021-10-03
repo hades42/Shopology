@@ -9,12 +9,12 @@ const ProductSection = () => {
         <h2 className={classes.productPrice}>$200</h2>
         <ul className={classes.list}>
           <li>
-            <a class="active" href="#">
+            <a class="active" href="/">
               <span>Category</span> : Household
             </a>
           </li>
           <li>
-            <a class="active" href="#">
+            <a class="active" href="/">
               <span>Availibility</span> : In Stock
             </a>
           </li>
@@ -29,7 +29,7 @@ const ProductSection = () => {
           <label htmlFor="quantity">Quantity: </label>
           <input type="number" name="quantity" value="1"></input>
         </div>
-        <button>Add to Cart</button>
+        <button className={classes.addCart}>Add to Cart</button>
       </div>
     </div>
   );

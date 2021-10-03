@@ -65,7 +65,7 @@
   padding: 7px 0 7px 10px;
   font-size: 18px;
 }
-button {
+.addCart {
   display: inline-block;
   border: 1px solid #384aeb;
   border-radius: 30px;
@@ -78,7 +78,7 @@ button {
   transition: all 0.2s ease;
   cursor: pointer;
 }
-button:hover {
+.addCart:hover {
   background-color: transparent;
   color: #384aeb;
 }
