@@ -1,0 +1,84 @@
+.container {
+  margin: 50px 0 0 0;
+  display: flex;
+}
+.productImage {
+  width: 50%;
+}
+.content {
+  padding: 60px 0 0 60px;
+}
+.productName {
+  font-size: 24px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 10px;
+}
+.productPrice {
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #384aeb;
+  margin-bottom: 10px;
+}
+.list {
+  list-style: none;
+}
+.list li {
+  margin-bottom: 10px;
+}
+.list li a {
+  font-size: 15px;
+  font-weight: normal;
+  color: #777777;
+  text-decoration: none;
+}
+
+.list li a span {
+  color: #555;
+  width: 90px;
+  display: inline-block;
+}
+.productDesc {
+  padding-top: 20px;
+  border-top: 1px dotted #eeeeee;
+  border-bottom: 1px dotted #eeeeee;
+  margin-top: 20px;
+  padding-bottom: 26px;
+  margin-bottom: 20px;
+  color: #777777;
+  font-size: 17px;
+}
+
+.productCount {
+  margin-bottom: 30px;
+}
+
+.productCount label {
+  color: #777777;
+  margin-right: 10px;
+}
+
+.productCount input {
+  border: 1px solid #eeeeee;
+  border-radius: 3px;
+  padding: 7px 0 7px 10px;
+  font-size: 18px;
+}
+button {
+  display: inline-block;
+  border: 1px solid #384aeb;
+  border-radius: 30px;
+  color: #222;
+  font-weight: 500;
+  font-size: 18px;
+  padding: 15px 40px;
+  background: #384aeb;
+  color: #fff;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+button:hover {
+  background-color: transparent;
+  color: #384aeb;
+}
