@@ -1,0 +1,32 @@
+.selection-container {
+  margin-top: 40px;
+}
+
+.navSelection {
+  display: flex;
+  list-style: none;
+  background: #f1f6f7;
+  text-align: center;
+  border: none;
+  padding: 10px 0px;
+}
+.navItem {
+  padding: 0px;
+  border: none;
+  line-height: 38px;
+  background: #fff;
+  border: 1px solid #eeeeee;
+  border-radius: 30px;
+  padding: 0px 30px;
+  color: #222;
+  font-size: 14px;
+  font-weight: normal;
+  cursor: pointer;
+  margin: 0 7px;
+  transition: all 0.2s linear;
+}
+.navItem:hover {
+  color: #fff;
+  background: #384aeb;
+  border-color: #384aeb;
+}

@@ -3,7 +3,7 @@ import testing from "../../screens/HomeScreen/images/xhero-slide1.png.pagespeed.
 const SmallCard = () => {
   return (
     <div className={classes.container}>
-      <a href="/">
+      <a href="/product/:id">
         <img src={testing} alt="product" />
       </a>
       <div className={classes.content}>
