@@ -1,4 +1,7 @@
 import {
+  PRODUCT_DETAIL_FAIL,
+  PRODUCT_DETAIL_REQUEST,
+  PRODUCT_DETAIL_SUCCESS,
   PRODUCT_TOP_FAIL,
   PRODUCT_TOP_REQUEST,
   PRODUCT_TOP_SUCCESS,
@@ -40,6 +43,26 @@ export const topProduct = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PRODUCT_TOP_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const getProductDetail = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: PRODUCT_DETAIL_REQUEST });
+
+    const { data } = await axios.get(`/api/products/${id}`);
+    dispatch({
+      type: PRODUCT_DETAIL_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_DETAIL_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
