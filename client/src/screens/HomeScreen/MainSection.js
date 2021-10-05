@@ -7,6 +7,25 @@ import showcase3 from "./images/xhero-slide3.png.pagespeed.ic.jjMnTdDbyV.webp";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Card from "../../components/Card";
+
+const showcases = [
+  {
+    image: showcase1,
+    text: "Cheaper Products",
+    category: "Electronics",
+  },
+  {
+    image: showcase2,
+    text: "Fast delivery",
+    category: "Clothes",
+  },
+  {
+    image: showcase3,
+    text: "Many offers",
+    category: "Games",
+  },
+];
+console.log(showcases);
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -67,9 +86,9 @@ const MainSection = () => {
           slidesToSlide={1}
           swipeable
         >
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
+          {showcases.map((showcase) => (
+            <Card showcase={showcase} />
+          ))}
         </Carousel>
       </div>
     </>
