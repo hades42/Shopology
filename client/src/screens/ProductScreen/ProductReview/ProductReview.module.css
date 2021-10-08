@@ -1,0 +1,73 @@
+.container {
+  display: flex;
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding: 30px;
+}
+.leftSide {
+  width: 50%;
+}
+.rightSide {
+  padding-left: 30px;
+  width: 50%;
+}
+.ratingWrapper {
+  display: flex;
+}
+.ratingCard {
+  background: #f1f6f7;
+  text-align: center;
+  width: 50%;
+  padding: 30px 0;
+}
+.ratingCard h3 {
+  color: #333333;
+  font-size: 24px;
+}
+.ratingCard h2 {
+  font-size: 48px;
+  font-weight: bold;
+  color: #384aeb;
+}
+.ratingCard h4 {
+  font-size: 14px;
+  color: #555555;
+  font-weight: normal;
+}
+.list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.ratingStart {
+  padding-left: 20px;
+  width: 50%;
+}
+.startTitle {
+  margin-right: 10px;
+}
+.startPercent {
+  margin-left: 10px;
+}
+
+.reviewSection h2 {
+  margin-top: 15px;
+}
+.text {
+  height: 150px;
+}
+.submitReview {
+  background: #384aeb;
+  color: #fff;
+  font-size: 18px;
+  padding: 12px 30px;
+  border: 1px solid #384aeb;
+  border-radius: 30px;
+  transition: all 0.2s ease;
+  margin-top: 20px;
+}
+.submitReview:hover {
+  background-color: transparent;
+  color: #384aeb;
+}
