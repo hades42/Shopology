@@ -251,23 +251,10 @@ const Shop = () => {
                         </Search>    
                     </FilterBar>
                     <ProductsContainer>
-                        <div class={classes.showcase}>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
+                        <div className={classes.showcase}>
+                            {products.map((product) => (
+                                <SmallCard key={product._id} product={product} />
+                            ))}
                         </div>
                         <PageNav>
                             <Stack spacing={2}>
