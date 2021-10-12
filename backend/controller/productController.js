@@ -9,6 +9,10 @@ const getProducts = asyncHandler(async (req, res) => {
   let pageProducts = products
   console.log(req.query)
   if (products) {
+    if(req.query.search !== '') {
+      pageProducts = await Product.find({ $name: { $search: `${req.query.search}` } })
+      console.log(pageProducts.length)
+    }
     if(req.query.categoryFilter !== '' && req.query.colorFilter !== '' && req.query.priceFilter !== '') {
       pageProducts = filterProducts(products, "category", req.query.categoryFilter).concat(filterProducts(products, "color", req.query.colorFilter)).concat(filterPrice(products, req.query.priceFilter))
     } else if (req.query.categoryFilter !== '' && req.query.colorFilter !== '' && req.query.priceFilter === '') {
@@ -34,7 +38,7 @@ const getProducts = asyncHandler(async (req, res) => {
     if(req.query.pageNum != '') {
       pageProducts = pageProducts.slice((req.query.pageNum-1)*16, req.query.pageNum*16)
     }
-   // console.log(pageProducts)
+
     res.json({
       pageProducts,
       pageCount: Math.ceil(products.length/16),

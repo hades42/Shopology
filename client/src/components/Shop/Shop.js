@@ -51,9 +51,10 @@ const Shop = () => {
     const [categoryFilter, setCategoryFilter] = useState('')
     const [colorFilter, setColorFilter] = useState('')
     const [priceFilter, setPriceFilter] = useState('')
-
+    const [search, setSearch] = useState(''
+    )
     useEffect(() => {
-        dispatch(getProducts(categoryFilter, colorFilter, priceFilter, sortBy, page))
+        dispatch(getProducts(search, categoryFilter, colorFilter, priceFilter, sortBy, page))
       }, [dispatch])
     
     const productAll = useSelector((state) => state.productAll);
@@ -86,33 +87,43 @@ const Shop = () => {
     const selectHandler = (e) => {
         setSortBy(e.target.value)
         setPage(1)
-        dispatch(getProducts(categoryFilter, colorFilter, priceFilter, e.target.value, 1))
+        dispatch(getProducts(search, categoryFilter, colorFilter, priceFilter, e.target.value, 1))
     }
 
     const pageHandler = (e, value) => {
         setPage(value)
-        dispatch(getProducts(categoryFilter, colorFilter, priceFilter, sortBy, value))
+        dispatch(getProducts(search, categoryFilter, colorFilter, priceFilter, sortBy, value))
     }
 
     const categoryHandler = (e) => {
         setPage(1)
         setSortBy('')
         setCategoryFilter(e.target.value)
-        dispatch(getProducts(e.target.value, colorFilter, priceFilter, sortBy, 1))
+        dispatch(getProducts(search, e.target.value, colorFilter, priceFilter, sortBy, 1))
     }
 
     const colorHandler = (e) => {
         setPage(1)
         setSortBy('')
         setColorFilter(e.target.value)
-        dispatch(getProducts(categoryFilter, e.target.value, priceFilter, sortBy, 1))
+        dispatch(getProducts(search, categoryFilter, e.target.value, priceFilter, sortBy, 1))
     }
 
     const priceHandler = (e) => {
         setPage(1)
         setSortBy('')
         setPriceFilter(e.target.value)
-        dispatch(getProducts(categoryFilter, colorFilter, e.target.value, sortBy, 1))
+        dispatch(getProducts(search, categoryFilter, colorFilter, e.target.value, sortBy, 1))
+    }
+
+    const searchHandler = (e) => {
+        e.preventDefault()
+        setPage(1)
+        setSortBy('')
+        setCategoryFilter('')
+        setColorFilter('')
+        setPriceFilter('')
+        dispatch(getProducts(e.target[0].value, categoryFilter, colorFilter, priceFilter, sortBy, 1))
     }
 
     return (
@@ -312,11 +323,13 @@ const Shop = () => {
                             <SearchIconWrapper>
                             <SearchIcon style={{'z-index': '1'}}/>
                             </SearchIconWrapper>
-                            <StyledInputBase
-                                placeholder="Search…"
-                                inputProps={{ 'aria-label': 'search' }}
-                            />
-                        </Search>    
+                            <form onSubmit={searchHandler}>
+                                <StyledInputBase
+                                    placeholder="Search…"
+                                    inputProps={{ 'aria-label': 'search' }}
+                                />
+                            </form>                            
+                        </Search>  
                     </FilterBar>
                     <ProductsContainer>
                     {loading ? (

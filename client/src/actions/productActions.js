@@ -74,10 +74,10 @@ export const getProductDetail = (id) => async (dispatch) => {
   }
 };
 
-export const getProducts = (categoryFilter = "", colorFilter = "", priceFilter = "", sortBy = "", pageNum = "") => async (dispatch) => {
+export const getProducts = (search = "", categoryFilter = "", colorFilter = "", priceFilter = "", sortBy = "", pageNum = "") => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_ALL_REQUEST });
-      const { data } = await axios.get(`/api/products/?categoryFilter=${categoryFilter}&colorFilter=${colorFilter}&priceFilter=${priceFilter}&sortBy=${sortBy}&pageNum=${pageNum}`)
+      const { data } = await axios.get(`/api/products/?search=${search}&categoryFilter=${categoryFilter}&colorFilter=${colorFilter}&priceFilter=${priceFilter}&sortBy=${sortBy}&pageNum=${pageNum}`)
     dispatch({
       type: PRODUCT_ALL_SUCCESS,
       payload: data,
