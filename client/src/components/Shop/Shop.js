@@ -47,22 +47,24 @@ import Message from "../../components/Message"
 const Shop = () => {
     const dispatch = useDispatch()
     const [page, setPage] = useState(1)
+    const [sortBy, setSortBy] = useState('')
 
     useEffect(() => {
-        dispatch(getProducts(page));
-      }, [dispatch]);
+        dispatch(getProducts(sortBy, page))
+      }, [dispatch])
     
-    const [sortBy, setSortBy] = useState('')
     const productAll = useSelector((state) => state.productAll);
     const { loading, error, products, pageCount } = productAll;
 
     const selectHandler = (e) => {
         setSortBy(e.target.value)
+        setPage(1)
+        dispatch(getProducts(e.target.value, 1))
     }
 
     const pageHandler = (e, value) => {
-        dispatch(getProducts(value))
         setPage(value)
+        dispatch(getProducts(sortBy, page))
     }
 
     console.log(loading, error, products)
@@ -151,31 +153,31 @@ const Shop = () => {
                                             <FormListItem>
                                                 <FilterLabel>
                                                     <FilterSelection type="radio" id="color1" value="color1" name="filters" />
-                                                    Colour - 1 (0)
+                                                    Black - 1 (0)
                                                 </FilterLabel>
                                             </FormListItem>
                                             <FormListItem>
                                                 <FilterLabel>
                                                     <FilterSelection type="radio" id="color2" value="color2" name="filters" />
-                                                    Colour - 2 (0)
+                                                    Blue - 2 (0)
                                                 </FilterLabel>
                                             </FormListItem>
                                             <FormListItem>
                                                 <FilterLabel>
                                                     <FilterSelection type="radio" id="color3" value="color3" name="filters" />
-                                                    Colour - 3 (0)
+                                                    Red - 3 (0)
                                                 </FilterLabel>
                                             </FormListItem>
                                             <FormListItem>
                                                 <FilterLabel>
                                                     <FilterSelection type="radio" id="color4" value="color4" name="filters" />
-                                                    Colour - 4 (0)
+                                                    Green - 4 (0)
                                                 </FilterLabel>
                                             </FormListItem>
                                             <FormListItem>
                                                 <FilterLabel>
                                                     <FilterSelection type="radio" id="color5" value="color5" name="filters" />
-                                                    Colour - 5 (0)
+                                                    Brown - 5 (0)
                                                 </FilterLabel>
                                             </FormListItem>
                                         </FormList>
@@ -241,10 +243,11 @@ const Shop = () => {
                                     onChange={selectHandler}
                                     style={{'background': '#fff'}}
                                 >
-                                    <MenuItem value={1}>Option - 1</MenuItem>
-                                    <MenuItem value={2}>Option - 2</MenuItem>
-                                    <MenuItem value={3}>Option - 3</MenuItem>
-                                    <MenuItem value={4}>Option - 4</MenuItem>
+                                    <MenuItem value={"new"}>Newest First</MenuItem>
+                                    <MenuItem value={"old"}>Oldest First</MenuItem>
+                                    <MenuItem value={"popular"}>Popular First</MenuItem>
+                                    <MenuItem value={"low"}>Price: Low to High</MenuItem>
+                                    <MenuItem value={"high"}>Price: High to Low</MenuItem>
                                 </Select>
                             </FormControl>     
                         </Sorting>
@@ -265,9 +268,9 @@ const Shop = () => {
                         <Message>{error}</Message>
                     ) : (
                         <div className={classes.showcase}>
-                        {products.length > 0 ? (products.map((product) => (
+                        {(products != null && products.length > 0)? (products.map((product) => (
                             <SmallCard key={product._id} product={product} />
-                        ))) : (<></>)}
+                        ))) : (<Message variant={"danger"}>Error Loading Products</Message>)}
                         </div>
                     )}
                         <PageNav>

@@ -63,8 +63,7 @@ export const productAllReducer = (
     case PRODUCT_ALL_REQUEST:
       return { loading: true, products: { reviews: [] } };
     case PRODUCT_ALL_SUCCESS:
-      console.log(action.payload)
-      return { loading: false, products: action.payload.pageProducts, pageCount: action.payload.pageCount };
+      return { loading: false, products: action.payload.data.pageProducts, pageCount: action.payload.data.pageCount };
     case PRODUCT_ALL_FAIL:
       return { loading: false, error: action.payload };
     default:

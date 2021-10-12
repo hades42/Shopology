@@ -1,14 +1,19 @@
 const asyncHandler = require("express-async-handler");
 const Product = require("../model/productModel");
 
-// @desc    Fetch all products (according to pagination)
+// @desc    Fetch all products (according to pagination and sorting)
 // @route   GET /api/products
 // @access  Public (any one can hit this route)
 const getProducts = asyncHandler(async (req, res) => {
   const products = await Product.find({})
+  let pageProducts = products
+  console.log(req.query)
   if (products) {
-    const pageProducts = products.slice((parseInt(Object.values(req.query)[0])-1)*2, parseInt(Object.values(req.query)[0])*2)
-    console.log((parseInt(Object.values(req.query)[0])-1)*2, parseInt(Object.values(req.query)[0])*2)
+    if(Object.keys(req.query)[0] === 'pageNum') {
+      pageProducts = products.slice((parseInt(Object.values(req.query)[0])-1)*2, parseInt(Object.values(req.query)[0])*2)
+    } else {
+      pageProducts = sortProducts(products, Object.values(req.query)[0])
+    }
     res.json({pageProducts, pageCount: Math.ceil(products.length/2)});
   } else {
     throw new Error("Products not found");
@@ -54,6 +59,63 @@ const getProductById = asyncHandler(async (req, res) => {
     throw new Error("Product not found");
   }
 });
+
+// Sorting Products
+function sortProducts (products, sortType) {
+  if(sortType === 'new') {
+    return products.sort(function(a, b) {
+      if(a.createdAt > b.createdAt) {
+        return -1
+      } else if (a.createdAt < b.createdAt) {
+        return 1
+      } else {
+        return 0
+      }
+    })
+  } else if(sortType === 'old') {
+    return products.sort(function(a, b) {
+      if(a.createdAt > b.createdAt) {
+        return 1
+      } else if (a.createdAt < b.createdAt) {
+        return -1
+      } else {
+        return 0
+      }
+    })
+  } else if(sortType === 'popular') {
+    return products.sort(function(a, b) {
+      if(a.rating > b.rating) {
+        return -1
+      } else if (a.rating < b.rating) {
+        return 1
+      } else {
+        return 0
+      }
+    })
+  } else if(sortType === 'low') {
+    return products.sort(function(a, b) {
+      if(a.price > b.price) {
+        return 1
+      } else if (a.price < b.price) {
+        return -1
+      } else {
+        return 0
+      }
+    })
+  } else if(sortType === 'high') {
+    return products.sort(function(a, b) {
+      if(a.price > b.price) {
+        return -1
+      } else if (a.price < b.price) {
+        return 1
+      } else {
+        return 0
+      }
+    })
+  } else {
+    return products
+  }
+}
 
 module.exports = {
   getTrendingProducts,
