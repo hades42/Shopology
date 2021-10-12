@@ -3,7 +3,7 @@ const User = require("../model/userModel");
 const generateToken = require("../utils/generateToken");
 
 // @desc    Register a new user
-// @route   POST /api/users
+// @route   POST /api/user
 // @access  Public
 const signup = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
@@ -35,7 +35,7 @@ const signup = asyncHandler(async (req, res) => {
 });
 
 // @desc    Auth user & get token
-// @route   POST /api/users/login
+// @route   POST /api/user/login
 // @access  Public
 const login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
@@ -56,7 +56,28 @@ const login = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    Get user profile
+// @route   GET /api/user/profile
+// @access  Private
+const getUserProfile = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      isSeller: user.isSeller,
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
 module.exports = {
   login,
   signup,
+  getUserProfile,
 };
