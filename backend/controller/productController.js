@@ -11,10 +11,34 @@ const getProducts = asyncHandler(async (req, res) => {
   if (products) {
     if(Object.keys(req.query)[0] === 'pageNum') {
       pageProducts = products.slice((parseInt(Object.values(req.query)[0])-1)*2, parseInt(Object.values(req.query)[0])*2)
+    } else if(Object.keys(req.query)[0] === 'sortBy') {
+      pageProducts = sortProducts(products, Object.values(req.query)[0]).slice((parseInt(Object.values(req.query)[1])-1)*2, parseInt(Object.values(req.query)[1])*2)
     } else {
-      pageProducts = sortProducts(products, Object.values(req.query)[0])
+      pageProducts = filterProducts(products, Object.values(req.query)[0])
     }
-    res.json({pageProducts, pageCount: Math.ceil(products.length/2)});
+    res.json({
+      pageProducts,
+      pageCount: Math.ceil(products.length/2),
+      electronicsCount: count(products, "category", "Electronics"),
+      menCount: count(products, "category", "men"),
+      womenCount: count(products, "category", "women"),
+      sportsCount: count(products, "category", "sports"),
+      babyCount: count(products, "category", "baby"),
+      automobileCount: count(products, "category", "automobile"),
+      booksCount: count(products, "category", "books"),
+      gamesCount: count(products, "category", "games"),
+      blackCount: count(products, "color", "black"),
+      blueCount: count(products, "color", "blue"),
+      redCount: count(products, "color", "red"),
+      greenCount: count(products, "color", "green"),
+      brownCount: count(products, "color", "brown"),
+      hundreadCount: priceCount(products, "0", "999"),
+      okCount: priceCount(products, "1000", "2499"),
+      tkCount: priceCount(products, "2500", "4499"),
+      thkCount: priceCount(products, "4500", "6499"),
+      fkCount: priceCount(products, "6500", "9999"),
+      fikCount: priceCount(products, "10000", "-1"),
+    })
   } else {
     throw new Error("Products not found");
   }
@@ -115,6 +139,30 @@ function sortProducts (products, sortType) {
   } else {
     return products
   }
+}
+
+function filterProducts(products, filter) {
+
+}
+
+function count(products, type, value) {
+  let count = 0
+  for(let i=0; i<products.length; i++) {
+    if(products[i][`${type}`] === value) {
+        count++
+    }
+  }
+  return count
+}
+
+function priceCount(products, min, max) {
+  let count = 0
+  for(let i=0; i<products.length; i++) {
+    if(parseInt(products[i].price) >= parseInt(min) && parseInt(products[i].price) <= parseInt(max)) {
+      count++
+    }
+  }
+  return count
 }
 
 module.exports = {

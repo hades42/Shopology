@@ -63,7 +63,31 @@ export const productAllReducer = (
     case PRODUCT_ALL_REQUEST:
       return { loading: true, products: { reviews: [] } };
     case PRODUCT_ALL_SUCCESS:
-      return { loading: false, products: action.payload.data.pageProducts, pageCount: action.payload.data.pageCount };
+      console.log(action.payload)
+      return { 
+        loading: false, 
+        products: action.payload.data.pageProducts, 
+        pageCount: action.payload.data.pageCount,
+        electronicsCount: action.payload.data.electronicsCount,
+        menCount: action.payload.data.menCount,
+        womenCount: action.payload.data.womenCount,
+        sportsCount: action.payload.data.sportsCount,
+        babyCount: action.payload.data.babyCount,
+        automobileCount: action.payload.data.automobileCount,
+        booksCount: action.payload.data.booksCount,
+        gamesCount: action.payload.data.gamesCount,
+        blackCount: action.payload.data.blackCount,
+        blueCount: action.payload.data.blueCount,
+        redCount: action.payload.data.redCount,
+        greenCount: action.payload.data.greenCount,
+        brownCount: action.payload.data.brownCount,
+        hundreadCount: action.payload.data.hundreadCount,
+        okCount: action.payload.data.okCount,
+        tkCount: action.payload.data.tkCount,
+        thkCount: action.payload.data.thkCount,
+        fkCount: action.payload.data.fkCount,
+        fikCount: action.payload.data.fikCount
+      };
     case PRODUCT_ALL_FAIL:
       return { loading: false, error: action.payload };
     default:

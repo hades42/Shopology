@@ -74,13 +74,18 @@ export const getProductDetail = (id) => async (dispatch) => {
   }
 };
 
-export const getProducts = (sortBy = "", pageNum = "") => async (dispatch) => {
+export const getProducts = (filter = "", sortBy = "", pageNum = "") => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_ALL_REQUEST });
     let data = []
-    console.log(sortBy + '  -  ' + pageNum)
-    if(sortBy !== '') {
-      data = await axios.get(`/api/products/?sortBy=${sortBy}`)
+    if(filter !== '') {
+      if(sortBy != '') {
+        data = await axios.get(`/api/products/?filter=${filter}&sortBy=${sortBy}&PageNum=${pageNum}`)
+      } else {
+        data = await axios.get(`/api/products/?filter=${filter}&PageNum=${pageNum}`)
+      }
+    } else if(sortBy !== '') {
+      data = await axios.get(`/api/products/?sortBy=${sortBy}&PageNum=${pageNum}`)
     } else {
       data = await axios.get(`/api/products/?pageNum=${pageNum}`)
     }

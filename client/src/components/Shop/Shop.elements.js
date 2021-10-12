@@ -233,7 +233,9 @@ export const StyledInputBase = sty(InputBase)(({ theme }) => ({
       'border-radius': '15px',
       background: '#fff',
       [theme.breakpoints.up('sm')]: {
-        width: '30rem',
+        width: '200px',
+        paddingTop: '16.5px',
+        paddingBottom: '16.5px',
         '&:focus': {
           width: '59rem',
         },
