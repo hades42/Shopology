@@ -32,12 +32,12 @@ const getProducts = asyncHandler(async (req, res) => {
     }
 
     if(req.query.pageNum != '') {
-      pageProducts = pageProducts.slice((req.query.pageNum-1)*2, req.query.pageNum*2)
+      pageProducts = pageProducts.slice((req.query.pageNum-1)*16, req.query.pageNum*16)
     }
    // console.log(pageProducts)
     res.json({
       pageProducts,
-      pageCount: Math.ceil(products.length/2),
+      pageCount: Math.ceil(products.length/16),
       electronicsCount: count(products, "category", "Electronics"),
       menCount: count(products, "category", "Men"),
       womenCount: count(products, "category", "Women"),
@@ -174,7 +174,9 @@ function filterPrice(products, range) {
   let pageProducts = []
   for(let i = 0; i<products.length; i++) {
     if(range === 'price1') {
-      pageProducts.push(priceHelper(products[i], 0 , 999))
+      if(products[i].price >= 0 && products[i].price <= 999) {
+        pageProducts.push(products[i])
+      }
     } else if (range === 'price2') {
       if(products[i].price >= 1000 && products[i].price <= 2499) {
         pageProducts.push(products[i])
