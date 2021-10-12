@@ -1,64 +1,62 @@
 const asyncHandler = require("express-async-handler");
-const Product = require("../model/productModel");
 const User = require("../model/userModel");
-const bcrypt = require("bcryptjs");
-const jwt = require('jsonwebtoken');
+const generateToken = require("../utils/generateToken");
 
-
+// @desc    Register a new user
+// @route   POST /api/users
+// @access  Public
 const signup = asyncHandler(async (req, res) => {
-    const body = req.body
+  const { name, email, password } = req.body;
 
-    const user = new User({
-        name: body.name,
-        email: body.email,
-        password: body.password 
-    })
+  const userExist = await User.findOne({ email });
+  if (userExist) {
+    res.status(400);
+    throw new Error("User already exists");
+  }
 
-    try {
-        const savedUser = await user.save()
-        res.json(savedUser)
-    } catch (error) {
-        res.status(401)
-        throw new Error(`Could not create new user: ${error}`);
-    }
-})
+  const user = await User.create({
+    name,
+    email,
+    password,
+  });
 
+  if (user) {
+    res.status(201).json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      token: generateToken(user._id),
+    });
+  } else {
+    res.status(400);
+    throw new Error("Invalid user data");
+  }
+});
 
-const getUser = (email) => {
-    return User.find({})
-                .then(users => users.filter(u => u.email === email)[0])
-}
-
+// @desc    Auth user & get token
+// @route   POST /api/users/login
+// @access  Public
 const login = asyncHandler(async (req, res) => {
-    const {email, password} = req.body
+  const { email, password } = req.body;
 
-    const user = await getUser(email)
-    
-    if(!user){
-        res.status(404);
-        throw new Error("Invalid username or password");
-    }
-
-    if(await user.matchPassword(password)) {
-        const userForToken = {
-            id: user._id,
-            email: user.email
-        }
-        const token = jwt.sign(userForToken, process.env.SECRET)
-        return res.status(200).json({ token, email: user.email, name: user.name })
-    } else {
-        res.status(404)
-        throw new Error("Invalid username or password");
-    }
-
-})
-
-
-// @desc    Fetch all products (according to pagination)
-// @route   GET /api/products
-// @access  Public (any one can hit this route)
+  const user = await User.findOne({ email });
+  if (user && (await user.matchPassword(password))) {
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      isSeller: user.isSeller,
+      token: generateToken(user._id),
+    });
+  } else {
+    req.status(401);
+    throw new Error("Invalid Email or Password");
+  }
+});
 
 module.exports = {
-    login,
-    signup
+  login,
+  signup,
 };
