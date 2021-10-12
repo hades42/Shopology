@@ -35,7 +35,7 @@ const getProducts = asyncHandler(async (req, res) => {
     }
 
     console.log(pageProducts)
-    
+
     res.json({
       pageProducts,
       pageCount: Math.ceil(products.length/2),
@@ -172,7 +172,31 @@ function filterProducts(products, filterType, filter) {
 }
 
 function priceFilter(products, range) {
- 
+  let pageProducts = []
+
+  for(let i = 0; i<products.length; i++) {
+    if(range === 'price1') {
+      pageProducts.push(priceHelper(products[i], 0 , 999))
+    } else if (range === 'price2') {
+      pageProducts.push(priceHelper(products[i], 1000 , 2499))
+    } else if (range === 'price3') {
+      pageProducts.push(priceHelper(products[i], 2500 , 4999))
+    } else if (range === 'price4') {
+      pageProducts.push(priceHelper(products[i], 5000 , 7999))
+    } else if (range === 'price5') {
+      pageProducts.push(priceHelper(products[i], 8000 , 9999))
+    } else {
+      if(products[i].price >= 10000) {
+        pageProducts.push(products[i])
+      }
+    }
+  }
+}
+
+function priceHelper(product, min, max) {
+  if(product.price >= min && products.price <= max) {
+      return product
+  }
 }
 
 function count(products, type, value) {
