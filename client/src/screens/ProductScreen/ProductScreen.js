@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import classes from "./ProductScreen.module.css";
 import Container from "../../components/Container";
 import Subscribe from "../HomeScreen/Subscribe";

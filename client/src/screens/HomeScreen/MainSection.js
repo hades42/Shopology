@@ -25,7 +25,6 @@ const showcases = [
     category: "Games",
   },
 ];
-console.log(showcases);
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
