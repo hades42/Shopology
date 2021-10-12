@@ -9,13 +9,23 @@ const getProducts = asyncHandler(async (req, res) => {
   let pageProducts = products
   console.log(req.query)
   if (products) {
-    if(Object.keys(req.query)[0] === 'pageNum') {
-      pageProducts = products.slice((parseInt(Object.values(req.query)[0])-1)*2, parseInt(Object.values(req.query)[0])*2)
-    } else if(Object.keys(req.query)[0] === 'sortBy') {
-      pageProducts = sortProducts(products, Object.values(req.query)[0]).slice((parseInt(Object.values(req.query)[1])-1)*2, parseInt(Object.values(req.query)[1])*2)
-    } else {
-      pageProducts = filterProducts(products, Object.values(req.query)[0])
+    console.log(req.query)
+    if(req.query.categoryFilter !== '') {
+      pageProducts = pageProducts + filterProducts(products, "category", req.query.categoryFilter)
     }
+    if(req.query.colorFilter !== '') {
+      pageProducts = pageProducts + filterProducts(products, "color", req.query.colorFilter)
+    }
+    if(req.query.priceFilter != '') {
+      pageProducts = pageProducts + priceFilter(products, "price", req.query.priceFilter)
+    }
+    if(req.query.sortBy != '') {
+      pageProducts = sortProducts(products, req.query.sortBy).slice((req.query.pageNum-1)*2, req.query.pageNum*2)
+    }
+    if(req.query.pageNum != '') {
+      pageProducts = pageProducts.slice((req.query.pageNum-1)*2, req.query.pageNum*2)
+    }
+    console.log(pageProducts)
     res.json({
       pageProducts,
       pageCount: Math.ceil(products.length/2),
