@@ -86,7 +86,7 @@ const Shop = () => {
     const selectHandler = (e) => {
         setSortBy(e.target.value)
         setPage(1)
-        dispatch(getProducts(categoryFilter, colorFilter, priceFilter, e.target.value, page))
+        dispatch(getProducts(categoryFilter, colorFilter, priceFilter, e.target.value, 1))
     }
 
     const pageHandler = (e, value) => {
@@ -98,21 +98,21 @@ const Shop = () => {
         setPage(1)
         setSortBy('')
         setCategoryFilter(e.target.value)
-        dispatch(getProducts(categoryFilter, colorFilter, priceFilter, sortBy, page))
+        dispatch(getProducts(e.target.value, colorFilter, priceFilter, sortBy, 1))
     }
 
     const colorHandler = (e) => {
         setPage(1)
         setSortBy('')
         setColorFilter(e.target.value)
-        dispatch(getProducts(categoryFilter, colorFilter, priceFilter, sortBy, page))
+        dispatch(getProducts(categoryFilter, e.target.value, priceFilter, sortBy, 1))
     }
 
     const priceHandler = (e) => {
         setPage(1)
         setSortBy('')
         setPriceFilter(e.target.value)
-        dispatch(getProducts(categoryFilter, colorFilter, priceFilter, sortBy, page))
+        dispatch(getProducts(categoryFilter, colorFilter, e.target.value, sortBy, 1))
     }
 
     return (
@@ -140,7 +140,7 @@ const Shop = () => {
                                     <FormList>
                                         <FormListItem>
                                             <FilterLabel>
-                                                <FilterSelection type="radio" id="label1" value="electronics" name="categories" onClick={categoryHandler}/>
+                                                <FilterSelection type="radio" id="label1" value="Electronics" name="categories" onClick={categoryHandler}/>
                                                 Electronics ({electronicsCount})
                                             </FilterLabel>
                                         </FormListItem>
@@ -327,7 +327,7 @@ const Shop = () => {
                         <div className={classes.showcase}>
                         {(products != null && products.length > 0)? (products.map((product) => (
                             <SmallCard key={product._id} product={product} />
-                        ))) : (<Message variant={"danger"}>Error Loading Products</Message>)}
+                        ))) : (<Message>No Products to show!</Message>)}
                         </div>
                     )}
                         <PageNav>
