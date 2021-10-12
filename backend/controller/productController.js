@@ -20,7 +20,7 @@ const getProducts = asyncHandler(async (req, res) => {
       pageProducts = pageProducts + priceFilter(products, "price", req.query.priceFilter)
     }
     if(req.query.sortBy != '') {
-      pageProducts = sortProducts(products, req.query.sortBy).slice((req.query.pageNum-1)*2, req.query.pageNum*2)
+      pageProducts = sortProducts(products, req.query.sortBy)
     }
     if(req.query.pageNum != '') {
       pageProducts = pageProducts.slice((req.query.pageNum-1)*2, req.query.pageNum*2)
