@@ -65,10 +65,10 @@
   margin-bottom: 20px;
 }
 .rightSide form button {
-  width: 70%;
+  width: 100%;
   font-size: 17px;
   padding: 10px 0;
-  border-radius: 20px;
+  /*border-radius: 20px;*/
   border: 1px solid #384aeb;
   color: white;
   background-color: #384aeb;
