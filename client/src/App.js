@@ -7,6 +7,8 @@ import FooterBottom from "./screens/HomeScreen/FooterBottom";
 import ProductScreen from "./screens/ProductScreen/ProductScreen";
 import Shop from "./components/Shop/Shop";
 import ScrollToTop from "./components/ScrollToTop";
+import LoginScreen from "./screens/Auth/LoginScreen/LoginScreen";
+import RegisterScreen from "./screens/Auth/RegisterScreen/RegisterScreen";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
       <main className={classes.mainSection}>
         <Route path="/product/:id" component={ProductScreen}></Route>
         <Route path="/shop" component={Shop}></Route>
+        <Route path="/login" component={LoginScreen}></Route>
+        <Route path="/register" component={RegisterScreen}></Route>
         <Route path="/" component={HomeScreen} exact></Route>
       </main>
       <FooterArea></FooterArea>
