@@ -9,22 +9,23 @@ const getProducts = asyncHandler(async (req, res) => {
   let pageProducts = products
   console.log(req.query)
   if (products) {
-    console.log(req.query)
-    if(req.query.categoryFilter !== '' && req.query.colorFilter !== '' && req.query.sortBy !== '') {
-      pageProducts = filterProducts(products, "category", req.query.categoryFilter).concat(filterProducts(products, "color", req.query.colorFilter)).concat(priceFilter(products, req.query.priceFilter))
-    } else if (req.query.categoryFilter !== '' && req.query.colorFilter !== '' && req.query.sortBy === '') {
+    if(req.query.categoryFilter !== '' && req.query.colorFilter !== '' && req.query.priceFilter !== '') {
+      pageProducts = filterProducts(products, "category", req.query.categoryFilter).concat(filterProducts(products, "color", req.query.colorFilter)).concat(filterPrice(products, req.query.priceFilter))
+    } else if (req.query.categoryFilter !== '' && req.query.colorFilter !== '' && req.query.priceFilter === '') {
       pageProducts = filterProducts(products, "category", req.query.categoryFilter).concat(filterProducts(products, "color", req.query.colorFilter))
-    } else if (req.query.categoryFilter !== '' && req.query.colorFilter === '' && req.query.sortBy !== '') {
-      pageProducts = filterProducts(products, "category", req.query.categoryFilter).concat(priceFilter(products, req.query.priceFilter))
-    } else if (req.query.categoryFilter !== '' && req.query.colorFilter === '' && req.query.sortBy === '') {
+    } else if (req.query.categoryFilter !== '' && req.query.colorFilter === '' && req.query.priceFilter !== '') {
+      pageProducts = filterProducts(products, "category", req.query.categoryFilter).concat(filterPrice(products, req.query.priceFilter))
+    } else if (req.query.categoryFilter !== '' && req.query.colorFilter === '' && req.query.priceFilter === '') {
       pageProducts = filterProducts(products, "category", req.query.categoryFilter)
-    } else if (req.query.categoryFilter === '' && req.query.colorFilter !== '' && req.query.sortBy !== '') {
-      pageProducts = filterProducts(products, "color", req.query.colorFilter).concat(priceFilter(products, req.query.priceFilter))
-    } else if (req.query.categoryFilter === '' && req.query.colorFilter !== '' && req.query.sortBy === '') {
+    } else if (req.query.categoryFilter === '' && req.query.colorFilter !== '' && req.query.priceFilter !== '') {
+      pageProducts = filterProducts(products, "color", req.query.colorFilter).concat(filterPrice(products, req.query.priceFilter))
+    } else if (req.query.categoryFilter === '' && req.query.colorFilter !== '' && req.query.priceFilter === '') {
       pageProducts = filterProducts(products, "color", req.query.colorFilter)
-    } else if (req.query.categoryFilter === '' && req.query.colorFilter === '' && req.query.sortBy !== '') {
-      pageProducts = priceFilter(products, req.query.priceFilter)
-    } 
+    } else if (req.query.categoryFilter === '' && req.query.colorFilter === '' && req.query.priceFilter !== '') {
+      pageProducts = filterPrice(products, req.query.priceFilter)
+    } else {
+      pageProducts = products
+    }
     
     if(req.query.sortBy != '') {
       pageProducts = sortProducts(pageProducts, req.query.sortBy)
@@ -33,25 +34,23 @@ const getProducts = asyncHandler(async (req, res) => {
     if(req.query.pageNum != '') {
       pageProducts = pageProducts.slice((req.query.pageNum-1)*2, req.query.pageNum*2)
     }
-
-    console.log(pageProducts)
-
+   // console.log(pageProducts)
     res.json({
       pageProducts,
       pageCount: Math.ceil(products.length/2),
       electronicsCount: count(products, "category", "Electronics"),
-      menCount: count(products, "category", "men"),
-      womenCount: count(products, "category", "women"),
-      sportsCount: count(products, "category", "sports"),
-      babyCount: count(products, "category", "baby"),
-      automobileCount: count(products, "category", "automobile"),
-      booksCount: count(products, "category", "books"),
-      gamesCount: count(products, "category", "games"),
-      blackCount: count(products, "color", "black"),
-      blueCount: count(products, "color", "blue"),
-      redCount: count(products, "color", "red"),
-      greenCount: count(products, "color", "green"),
-      brownCount: count(products, "color", "brown"),
+      menCount: count(products, "category", "Men"),
+      womenCount: count(products, "category", "Women"),
+      sportsCount: count(products, "category", "Sports"),
+      babyCount: count(products, "category", "Baby"),
+      automobileCount: count(products, "category", "Automobile"),
+      booksCount: count(products, "category", "Books"),
+      gamesCount: count(products, "category", "Games"),
+      blackCount: count(products, "color", "Black"),
+      blueCount: count(products, "color", "Blue"),
+      redCount: count(products, "color", "Red"),
+      greenCount: count(products, "color", "Green"),
+      brownCount: count(products, "color", "Brown"),
       hundreadCount: priceCount(products, "0", "999"),
       okCount: priceCount(products, "1000", "2499"),
       tkCount: priceCount(products, "2500", "4499"),
@@ -171,32 +170,34 @@ function filterProducts(products, filterType, filter) {
   return pageProducts
 }
 
-function priceFilter(products, range) {
+function filterPrice(products, range) {
   let pageProducts = []
-
   for(let i = 0; i<products.length; i++) {
     if(range === 'price1') {
       pageProducts.push(priceHelper(products[i], 0 , 999))
     } else if (range === 'price2') {
-      pageProducts.push(priceHelper(products[i], 1000 , 2499))
+      if(products[i].price >= 1000 && products[i].price <= 2499) {
+        pageProducts.push(products[i])
+      }
     } else if (range === 'price3') {
-      pageProducts.push(priceHelper(products[i], 2500 , 4999))
+      if(products[i].price >= 2500 && products[i].price <= 4999) {
+        pageProducts.push(products[i])
+      }
     } else if (range === 'price4') {
-      pageProducts.push(priceHelper(products[i], 5000 , 7999))
+      if(products[i].price >= 5000 && products[i].price <= 7999) {
+        pageProducts.push(products[i])
+      }
     } else if (range === 'price5') {
-      pageProducts.push(priceHelper(products[i], 8000 , 9999))
+      if(products[i].price >= 8000 && products[i].price <= 9999) {
+        pageProducts.push(products[i])
+      }
     } else {
       if(products[i].price >= 10000) {
         pageProducts.push(products[i])
       }
     }
   }
-}
-
-function priceHelper(product, min, max) {
-  if(product.price >= min && products.price <= max) {
-      return product
-  }
+  return pageProducts
 }
 
 function count(products, type, value) {

@@ -146,42 +146,42 @@ const Shop = () => {
                                         </FormListItem>
                                         <FormListItem>
                                             <FilterLabel>
-                                                <FilterSelection type="radio" id="label2" value="men" name="categories" onClick={categoryHandler} />
+                                                <FilterSelection type="radio" id="label2" value="Men" name="categories" onClick={categoryHandler} />
                                                 Mens Fashion ({menCount})
                                             </FilterLabel>
                                         </FormListItem>
                                         <FormListItem>
                                             <FilterLabel>
-                                                <FilterSelection type="radio" id="label3" value="women" name="categories" onClick={categoryHandler} />
+                                                <FilterSelection type="radio" id="label3" value="Women" name="categories" onClick={categoryHandler} />
                                                 Womens Fashion ({womenCount})
                                             </FilterLabel>
                                         </FormListItem>
                                         <FormListItem>
                                             <FilterLabel>
-                                                <FilterSelection type="radio" id="label4" value="sports" name="categories" onClick={categoryHandler} />
+                                                <FilterSelection type="radio" id="label4" value="Sports" name="categories" onClick={categoryHandler} />
                                                 Sports, Fitness ({sportsCount})
                                             </FilterLabel>
                                         </FormListItem>
                                         <FormListItem>
                                             <FilterLabel>
-                                                <FilterSelection type="radio" id="label5" value="baby" name="categories" onClick={categoryHandler} />
+                                                <FilterSelection type="radio" id="label5" value="Baby" name="categories" onClick={categoryHandler} />
                                                 Baby Products, Toys ({babyCount})
                                             </FilterLabel>
                                         </FormListItem>
                                         <FormListItem>
                                             <FilterLabel>
-                                                <FilterSelection type="radio" id="label6" value="automobile" name="categories" onClick={categoryHandler} />
+                                                <FilterSelection type="radio" id="label6" value="Automobile" name="categories" onClick={categoryHandler} />
                                                 Automobile ({automobileCount})
                                             </FilterLabel>
                                         </FormListItem>
                                         <FormListItem>
                                             <FilterLabel>
-                                                <FilterSelection type="radio" id="label7" value="books" name="categories" onClick={categoryHandler} />
+                                                <FilterSelection type="radio" id="label7" value="Books" name="categories" onClick={categoryHandler} />
                                                 Books ({booksCount})
                                             </FilterLabel>
                                         </FormListItem><FormListItem>
                                             <FilterLabel>
-                                                <FilterSelection type="radio" id="label8" value="games" name="categories" onClick={categoryHandler} />
+                                                <FilterSelection type="radio" id="label8" value="Games" name="categories" onClick={categoryHandler} />
                                                 Board Games, Video Games ({gamesCount})
                                             </FilterLabel>
                                         </FormListItem>
