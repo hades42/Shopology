@@ -25,7 +25,7 @@ const TrendingSection = () => {
       {loading ? (
         <Loader />
       ) : error ? (
-        <Message>{error}</Message>
+        <Message variant={"danger"}>{error}</Message>
       ) : (
         <div className={classes.showcase}>
           {products.map((product) => (

@@ -8,6 +8,12 @@ import {
   PRODUCT_TRENDING_FAIL,
   PRODUCT_TRENDING_REQUEST,
   PRODUCT_TRENDING_SUCCESS,
+  PRODUCT_ALL_REQUEST,
+  PRODUCT_ALL_SUCCESS,
+  PRODUCT_ALL_FAIL,
+  PRODUCT_COUNT_REQUEST,
+  PRODUCT_COUNT_SUCCESS,
+  PRODUCT_COUNT_FAIL
 } from "../constants/productConstants";
 import axios from "axios";
 
@@ -63,6 +69,47 @@ export const getProductDetail = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PRODUCT_DETAIL_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const getProducts = (pageNum = "") => async (dispatch) => {
+  try {
+    dispatch({ type: PRODUCT_ALL_REQUEST });
+
+    const { data } = await axios.get(`/api/products/?pageNum=${pageNum}`);
+    console.log(data)
+    dispatch({
+      type: PRODUCT_ALL_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_ALL_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const getProductCount = () => async (dispatch) => {
+  try {
+    dispatch({ type: PRODUCT_COUNT_REQUEST });
+
+    const { data } = await axios.get(`/api/products/count`);
+    dispatch({
+      type: PRODUCT_COUNT_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_COUNT_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

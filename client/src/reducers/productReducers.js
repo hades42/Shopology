@@ -8,6 +8,9 @@ import {
   PRODUCT_DETAIL_FAIL,
   PRODUCT_DETAIL_SUCCESS,
   PRODUCT_DETAIL_REQUEST,
+  PRODUCT_ALL_REQUEST,
+  PRODUCT_ALL_SUCCESS,
+  PRODUCT_ALL_FAIL
 } from "../constants/productConstants";
 
 export const productTrendingReducer = (state = { products: [] }, action) => {
@@ -51,3 +54,21 @@ export const productDetailReducer = (
       return state;
   }
 };
+
+export const productAllReducer = (
+  state = { products: { reviews: [] } },
+  action
+) => {
+  switch (action.type) {
+    case PRODUCT_ALL_REQUEST:
+      return { loading: true, products: { reviews: [] } };
+    case PRODUCT_ALL_SUCCESS:
+      console.log(action.payload)
+      return { loading: false, products: action.payload.pageProducts, pageCount: action.payload.pageCount };
+    case PRODUCT_ALL_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+

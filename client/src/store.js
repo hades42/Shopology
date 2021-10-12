@@ -5,12 +5,14 @@ import {
   productTrendingReducer,
   productTopReducer,
   productDetailReducer,
+  productAllReducer
 } from "./reducers/productReducers";
 
 const reducer = combineReducers({
   productTrending: productTrendingReducer,
   productTop: productTopReducer,
   productDetail: productDetailReducer,
+  productAll: productAllReducer
 });
 
 const initialState = {};

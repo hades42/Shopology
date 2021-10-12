@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Subscribe from '../../screens/HomeScreen/Subscribe'
 import {
     ShopCategory,
@@ -34,30 +34,38 @@ import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from '@mui/icons-material/Search'
 import SmallCard from '../SmallCard/SmallCard'
 import classes from '../../screens/HomeScreen/TrendingSection.module.css'
 import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
+import { useDispatch, useSelector } from 'react-redux'
+import { getProducts } from '../../actions/productActions'
+import Loader from "../../components/Loader"
+import Message from "../../components/Message"
 
 const Shop = () => {
-    //temp
-    const products = 160
-
-    const [sortBy, setSortBy] = useState('')
+    const dispatch = useDispatch()
     const [page, setPage] = useState(1)
-    const pageCount = Math.ceil(products/16)
+
+    useEffect(() => {
+        dispatch(getProducts(page));
+      }, [dispatch]);
+    
+    const [sortBy, setSortBy] = useState('')
+    const productAll = useSelector((state) => state.productAll);
+    const { loading, error, products, pageCount } = productAll;
 
     const selectHandler = (e) => {
         setSortBy(e.target.value)
     }
 
     const pageHandler = (e, value) => {
+        dispatch(getProducts(value))
         setPage(value)
     }
-    
-    //filter products based on page number
 
+    console.log(loading, error, products)
     return (
         <div>
             <ShopCategory>
@@ -251,11 +259,17 @@ const Shop = () => {
                         </Search>    
                     </FilterBar>
                     <ProductsContainer>
+                    {loading ? (
+                        <Loader />
+                    ) : error ? (
+                        <Message>{error}</Message>
+                    ) : (
                         <div className={classes.showcase}>
-                            {products.map((product) => (
-                                <SmallCard key={product._id} product={product} />
-                            ))}
+                        {products.length > 0 ? (products.map((product) => (
+                            <SmallCard key={product._id} product={product} />
+                        ))) : (<></>)}
                         </div>
+                    )}
                         <PageNav>
                             <Stack spacing={2}>
                                 <Pagination count={pageCount} size="large" page={page} onChange={pageHandler}/>
