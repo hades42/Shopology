@@ -1,4 +1,3 @@
-import testImge from "../../HomeScreen/images/xhero-slide1.png.pagespeed.ic.KZViXlyXiG.webp";
 import classes from "./ProductSection.module.css";
 const ProductSection = ({ product }) => {
   return (

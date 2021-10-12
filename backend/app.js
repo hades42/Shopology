@@ -3,6 +3,8 @@ const path = require("path");
 const express = require("express");
 const { notFound, errorHandler } = require("./middlewares/errorHandlers");
 const productRoutes = require("./routes/productRoutes");
+const userRoutes = require("./routes/userRoutes");
+
 
 const connectDB = require("./config/db");
 connectDB();
@@ -24,6 +26,7 @@ app.get("/", (req, res) => {
 
 // Main Routes
 app.use("/api/products", productRoutes);
+app.use("/api/user", userRoutes)
 
 // Error Handler
 app.use(notFound);
