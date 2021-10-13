@@ -26,7 +26,6 @@ const Navigation = ({ cartQty }) => {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
-  console.log(userInfo)
   
   const [click, setClick] = useState(false);
 

@@ -9,14 +9,17 @@ import {
     LoginDescCategory,
     Grids,
     List,
-    ListItem
+    ListItem,
+    LogoutButton
 } from './UserProfile.elements'
 import Details from './Details'
 import Addresses from './Addresses'
 import Orders from './Orders'
-import Button from '@mui/material/Button';
+import { useHistory } from "react-router-dom";
 
 const UserProfile = () => {
+    let history = useHistory()
+
     const [details, setDetails] = useState(true)
     const [addresses, setAddresses] = useState(false)
     const [orders, setOrders] = useState(false)
@@ -39,8 +42,10 @@ const UserProfile = () => {
         setOrders(true)
     }
 
-    const logoutHandler = () => {
-        
+    const logoutHandler = (e) => {
+        localStorage.removeItem('userInfo');
+        history.push('/')
+        window.location.reload()
     }
 
     return (
@@ -56,7 +61,7 @@ const UserProfile = () => {
                     <LoginDescCategory />
                 </ShopDesc>
             </ShopCategory>
-            <Button variant="text" onClick={logoutHandler}>Log Out</Button>
+            <LogoutButton variant="text" onClick={logoutHandler}>Log Out</LogoutButton>
             <Grids container spacing={2}>
                 <Grids item xs={4}>
                     <List>
