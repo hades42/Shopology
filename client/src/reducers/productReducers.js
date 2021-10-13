@@ -8,6 +8,9 @@ import {
   PRODUCT_DETAIL_FAIL,
   PRODUCT_DETAIL_SUCCESS,
   PRODUCT_DETAIL_REQUEST,
+  PRODUCT_ALL_REQUEST,
+  PRODUCT_ALL_SUCCESS,
+  PRODUCT_ALL_FAIL
 } from "../constants/productConstants";
 
 export const productTrendingReducer = (state = { products: [] }, action) => {
@@ -51,3 +54,43 @@ export const productDetailReducer = (
       return state;
   }
 };
+
+export const productAllReducer = (
+  state = { products: { reviews: [] } },
+  action
+) => {
+  switch (action.type) {
+    case PRODUCT_ALL_REQUEST:
+      return { loading: true, products: { reviews: [] } };
+    case PRODUCT_ALL_SUCCESS:
+      return { 
+        loading: false, 
+        products: action.payload.pageProducts, 
+        pageCount: action.payload.pageCount,
+        electronicsCount: action.payload.electronicsCount,
+        menCount: action.payload.menCount,
+        womenCount: action.payload.womenCount,
+        sportsCount: action.payload.sportsCount,
+        babyCount: action.payload.babyCount,
+        automobileCount: action.payload.automobileCount,
+        booksCount: action.payload.booksCount,
+        gamesCount: action.payload.gamesCount,
+        blackCount: action.payload.blackCount,
+        blueCount: action.payload.blueCount,
+        redCount: action.payload.redCount,
+        greenCount: action.payload.greenCount,
+        brownCount: action.payload.brownCount,
+        hundreadCount: action.payload.hundreadCount,
+        okCount: action.payload.okCount,
+        tkCount: action.payload.tkCount,
+        thkCount: action.payload.thkCount,
+        fkCount: action.payload.fkCount,
+        fikCount: action.payload.fikCount
+      };
+    case PRODUCT_ALL_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+

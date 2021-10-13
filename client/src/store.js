@@ -5,6 +5,7 @@ import {
   productTrendingReducer,
   productTopReducer,
   productDetailReducer,
+  productAllReducer
 } from "./reducers/productReducers";
 import { userLoginReducer, userRegisterReducer } from "./reducers/userReducer";
 
@@ -17,6 +18,7 @@ const reducer = combineReducers({
   productTrending: productTrendingReducer,
   productTop: productTopReducer,
   productDetail: productDetailReducer,
+  productAll: productAllReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
 });

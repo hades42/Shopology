@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Subscribe from '../../screens/HomeScreen/Subscribe'
 import {
     ShopCategory,
@@ -34,29 +34,97 @@ import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from '@mui/icons-material/Search'
 import SmallCard from '../SmallCard/SmallCard'
 import classes from '../../screens/HomeScreen/TrendingSection.module.css'
 import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
+import { useDispatch, useSelector } from 'react-redux'
+import { getProducts } from '../../actions/productActions'
+import Loader from "../../components/Loader"
+import Message from "../../components/Message"
 
 const Shop = () => {
-    //temp
-    const products = 160
-
-    const [sortBy, setSortBy] = useState('')
+    const dispatch = useDispatch()
     const [page, setPage] = useState(1)
-    const pageCount = Math.ceil(products/16)
+    const [sortBy, setSortBy] = useState('')
+    const [categoryFilter, setCategoryFilter] = useState('')
+    const [colorFilter, setColorFilter] = useState('')
+    const [priceFilter, setPriceFilter] = useState('')
+    const [search, setSearch] = useState(''
+    )
+    useEffect(() => {
+        dispatch(getProducts(search, categoryFilter, colorFilter, priceFilter, sortBy, page))
+      }, [dispatch])
+    
+    const productAll = useSelector((state) => state.productAll);
+    const { 
+        loading,
+        error,
+        products,
+        pageCount,
+        electronicsCount,
+        menCount,
+        womenCount,
+        sportsCount,
+        babyCount,
+        automobileCount,
+        booksCount,
+        gamesCount,
+        blackCount,
+        blueCount,
+        redCount,
+        greenCount,
+        brownCount,
+        hundreadCount,
+        okCount,
+        tkCount,
+        thkCount,
+        fkCount,
+        fikCount
+    } = productAll;
 
     const selectHandler = (e) => {
         setSortBy(e.target.value)
+        setPage(1)
+        dispatch(getProducts(search, categoryFilter, colorFilter, priceFilter, e.target.value, 1))
     }
 
     const pageHandler = (e, value) => {
         setPage(value)
+        dispatch(getProducts(search, categoryFilter, colorFilter, priceFilter, sortBy, value))
     }
-    
-    //filter products based on page number
+
+    const categoryHandler = (e) => {
+        setPage(1)
+        setSortBy('')
+        setCategoryFilter(e.target.value)
+        dispatch(getProducts(search, e.target.value, colorFilter, priceFilter, sortBy, 1))
+    }
+
+    const colorHandler = (e) => {
+        setPage(1)
+        setSortBy('')
+        setColorFilter(e.target.value)
+        dispatch(getProducts(search, categoryFilter, e.target.value, priceFilter, sortBy, 1))
+    }
+
+    const priceHandler = (e) => {
+        setPage(1)
+        setSortBy('')
+        setPriceFilter(e.target.value)
+        dispatch(getProducts(search, categoryFilter, colorFilter, e.target.value, sortBy, 1))
+    }
+
+    const searchHandler = (e) => {
+        e.preventDefault()
+        setPage(1)
+        setSortBy('')
+        setCategoryFilter('')
+        setColorFilter('')
+        setPriceFilter('')
+        dispatch(getProducts(e.target[0].value, categoryFilter, colorFilter, priceFilter, sortBy, 1))
+    }
 
     return (
         <div>
@@ -79,48 +147,53 @@ const Shop = () => {
                         </CategoryHeading>
                         <CategoryList>
                             <CategoryListItem>
-                                <CategoryForm action="#">
+                                <CategoryForm>
                                     <FormList>
                                         <FormListItem>
                                             <FilterLabel>
-                                                <FilterSelection type="radio" id="label1" value="label1" name="categories" />
-                                                Label - 1 (0)
+                                                <FilterSelection type="radio" id="label1" value="Electronics" name="categories" onClick={categoryHandler}/>
+                                                Electronics ({electronicsCount})
                                             </FilterLabel>
                                         </FormListItem>
                                         <FormListItem>
                                             <FilterLabel>
-                                                <FilterSelection type="radio" id="label2" value="label2" name="categories" />
-                                                Label - 2 (0)
+                                                <FilterSelection type="radio" id="label2" value="Men" name="categories" onClick={categoryHandler} />
+                                                Mens Fashion ({menCount})
                                             </FilterLabel>
                                         </FormListItem>
                                         <FormListItem>
                                             <FilterLabel>
-                                                <FilterSelection type="radio" id="label3" value="label3" name="categories" />
-                                                Label - 3 (0)
+                                                <FilterSelection type="radio" id="label3" value="Women" name="categories" onClick={categoryHandler} />
+                                                Womens Fashion ({womenCount})
                                             </FilterLabel>
                                         </FormListItem>
                                         <FormListItem>
                                             <FilterLabel>
-                                                <FilterSelection type="radio" id="label4" value="label4" name="categories" />
-                                                Label - 4 (0)
+                                                <FilterSelection type="radio" id="label4" value="Sports" name="categories" onClick={categoryHandler} />
+                                                Sports, Fitness ({sportsCount})
                                             </FilterLabel>
                                         </FormListItem>
                                         <FormListItem>
                                             <FilterLabel>
-                                                <FilterSelection type="radio" id="label5" value="label5" name="categories" />
-                                                Label - 5 (0)
+                                                <FilterSelection type="radio" id="label5" value="Baby" name="categories" onClick={categoryHandler} />
+                                                Baby Products, Toys ({babyCount})
                                             </FilterLabel>
                                         </FormListItem>
                                         <FormListItem>
                                             <FilterLabel>
-                                                <FilterSelection type="radio" id="label6" value="label6" name="categories" />
-                                                Label - 6 (0)
+                                                <FilterSelection type="radio" id="label6" value="Automobile" name="categories" onClick={categoryHandler} />
+                                                Automobile ({automobileCount})
                                             </FilterLabel>
                                         </FormListItem>
                                         <FormListItem>
                                             <FilterLabel>
-                                                <FilterSelection type="radio" id="label7" value="label7" name="categories" />
-                                                Label - 7 (0)
+                                                <FilterSelection type="radio" id="label7" value="Books" name="categories" onClick={categoryHandler} />
+                                                Books ({booksCount})
+                                            </FilterLabel>
+                                        </FormListItem><FormListItem>
+                                            <FilterLabel>
+                                                <FilterSelection type="radio" id="label8" value="Games" name="categories" onClick={categoryHandler} />
+                                                Board Games, Video Games ({gamesCount})
                                             </FilterLabel>
                                         </FormListItem>
                                     </FormList>
@@ -138,36 +211,36 @@ const Shop = () => {
                             </FilterHeading>
                             <CategoryList>
                                 <CategoryListItem>
-                                    <CategoryForm action="#">
+                                    <CategoryForm>
                                         <FormList>
                                             <FormListItem>
                                                 <FilterLabel>
-                                                    <FilterSelection type="radio" id="color1" value="color1" name="filters" />
-                                                    Colour - 1 (0)
+                                                    <FilterSelection type="radio" id="color1" value="black" name="colorFilters" onClick={colorHandler} />
+                                                    Black ({blackCount})
                                                 </FilterLabel>
                                             </FormListItem>
                                             <FormListItem>
                                                 <FilterLabel>
-                                                    <FilterSelection type="radio" id="color2" value="color2" name="filters" />
-                                                    Colour - 2 (0)
+                                                    <FilterSelection type="radio" id="color2" value="blue" name="colorFilters" onClick={colorHandler} />
+                                                    Blue ({blueCount})
                                                 </FilterLabel>
                                             </FormListItem>
                                             <FormListItem>
                                                 <FilterLabel>
-                                                    <FilterSelection type="radio" id="color3" value="color3" name="filters" />
-                                                    Colour - 3 (0)
+                                                    <FilterSelection type="radio" id="color3" value="red" name="colorFilters" onClick={colorHandler} />
+                                                    Red ({redCount})
                                                 </FilterLabel>
                                             </FormListItem>
                                             <FormListItem>
                                                 <FilterLabel>
-                                                    <FilterSelection type="radio" id="color4" value="color4" name="filters" />
-                                                    Colour - 4 (0)
+                                                    <FilterSelection type="radio" id="color4" value="green" name="colorFilters" onClick={colorHandler} />
+                                                    Green ({greenCount})
                                                 </FilterLabel>
                                             </FormListItem>
                                             <FormListItem>
                                                 <FilterLabel>
-                                                    <FilterSelection type="radio" id="color5" value="color5" name="filters" />
-                                                    Colour - 5 (0)
+                                                    <FilterSelection type="radio" id="color5" value="brown" name="colorFilters" onClick={colorHandler} />
+                                                    Brown ({brownCount})
                                                 </FilterLabel>
                                             </FormListItem>
                                         </FormList>
@@ -181,36 +254,41 @@ const Shop = () => {
                             </FilterHeading>
                             <CategoryList> 
                                 <CategoryListItem>
-                                    <CategoryForm action="#">
+                                    <CategoryForm>
                                         <FormList>
                                             <FormListItem>
                                                 <FilterLabel>
-                                                    <FilterSelection type="radio" id="price1" value="price1" name="filters" />
-                                                    $0 - $999
+                                                    <FilterSelection type="radio" id="price1" value="price1" name="PriceFilters" onClick={priceHandler} />
+                                                    $0 - $999 ({hundreadCount})
                                                 </FilterLabel>
                                             </FormListItem>
                                             <FormListItem>
                                                 <FilterLabel>
-                                                    <FilterSelection type="radio" id="price2" value="price2" name="filters" />
-                                                    $1000 - $2499
+                                                    <FilterSelection type="radio" id="price2" value="price2" name="PriceFilters" onClick={priceHandler} />
+                                                    $1000 - $2499 ({okCount})
                                                 </FilterLabel>
                                             </FormListItem>
                                             <FormListItem>
                                                 <FilterLabel>
-                                                    <FilterSelection type="radio" id="price3" value="price3" name="filters" />
-                                                    $2499 - $4999
+                                                    <FilterSelection type="radio" id="price3" value="price3" name="PriceFilters" onClick={priceHandler} />
+                                                    $2500 - $4999 ({tkCount})
                                                 </FilterLabel>
                                             </FormListItem>
                                             <FormListItem>
                                                 <FilterLabel>
-                                                    <FilterSelection type="radio" id="price4" value="price4" name="filters" />
-                                                    $5000 - $8000
+                                                    <FilterSelection type="radio" id="price4" value="price4" name="PriceFilters" onClick={priceHandler} />
+                                                    $5000 - $7999 ({thkCount})
                                                 </FilterLabel>
                                             </FormListItem>
                                             <FormListItem>
                                                 <FilterLabel>
-                                                    <FilterSelection type="radio" id="price5" value="price5" name="filters" />
-                                                    $8000 - ∞
+                                                    <FilterSelection type="radio" id="price5" value="price5" name="PriceFilters" onClick={priceHandler} />
+                                                    $8000 - $9999 ({fkCount})
+                                                </FilterLabel>
+                                            </FormListItem><FormListItem>
+                                                <FilterLabel>
+                                                    <FilterSelection type="radio" id="price5" value="price5" name="PriceFilters" onClick={priceHandler} />
+                                                    $10000 and Above ({fikCount})
                                                 </FilterLabel>
                                             </FormListItem>
                                         </FormList>
@@ -233,10 +311,11 @@ const Shop = () => {
                                     onChange={selectHandler}
                                     style={{'background': '#fff'}}
                                 >
-                                    <MenuItem value={1}>Option - 1</MenuItem>
-                                    <MenuItem value={2}>Option - 2</MenuItem>
-                                    <MenuItem value={3}>Option - 3</MenuItem>
-                                    <MenuItem value={4}>Option - 4</MenuItem>
+                                    <MenuItem value={"new"}>Newest First</MenuItem>
+                                    <MenuItem value={"old"}>Oldest First</MenuItem>
+                                    <MenuItem value={"popular"}>Popular First</MenuItem>
+                                    <MenuItem value={"low"}>Price: Low to High</MenuItem>
+                                    <MenuItem value={"high"}>Price: High to Low</MenuItem>
                                 </Select>
                             </FormControl>     
                         </Sorting>
@@ -244,31 +323,26 @@ const Shop = () => {
                             <SearchIconWrapper>
                             <SearchIcon style={{'z-index': '1'}}/>
                             </SearchIconWrapper>
-                            <StyledInputBase
-                                placeholder="Search…"
-                                inputProps={{ 'aria-label': 'search' }}
-                            />
-                        </Search>    
+                            <form onSubmit={searchHandler}>
+                                <StyledInputBase
+                                    placeholder="Search…"
+                                    inputProps={{ 'aria-label': 'search' }}
+                                />
+                            </form>                            
+                        </Search>  
                     </FilterBar>
                     <ProductsContainer>
-                        <div class={classes.showcase}>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
-                            <SmallCard></SmallCard>
+                    {loading ? (
+                        <Loader />
+                    ) : error ? (
+                        <Message>{error}</Message>
+                    ) : (
+                        <div className={classes.showcase}>
+                        {(products != null && products.length > 0)? (products.map((product) => (
+                            <SmallCard key={product._id} product={product} />
+                        ))) : (<Message>No Products to show!</Message>)}
                         </div>
+                    )}
                         <PageNav>
                             <Stack spacing={2}>
                                 <Pagination count={pageCount} size="large" page={page} onChange={pageHandler}/>
