@@ -20,8 +20,14 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
 import logo from "../../media/logo.svg";
 import Button from '@mui/material/Button'
+import { useDispatch, useSelector } from "react-redux";
 
 const Navigation = ({ cartQty }) => {
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { loading, error, userInfo } = userLogin;
+  console.log(userInfo)
+  
   const [click, setClick] = useState(false);
 
   const clickHandler = () => setClick(!click);
@@ -170,7 +176,8 @@ const Navigation = ({ cartQty }) => {
                 <CartCircle>{cartQty}</CartCircle>
               </NavLinks>
             </NavItem>
-            <NavLinks to="/login"><Button variant="outlined">Login</Button></NavLinks>
+            {userInfo != null ?
+            <NavLinks to={`/user/${userInfo._id}`}><Button variant="outlined">{userInfo.name}</Button></NavLinks> : <></>}
           </NavMenu>
         </NavbarContainer>
       </Nav>
