@@ -15,6 +15,24 @@ const UserProfile = () => {
     const [addresses, setAddresses] = useState(false)
     const [orders, setOrders] = useState(false)
 
+    const detailsHandler = () => {
+        setDetails(true)
+        setAddresses(false)
+        setOrders(false)
+    }
+
+    const addressesHandler = () => {
+        setDetails(false)
+        setAddresses(true)
+        setOrders(false)
+    }
+
+    const ordersHandler = () => {
+        setDetails(false)
+        setAddresses(false)
+        setOrders(true)
+    }
+
     return (
         <>
             <ShopCategory>
@@ -31,27 +49,27 @@ const UserProfile = () => {
             <Grids container spacing={2}>
                 <Grids item xs={4}>
                     <ul>
-                        <li>My Details</li>
-                        <li>My Addresses</li>
-                        <li>My Orders</li>
+                        <li onClick={detailsHandler}>My Details</li>
+                        <li onClick={addressesHandler}>My Addresses</li>
+                        <li onClick={ordersHandler}>My Orders</li>
                     </ul>
                 </Grids>
                 <Grids item xs={8}>
                     {details == true
                         ?
-                            <></>
+                            <>1</>
                         :
                             <></>
                     }
                     {addresses == true
                         ?
-                            <></>
+                            <>2</>
                         :
                             <></>
                     }
                     {orders == true
                         ?
-                            <></>
+                            <>3</>
                         :
                             <></>
                     }
