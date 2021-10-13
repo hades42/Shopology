@@ -9,6 +9,7 @@ import Shop from "./components/Shop/Shop";
 import ScrollToTop from "./components/ScrollToTop";
 import LoginScreen from "./screens/Auth/LoginScreen/LoginScreen";
 import RegisterScreen from "./screens/Auth/RegisterScreen/RegisterScreen";
+import UserProfile from "./components/User/UserProfile";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/shop" component={Shop}></Route>
         <Route path="/login" component={LoginScreen}></Route>
         <Route path="/register" component={RegisterScreen}></Route>
+        <Route path="/user/:id" component={UserProfile}></Route>
         <Route path="/" component={HomeScreen} exact></Route>
       </main>
       <FooterArea></FooterArea>
