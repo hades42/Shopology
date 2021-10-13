@@ -7,5 +7,20 @@ export const LoginDescCategory = styled.p`
     }
 `
 export const Grids = styled(Grid)`
-    padding: 5% 3% 0;
+    padding: 5% 3%;
+`
+export const List = styled.ul`
+    list-style: none;
+    list-style-position:inside;
+`
+export const ListItem = styled.li`
+    cursor: pointer;
+    width: 100px;
+    margin-top: 100px;
+    border-bottom: ${({active}) => (active ? '1px dotted black': 'none')};
+    color: ${({active}) => (active ? 'red': 'black')};
+
+    :hover {
+        color: #4b59f7;
+    }
 `

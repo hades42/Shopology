@@ -7,7 +7,9 @@ import {
 } from '../Shop/Shop.elements'
 import {
     LoginDescCategory,
-    Grids
+    Grids,
+    List,
+    ListItem
 } from './UserProfile.elements'
 
 const UserProfile = () => {
@@ -48,11 +50,11 @@ const UserProfile = () => {
             </ShopCategory>
             <Grids container spacing={2}>
                 <Grids item xs={4}>
-                    <ul>
-                        <li onClick={detailsHandler}>My Details</li>
-                        <li onClick={addressesHandler}>My Addresses</li>
-                        <li onClick={ordersHandler}>My Orders</li>
-                    </ul>
+                    <List>
+                        <ListItem active={details} onClick={detailsHandler}>My Details</ListItem>
+                        <ListItem active={addresses} onClick={addressesHandler}>My Addresses</ListItem>
+                        <ListItem active={orders} onClick={ordersHandler}>My Orders</ListItem>
+                    </List>
                 </Grids>
                 <Grids item xs={8}>
                     {details == true
