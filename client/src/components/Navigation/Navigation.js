@@ -19,6 +19,7 @@ import {
 import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
 import logo from "../../media/logo.svg";
+import Button from '@mui/material/Button'
 
 const Navigation = ({ cartQty }) => {
   const [click, setClick] = useState(false);
@@ -169,6 +170,7 @@ const Navigation = ({ cartQty }) => {
                 <CartCircle>{cartQty}</CartCircle>
               </NavLinks>
             </NavItem>
+            <NavLinks to="/login"><Button variant="outlined">Login</Button></NavLinks>
           </NavMenu>
         </NavbarContainer>
       </Nav>
