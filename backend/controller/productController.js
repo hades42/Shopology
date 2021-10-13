@@ -5,43 +5,96 @@ const Product = require("../model/productModel");
 // @route   GET /api/products
 // @access  Public (any one can hit this route)
 const getProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({})
-  let pageProducts = products
-  console.log(req.query)
+  const products = await Product.find({});
+  let pageProducts = products;
   if (products) {
-    if(req.query.search !== '') {
-      pageProducts = await Product.find({ $name: { $search: `${req.query.search}` } })
-      console.log(pageProducts.length)
+    if (req.query.search !== "") {
+      pageProducts = await Product.find({
+        $name: { $search: `${req.query.search}` },
+      });
     }
-    if(req.query.categoryFilter !== '' && req.query.colorFilter !== '' && req.query.priceFilter !== '') {
-      pageProducts = filterProducts(products, "category", req.query.categoryFilter).concat(filterProducts(products, "color", req.query.colorFilter)).concat(filterPrice(products, req.query.priceFilter))
-    } else if (req.query.categoryFilter !== '' && req.query.colorFilter !== '' && req.query.priceFilter === '') {
-      pageProducts = filterProducts(products, "category", req.query.categoryFilter).concat(filterProducts(products, "color", req.query.colorFilter))
-    } else if (req.query.categoryFilter !== '' && req.query.colorFilter === '' && req.query.priceFilter !== '') {
-      pageProducts = filterProducts(products, "category", req.query.categoryFilter).concat(filterPrice(products, req.query.priceFilter))
-    } else if (req.query.categoryFilter !== '' && req.query.colorFilter === '' && req.query.priceFilter === '') {
-      pageProducts = filterProducts(products, "category", req.query.categoryFilter)
-    } else if (req.query.categoryFilter === '' && req.query.colorFilter !== '' && req.query.priceFilter !== '') {
-      pageProducts = filterProducts(products, "color", req.query.colorFilter).concat(filterPrice(products, req.query.priceFilter))
-    } else if (req.query.categoryFilter === '' && req.query.colorFilter !== '' && req.query.priceFilter === '') {
-      pageProducts = filterProducts(products, "color", req.query.colorFilter)
-    } else if (req.query.categoryFilter === '' && req.query.colorFilter === '' && req.query.priceFilter !== '') {
-      pageProducts = filterPrice(products, req.query.priceFilter)
+    if (
+      req.query.categoryFilter !== "" &&
+      req.query.colorFilter !== "" &&
+      req.query.priceFilter !== ""
+    ) {
+      pageProducts = filterProducts(
+        products,
+        "category",
+        req.query.categoryFilter
+      )
+        .concat(filterProducts(products, "color", req.query.colorFilter))
+        .concat(filterPrice(products, req.query.priceFilter));
+    } else if (
+      req.query.categoryFilter !== "" &&
+      req.query.colorFilter !== "" &&
+      req.query.priceFilter === ""
+    ) {
+      pageProducts = filterProducts(
+        products,
+        "category",
+        req.query.categoryFilter
+      ).concat(filterProducts(products, "color", req.query.colorFilter));
+    } else if (
+      req.query.categoryFilter !== "" &&
+      req.query.colorFilter === "" &&
+      req.query.priceFilter !== ""
+    ) {
+      pageProducts = filterProducts(
+        products,
+        "category",
+        req.query.categoryFilter
+      ).concat(filterPrice(products, req.query.priceFilter));
+    } else if (
+      req.query.categoryFilter !== "" &&
+      req.query.colorFilter === "" &&
+      req.query.priceFilter === ""
+    ) {
+      pageProducts = filterProducts(
+        products,
+        "category",
+        req.query.categoryFilter
+      );
+    } else if (
+      req.query.categoryFilter === "" &&
+      req.query.colorFilter !== "" &&
+      req.query.priceFilter !== ""
+    ) {
+      pageProducts = filterProducts(
+        products,
+        "color",
+        req.query.colorFilter
+      ).concat(filterPrice(products, req.query.priceFilter));
+    } else if (
+      req.query.categoryFilter === "" &&
+      req.query.colorFilter !== "" &&
+      req.query.priceFilter === ""
+    ) {
+      pageProducts = filterProducts(products, "color", req.query.colorFilter);
+    } else if (
+      req.query.categoryFilter === "" &&
+      req.query.colorFilter === "" &&
+      req.query.priceFilter !== ""
+    ) {
+      pageProducts = filterPrice(products, req.query.priceFilter);
     } else {
-      pageProducts = products
-    }
-    
-    if(req.query.sortBy != '') {
-      pageProducts = sortProducts(pageProducts, req.query.sortBy)
+      pageProducts = products;
     }
 
-    if(req.query.pageNum != '') {
-      pageProducts = pageProducts.slice((req.query.pageNum-1)*16, req.query.pageNum*16)
+    if (req.query.sortBy != "") {
+      pageProducts = sortProducts(pageProducts, req.query.sortBy);
+    }
+
+    if (req.query.pageNum != "") {
+      pageProducts = pageProducts.slice(
+        (req.query.pageNum - 1) * 16,
+        req.query.pageNum * 16
+      );
     }
 
     res.json({
       pageProducts,
-      pageCount: Math.ceil(products.length/16),
+      pageCount: Math.ceil(products.length / 16),
       electronicsCount: count(products, "category", "Electronics"),
       menCount: count(products, "category", "Men"),
       womenCount: count(products, "category", "Women"),
@@ -61,7 +114,7 @@ const getProducts = asyncHandler(async (req, res) => {
       thkCount: priceCount(products, "4500", "6499"),
       fkCount: priceCount(products, "6500", "9999"),
       fikCount: priceCount(products, "10000", "-1"),
-    })
+    });
   } else {
     throw new Error("Products not found");
   }
@@ -108,127 +161,130 @@ const getProductById = asyncHandler(async (req, res) => {
 });
 
 // Sorting Products
-function sortProducts (products, sortType) {
-  if(sortType === 'new') {
-    return products.sort(function(a, b) {
-      if(a.createdAt > b.createdAt) {
-        return -1
+function sortProducts(products, sortType) {
+  if (sortType === "new") {
+    return products.sort(function (a, b) {
+      if (a.createdAt > b.createdAt) {
+        return -1;
       } else if (a.createdAt < b.createdAt) {
-        return 1
+        return 1;
       } else {
-        return 0
+        return 0;
       }
-    })
-  } else if(sortType === 'old') {
-    return products.sort(function(a, b) {
-      if(a.createdAt > b.createdAt) {
-        return 1
+    });
+  } else if (sortType === "old") {
+    return products.sort(function (a, b) {
+      if (a.createdAt > b.createdAt) {
+        return 1;
       } else if (a.createdAt < b.createdAt) {
-        return -1
+        return -1;
       } else {
-        return 0
+        return 0;
       }
-    })
-  } else if(sortType === 'popular') {
-    return products.sort(function(a, b) {
-      if(a.rating > b.rating) {
-        return -1
+    });
+  } else if (sortType === "popular") {
+    return products.sort(function (a, b) {
+      if (a.rating > b.rating) {
+        return -1;
       } else if (a.rating < b.rating) {
-        return 1
+        return 1;
       } else {
-        return 0
+        return 0;
       }
-    })
-  } else if(sortType === 'low') {
-    return products.sort(function(a, b) {
-      if(a.price > b.price) {
-        return 1
+    });
+  } else if (sortType === "low") {
+    return products.sort(function (a, b) {
+      if (a.price > b.price) {
+        return 1;
       } else if (a.price < b.price) {
-        return -1
+        return -1;
       } else {
-        return 0
+        return 0;
       }
-    })
-  } else if(sortType === 'high') {
-    return products.sort(function(a, b) {
-      if(a.price > b.price) {
-        return -1
+    });
+  } else if (sortType === "high") {
+    return products.sort(function (a, b) {
+      if (a.price > b.price) {
+        return -1;
       } else if (a.price < b.price) {
-        return 1
+        return 1;
       } else {
-        return 0
+        return 0;
       }
-    })
+    });
   } else {
-    return products
+    return products;
   }
 }
 
 function filterProducts(products, filterType, filter) {
-  let pageProducts = []
-  for(let i = 0; i<products.length; i++) {
-    if(products[i][`${filterType}`] === filter) {
-      pageProducts.push(products[i])
+  let pageProducts = [];
+  for (let i = 0; i < products.length; i++) {
+    if (products[i][`${filterType}`] === filter) {
+      pageProducts.push(products[i]);
     }
   }
-  return pageProducts
+  return pageProducts;
 }
 
 function filterPrice(products, range) {
-  let pageProducts = []
-  for(let i = 0; i<products.length; i++) {
-    if(range === 'price1') {
-      if(products[i].price >= 0 && products[i].price <= 999) {
-        pageProducts.push(products[i])
+  let pageProducts = [];
+  for (let i = 0; i < products.length; i++) {
+    if (range === "price1") {
+      if (products[i].price >= 0 && products[i].price <= 999) {
+        pageProducts.push(products[i]);
       }
-    } else if (range === 'price2') {
-      if(products[i].price >= 1000 && products[i].price <= 2499) {
-        pageProducts.push(products[i])
+    } else if (range === "price2") {
+      if (products[i].price >= 1000 && products[i].price <= 2499) {
+        pageProducts.push(products[i]);
       }
-    } else if (range === 'price3') {
-      if(products[i].price >= 2500 && products[i].price <= 4999) {
-        pageProducts.push(products[i])
+    } else if (range === "price3") {
+      if (products[i].price >= 2500 && products[i].price <= 4999) {
+        pageProducts.push(products[i]);
       }
-    } else if (range === 'price4') {
-      if(products[i].price >= 5000 && products[i].price <= 7999) {
-        pageProducts.push(products[i])
+    } else if (range === "price4") {
+      if (products[i].price >= 5000 && products[i].price <= 7999) {
+        pageProducts.push(products[i]);
       }
-    } else if (range === 'price5') {
-      if(products[i].price >= 8000 && products[i].price <= 9999) {
-        pageProducts.push(products[i])
+    } else if (range === "price5") {
+      if (products[i].price >= 8000 && products[i].price <= 9999) {
+        pageProducts.push(products[i]);
       }
     } else {
-      if(products[i].price >= 10000) {
-        pageProducts.push(products[i])
+      if (products[i].price >= 10000) {
+        pageProducts.push(products[i]);
       }
     }
   }
-  return pageProducts
+  return pageProducts;
 }
 
 function count(products, type, value) {
-  let count = 0
-  for(let i=0; i<products.length; i++) {
-    if(products[i][`${type}`] === value) {
-        count++
+  let count = 0;
+  for (let i = 0; i < products.length; i++) {
+    if (products[i][`${type}`] === value) {
+      count++;
     }
   }
-  return count
+  return count;
 }
 
 function priceCount(products, min, max) {
-  let count = 0
-  for(let i=0; i<products.length; i++) {
-    if(parseInt(products[i].price) >= parseInt(min) && parseInt(products[i].price) <= parseInt(max)) {
-      count++
+  let count = 0;
+  for (let i = 0; i < products.length; i++) {
+    if (
+      parseInt(products[i].price) >= parseInt(min) &&
+      parseInt(products[i].price) <= parseInt(max)
+    ) {
+      count++;
     }
   }
-  return count
+  return count;
 }
 
 module.exports = {
   getTrendingProducts,
   getTopProducts,
   getProductById,
-  getProducts
+  getProducts,
 };
