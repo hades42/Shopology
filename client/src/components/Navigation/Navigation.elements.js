@@ -97,7 +97,7 @@ export const SubMenu = styled.ul`
 export const NavItem = styled.li`
   height: 80px;
   border-bottom: 2px solid transparent;
-`;
+`
 export const NavLinks = styled(Link)`
   color: ${({ active }) => (active ? "#4b59f7" : "#000")};
   display: flex;
@@ -119,15 +119,15 @@ export const NavLinks = styled(Link)`
     padding: 2rem;
     display: table;
   }
-`;
+`
 export const NavSearch = styled.div`
   display: flex;
   justify-content: flex-start;
-`;
+`
 export const SearchIcon = styled(ImSearch)`
   margin-top: 27px;
   font-size: 25px;
-`;
+`
 export const SearchInput = styled.input`
   margin-top: 22px;
   width: 100px;
@@ -143,12 +143,12 @@ export const SearchInput = styled.input`
     outline: none;
     width: 300px;
   }
-`;
+`
 export const CartIcon = styled(ImCart)`
   margin-top: 7px;
   font-size: 25px;
   position: relative;
-`;
+`
 export const SubItem = styled.li`
   :hover {
     background-color: #4b59f7;
@@ -156,7 +156,7 @@ export const SubItem = styled.li`
       color: #fff;
     }
   }
-`;
+`
 export const CartCircle = styled.div`
   position: absolute;
   width: 15px;
@@ -167,5 +167,7 @@ export const CartCircle = styled.div`
   margin-left: 27px;
   color: #fff;
   font-size: 9px;
-`;
+`
+export const loginButton = styled.button`
 
+`

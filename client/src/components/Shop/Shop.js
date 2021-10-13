@@ -51,8 +51,8 @@ const Shop = () => {
     const [categoryFilter, setCategoryFilter] = useState('')
     const [colorFilter, setColorFilter] = useState('')
     const [priceFilter, setPriceFilter] = useState('')
-    const [search, setSearch] = useState(''
-    )
+    const [search, setSearch] = useState('')
+    const [categoryChecker, setCategoryChecker] = useState(false)
     useEffect(() => {
         dispatch(getProducts(search, categoryFilter, colorFilter, priceFilter, sortBy, page))
       }, [dispatch])
@@ -98,6 +98,7 @@ const Shop = () => {
     const categoryHandler = (e) => {
         setPage(1)
         setSortBy('')
+        setCategoryChecker(!categoryChecker)
         setCategoryFilter(e.target.value)
         dispatch(getProducts(search, e.target.value, colorFilter, priceFilter, sortBy, 1))
     }
@@ -123,6 +124,7 @@ const Shop = () => {
         setCategoryFilter('')
         setColorFilter('')
         setPriceFilter('')
+        setSearch(e.target[0].value)
         dispatch(getProducts(e.target[0].value, categoryFilter, colorFilter, priceFilter, sortBy, 1))
     }
 
@@ -151,48 +153,48 @@ const Shop = () => {
                                     <FormList>
                                         <FormListItem>
                                             <FilterLabel>
-                                                <FilterSelection type="radio" id="label1" value="Electronics" name="categories" onClick={categoryHandler}/>
+                                                <FilterSelection checked={categoryChecker} type="checkbox" id="label1" value="Electronics" name="categories" onClick={categoryHandler}/>
                                                 Electronics ({electronicsCount})
                                             </FilterLabel>
                                         </FormListItem>
                                         <FormListItem>
                                             <FilterLabel>
-                                                <FilterSelection type="radio" id="label2" value="Men" name="categories" onClick={categoryHandler} />
+                                                <FilterSelection type="checkbox" id="label2" value="Men" name="categories" onClick={categoryHandler} />
                                                 Mens Fashion ({menCount})
                                             </FilterLabel>
                                         </FormListItem>
                                         <FormListItem>
                                             <FilterLabel>
-                                                <FilterSelection type="radio" id="label3" value="Women" name="categories" onClick={categoryHandler} />
+                                                <FilterSelection type="checkbox" id="label3" value="Women" name="categories" onClick={categoryHandler} />
                                                 Womens Fashion ({womenCount})
                                             </FilterLabel>
                                         </FormListItem>
                                         <FormListItem>
                                             <FilterLabel>
-                                                <FilterSelection type="radio" id="label4" value="Sports" name="categories" onClick={categoryHandler} />
+                                                <FilterSelection type="checkbox" id="label4" value="Sports" name="categories" onClick={categoryHandler} />
                                                 Sports, Fitness ({sportsCount})
                                             </FilterLabel>
                                         </FormListItem>
                                         <FormListItem>
                                             <FilterLabel>
-                                                <FilterSelection type="radio" id="label5" value="Baby" name="categories" onClick={categoryHandler} />
+                                                <FilterSelection type="checkbox" id="label5" value="Baby" name="categories" onClick={categoryHandler} />
                                                 Baby Products, Toys ({babyCount})
                                             </FilterLabel>
                                         </FormListItem>
                                         <FormListItem>
                                             <FilterLabel>
-                                                <FilterSelection type="radio" id="label6" value="Automobile" name="categories" onClick={categoryHandler} />
+                                                <FilterSelection type="checkbox" id="label6" value="Automobile" name="categories" onClick={categoryHandler} />
                                                 Automobile ({automobileCount})
                                             </FilterLabel>
                                         </FormListItem>
                                         <FormListItem>
                                             <FilterLabel>
-                                                <FilterSelection type="radio" id="label7" value="Books" name="categories" onClick={categoryHandler} />
+                                                <FilterSelection type="checkbox" id="label7" value="Books" name="categories" onClick={categoryHandler} />
                                                 Books ({booksCount})
                                             </FilterLabel>
                                         </FormListItem><FormListItem>
                                             <FilterLabel>
-                                                <FilterSelection type="radio" id="label8" value="Games" name="categories" onClick={categoryHandler} />
+                                                <FilterSelection type="checkbox" id="label8" value="Games" name="categories" onClick={categoryHandler} />
                                                 Board Games, Video Games ({gamesCount})
                                             </FilterLabel>
                                         </FormListItem>
@@ -215,31 +217,31 @@ const Shop = () => {
                                         <FormList>
                                             <FormListItem>
                                                 <FilterLabel>
-                                                    <FilterSelection type="radio" id="color1" value="black" name="colorFilters" onClick={colorHandler} />
+                                                    <FilterSelection type="checkbox" id="color1" value="black" name="colorFilters" onClick={colorHandler} />
                                                     Black ({blackCount})
                                                 </FilterLabel>
                                             </FormListItem>
                                             <FormListItem>
                                                 <FilterLabel>
-                                                    <FilterSelection type="radio" id="color2" value="blue" name="colorFilters" onClick={colorHandler} />
+                                                    <FilterSelection type="checkbox" id="color2" value="blue" name="colorFilters" onClick={colorHandler} />
                                                     Blue ({blueCount})
                                                 </FilterLabel>
                                             </FormListItem>
                                             <FormListItem>
                                                 <FilterLabel>
-                                                    <FilterSelection type="radio" id="color3" value="red" name="colorFilters" onClick={colorHandler} />
+                                                    <FilterSelection type="checkbox" id="color3" value="red" name="colorFilters" onClick={colorHandler} />
                                                     Red ({redCount})
                                                 </FilterLabel>
                                             </FormListItem>
                                             <FormListItem>
                                                 <FilterLabel>
-                                                    <FilterSelection type="radio" id="color4" value="green" name="colorFilters" onClick={colorHandler} />
+                                                    <FilterSelection type="checkbox" id="color4" value="green" name="colorFilters" onClick={colorHandler} />
                                                     Green ({greenCount})
                                                 </FilterLabel>
                                             </FormListItem>
                                             <FormListItem>
                                                 <FilterLabel>
-                                                    <FilterSelection type="radio" id="color5" value="brown" name="colorFilters" onClick={colorHandler} />
+                                                    <FilterSelection type="checkbox" id="color5" value="brown" name="colorFilters" onClick={colorHandler} />
                                                     Brown ({brownCount})
                                                 </FilterLabel>
                                             </FormListItem>
@@ -258,36 +260,36 @@ const Shop = () => {
                                         <FormList>
                                             <FormListItem>
                                                 <FilterLabel>
-                                                    <FilterSelection type="radio" id="price1" value="price1" name="PriceFilters" onClick={priceHandler} />
+                                                    <FilterSelection type="checkbox" id="price1" value="price1" name="PriceFilters" onClick={priceHandler} />
                                                     $0 - $999 ({hundreadCount})
                                                 </FilterLabel>
                                             </FormListItem>
                                             <FormListItem>
                                                 <FilterLabel>
-                                                    <FilterSelection type="radio" id="price2" value="price2" name="PriceFilters" onClick={priceHandler} />
+                                                    <FilterSelection type="checkbox" id="price2" value="price2" name="PriceFilters" onClick={priceHandler} />
                                                     $1000 - $2499 ({okCount})
                                                 </FilterLabel>
                                             </FormListItem>
                                             <FormListItem>
                                                 <FilterLabel>
-                                                    <FilterSelection type="radio" id="price3" value="price3" name="PriceFilters" onClick={priceHandler} />
+                                                    <FilterSelection type="checkbox" id="price3" value="price3" name="PriceFilters" onClick={priceHandler} />
                                                     $2500 - $4999 ({tkCount})
                                                 </FilterLabel>
                                             </FormListItem>
                                             <FormListItem>
                                                 <FilterLabel>
-                                                    <FilterSelection type="radio" id="price4" value="price4" name="PriceFilters" onClick={priceHandler} />
+                                                    <FilterSelection type="checkbox" id="price4" value="price4" name="PriceFilters" onClick={priceHandler} />
                                                     $5000 - $7999 ({thkCount})
                                                 </FilterLabel>
                                             </FormListItem>
                                             <FormListItem>
                                                 <FilterLabel>
-                                                    <FilterSelection type="radio" id="price5" value="price5" name="PriceFilters" onClick={priceHandler} />
+                                                    <FilterSelection type="checkbox" id="price5" value="price5" name="PriceFilters" onClick={priceHandler} />
                                                     $8000 - $9999 ({fkCount})
                                                 </FilterLabel>
                                             </FormListItem><FormListItem>
                                                 <FilterLabel>
-                                                    <FilterSelection type="radio" id="price5" value="price5" name="PriceFilters" onClick={priceHandler} />
+                                                    <FilterSelection type="checkbox" id="price5" value="price5" name="PriceFilters" onClick={priceHandler} />
                                                     $10000 and Above ({fikCount})
                                                 </FilterLabel>
                                             </FormListItem>
