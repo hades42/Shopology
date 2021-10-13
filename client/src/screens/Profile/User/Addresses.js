@@ -40,10 +40,8 @@ const Addresses = () => {
                     <form onSubmit={saveAddressHandler}>
                         <TextField fullWidth label="Full Name" variant="filled" />
                         <TextField fullWidth label="Mobile Number" variant="filled" />
-                        <TextField fullWidth label="Pin Code" variant="filled" />
-                        <TextField fullWidth label="Flat, House no., Building, Company, Apartment" variant="filled" />
-                        <TextField fullWidth label="Area, Street, Sector, Village" variant="filled" />
-                        <TextField fullWidth label="Landmark" variant="filled" />
+                        <TextField fullWidth label="Post Code" variant="filled" />
+                        <TextField fullWidth label="Address" variant="filled" />
                         <TextField label="Town/City" variant="filled" />
                         <FormControl sx={{ m: 1, minWidth: 200 }}>
                             <InputLabel id="demo-simple-select-autowidth-label">State</InputLabel>

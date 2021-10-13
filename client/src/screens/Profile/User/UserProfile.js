@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
     ShopCategory,
     ShopBanner,
@@ -15,10 +15,20 @@ import {
 import Details from './Details'
 import Addresses from './Addresses'
 import Orders from './Orders'
-import { useHistory } from "react-router-dom";
+import { logout } from '../../../actions/userAction'
+import { useDispatch, useSelector } from "react-redux";
 
-const UserProfile = () => {
-    let history = useHistory()
+const UserProfile = ({ location, history }) => {
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (!userInfo) {
+          history.push("/login");
+        }
+      }, [history, userInfo]);
 
     const [details, setDetails] = useState(true)
     const [addresses, setAddresses] = useState(false)
@@ -43,9 +53,7 @@ const UserProfile = () => {
     }
 
     const logoutHandler = (e) => {
-        localStorage.removeItem('userInfo');
-        history.push('/')
-        window.location.reload()
+        dispatch(logout())
     }
 
     return (

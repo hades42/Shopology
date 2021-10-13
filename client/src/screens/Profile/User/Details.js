@@ -26,20 +26,20 @@ const Details = ({ location, history }) => {
   const updateError = userUpdateProfile.error;
   const { success } = userUpdateProfile;
 
-  useEffect(() => {
-    if (!userInfo) {
-      history.push("/login");
-    } else {
-      if (!user || !user.name || success) {
-        // mainly reset success variable so we can update again
-        dispatch({ type: USER_UPDATE_PROFILE_RESET });
-        dispatch(getUserDetails("profile"));
-      } else {
-        setName(user.name);
-        setEmail(user.email);
-      }
-    }
-  }, [history, userInfo, dispatch, user, success]);
+  // useEffect(() => {
+  //   if (!userInfo) {
+  //     history.push("/login");
+  //   } else {
+  //     if (!user || !user.name || success) {
+  //       // mainly reset success variable so we can update again
+  //       dispatch({ type: USER_UPDATE_PROFILE_RESET });
+  //       dispatch(getUserDetails("profile"));
+  //     } else {
+  //       setName(user.name);
+  //       setEmail(user.email);
+  //     }
+  //   }
+  // }, [history, userInfo, dispatch, user, success]);
 
   const submitHandler = (e) => {
     e.preventDefault();
