@@ -167,7 +167,11 @@ const Navigation = ({ cartQty }) => {
             <NavItem>
               <NavSearch>
                 <SearchIcon />
-                <SearchInput placeholder="Search..." type="text" name="search"/>
+                <SearchInput
+                  placeholder="Search..."
+                  type="text"
+                  name="search"
+                />
               </NavSearch>
             </NavItem>
             <NavItem>
@@ -177,7 +181,7 @@ const Navigation = ({ cartQty }) => {
               </NavLinks>
             </NavItem>
             {userInfo != null ?
-            <NavLinks to={`/user/${userInfo._id}`}><Button variant="outlined">{userInfo.name}</Button></NavLinks> : <></>}
+            <NavLinks to={'/userProfile'}><Button variant="outlined">{userInfo.name}</Button></NavLinks> : <></>}
           </NavMenu>
         </NavbarContainer>
       </Nav>

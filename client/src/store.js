@@ -5,14 +5,18 @@ import {
   productTrendingReducer,
   productTopReducer,
   productDetailReducer,
-  productAllReducer
+  productAllReducer,
 } from "./reducers/productReducers";
-import { userLoginReducer, userRegisterReducer } from "./reducers/userReducer";
+import {
+  userLoginReducer,
+  userRegisterReducer,
+  userDetailReducer,
+  userUpdateProfileReducer,
+} from "./reducers/userReducer";
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
   : null;
-console.log(userInfoFromStorage);
 
 const reducer = combineReducers({
   productTrending: productTrendingReducer,
@@ -21,6 +25,8 @@ const reducer = combineReducers({
   productAll: productAllReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
+  userDetail: userDetailReducer,
+  userUpdateProfile: userUpdateProfileReducer,
 });
 
 const initialState = {
