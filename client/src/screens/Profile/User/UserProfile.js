@@ -14,6 +14,7 @@ import {
 import Details from './Details'
 import Addresses from './Addresses'
 import Orders from './Orders'
+import Button from '@mui/material/Button';
 
 const UserProfile = () => {
     const [details, setDetails] = useState(true)
@@ -38,6 +39,10 @@ const UserProfile = () => {
         setOrders(true)
     }
 
+    const logoutHandler = () => {
+        
+    }
+
     return (
         <>
             <ShopCategory>
@@ -51,6 +56,7 @@ const UserProfile = () => {
                     <LoginDescCategory />
                 </ShopDesc>
             </ShopCategory>
+            <Button variant="text" onClick={logoutHandler}>Log Out</Button>
             <Grids container spacing={2}>
                 <Grids item xs={4}>
                     <List>
