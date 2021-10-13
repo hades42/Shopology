@@ -4,10 +4,14 @@ const {
   login,
   signup,
   getUserProfile,
+  updateUserprofile,
 } = require("../controller/userController");
 const { protect } = require("../middlewares/authMiddleware");
 
-router.route("/profile").get(protect, getUserProfile);
+router
+  .route("/profile")
+  .get(protect, getUserProfile)
+  .put(protect, updateUserprofile);
 router.route("/login").post(login);
 router.route("/register").post(signup);
 

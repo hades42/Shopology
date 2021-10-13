@@ -19,7 +19,7 @@ import {
 import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
 import logo from "../../media/logo.svg";
-import Button from '@mui/material/Button'
+import Button from "@mui/material/Button";
 
 const Navigation = ({ cartQty }) => {
   const [click, setClick] = useState(false);
@@ -161,7 +161,11 @@ const Navigation = ({ cartQty }) => {
             <NavItem>
               <NavSearch>
                 <SearchIcon />
-                <SearchInput placeholder="Search..." type="text" name="search"/>
+                <SearchInput
+                  placeholder="Search..."
+                  type="text"
+                  name="search"
+                />
               </NavSearch>
             </NavItem>
             <NavItem>
@@ -170,7 +174,9 @@ const Navigation = ({ cartQty }) => {
                 <CartCircle>{cartQty}</CartCircle>
               </NavLinks>
             </NavItem>
-            <NavLinks to="/login"><Button variant="outlined">Login</Button></NavLinks>
+            <NavLinks to="/login">
+              <Button variant="outlined">Login</Button>
+            </NavLinks>
           </NavMenu>
         </NavbarContainer>
       </Nav>
