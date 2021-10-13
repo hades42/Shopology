@@ -11,6 +11,9 @@ import {
     List,
     ListItem
 } from './UserProfile.elements'
+import Details from './Details'
+import Addresses from './Addresses'
+import Orders from './Orders'
 
 const UserProfile = () => {
     const [details, setDetails] = useState(true)
@@ -59,19 +62,19 @@ const UserProfile = () => {
                 <Grids item xs={8}>
                     {details == true
                         ?
-                            <>1</>
+                            <Details />
                         :
                             <></>
                     }
                     {addresses == true
                         ?
-                            <>2</>
+                            <Addresses />
                         :
                             <></>
                     }
                     {orders == true
                         ?
-                            <>3</>
+                            <Orders />
                         :
                             <></>
                     }

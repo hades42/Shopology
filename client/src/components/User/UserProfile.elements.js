@@ -15,9 +15,8 @@ export const List = styled.ul`
 `
 export const ListItem = styled.li`
     cursor: pointer;
-    width: 100px;
     margin-top: 100px;
-    border-bottom: ${({active}) => (active ? '1px dotted black': 'none')};
+    text-decoration: ${({active}) => (active ? 'underline': 'none')};
     color: ${({active}) => (active ? 'red': 'black')};
 
     :hover {
