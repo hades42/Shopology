@@ -49,15 +49,12 @@ const UserProfile = ({ location, history }) => {
       dispatch(updateUserProfile({ id: user._id, name, email, password }));
     }
   };
-  console.log(success + " " + updateLoading);
   return (
     <Row>
       <Col md={3}>
         <h2>User Profile</h2>
         {error && <Message variant="danger">{error}</Message>}
-        {success && !updateLoading && (
-          <Message variant="success">Profile gets updated!</Message>
-        )}
+        {success && <Message variant="success">Profile gets updated!</Message>}
         {message && <Message variant="danger">{message}</Message>}
         {loading && <Loader />}
         {updateLoading && <Loader />}
