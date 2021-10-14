@@ -1,7 +1,29 @@
+import { useState } from "react";
 import classes from "./ProductSection.module.css";
+import { addToCart } from "../../../actions/cartAction";
+import { useDispatch } from "react-redux";
+import CartModal from "../../../components/CartModal/CartModal";
 const ProductSection = ({ product }) => {
+  const dispatch = useDispatch();
+  const [qty, setQty] = useState(1);
+  const [showModal, setShowModal] = useState(false);
+
+  if (!qty || qty < 1) {
+    setQty(1);
+  }
+  if (qty > product.countInStock) {
+    setQty(product.countInStock);
+  }
+  const cartHandler = () => {
+    dispatch(addToCart(product._id, qty));
+    setShowModal(true);
+  };
   return (
     <div className={classes.container}>
+      <CartModal
+        showModal={showModal}
+        closeModal={() => setShowModal(false)}
+      ></CartModal>
       <img className={classes.productImage} src={product.image} alt="Product" />
       <div className={classes.content}>
         <h3 className={classes.productName}>{product.name}</h3>
@@ -22,9 +44,16 @@ const ProductSection = ({ product }) => {
         <p className={classes.productDesc}>{product.description}</p>
         <div className={classes.productCount}>
           <label htmlFor="quantity">Quantity: </label>
-          <input type="number" name="quantity" value="1"></input>
+          <input
+            type="number"
+            name="quantity"
+            value={qty}
+            onChange={(e) => setQty(e.target.value)}
+          ></input>
         </div>
-        <button className={classes.addCart}>Add to Cart</button>
+        <button onClick={cartHandler} className={classes.addCart}>
+          Add to Cart
+        </button>
       </div>
     </div>
   );
