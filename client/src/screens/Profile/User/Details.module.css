@@ -1,0 +1,20 @@
+.wrapper {
+  margin-top: 20px;
+  width: 70%;
+}
+.update {
+  display: inline-block;
+  border: 1px solid #384aeb;
+  font-weight: 500;
+  color: white;
+  background-color: #384aeb;
+  padding: 10px 25px;
+  text-decoration: none;
+  transition: all 0.2s linear;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+.update:hover {
+  background-color: transparent;
+  color: #384aeb;
+}
