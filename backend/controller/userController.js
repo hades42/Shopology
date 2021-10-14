@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../model/userModel");
 const generateToken = require("../utils/generateToken");
+const validator = require("validator");
 
 // @desc    Register a new user
 // @route   POST /api/user
@@ -13,7 +14,16 @@ const signup = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("User already exists");
   }
+  if (!validator.isEmail(email)) {
+    throw new Error("Please provide valid email");
+  }
+  if (!validator.isStrongPassword(password)) {
+    throw new Error(
+      "At least 8 characters—the more characters, the better. \nA mixture of both uppercase and lowercase letters. A mixture of letters and numbers. Inclusion of at least one special character, e.g., ! @ # ? ]"
+    );
+  }
 
+  console.log("is password strong: " + validator.isStrongPassword(password));
   const user = await User.create({
     name,
     email,
