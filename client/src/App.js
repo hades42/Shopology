@@ -10,6 +10,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import LoginScreen from "./screens/Auth/LoginScreen/LoginScreen";
 import RegisterScreen from "./screens/Auth/RegisterScreen/RegisterScreen";
 import UserProfile from "./screens/Profile/User/UserProfile";
+import CartScreen from "./screens/CartScreen/CartScreen";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/login" component={LoginScreen}></Route>
         <Route path="/register" component={RegisterScreen}></Route>
         <Route path="/userProfile" component={UserProfile}></Route>
+        <Route path="/cart" component={CartScreen} />
         <Route path="/" component={HomeScreen} exact></Route>
       </main>
       <FooterArea></FooterArea>
