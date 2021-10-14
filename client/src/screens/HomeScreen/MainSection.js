@@ -86,7 +86,7 @@ const MainSection = () => {
           swipeable
         >
           {showcases.map((showcase) => (
-            <Card showcase={showcase} />
+            <Card key={showcase.text} showcase={showcase} />
           ))}
         </Carousel>
       </div>
