@@ -15,9 +15,11 @@ const signup = asyncHandler(async (req, res) => {
     throw new Error("User already exists");
   }
   if (!validator.isEmail(email)) {
+    res.status(400);
     throw new Error("Please provide valid email");
   }
   if (!validator.isStrongPassword(password)) {
+    res.status(400);
     throw new Error(
       "At least 8 characters—the more characters, the better. \nA mixture of both uppercase and lowercase letters. A mixture of letters and numbers. Inclusion of at least one special character, e.g., ! @ # ? ]"
     );
@@ -36,6 +38,8 @@ const signup = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
+      isSeller: user.isSeller,
+      shippingAddress: user.shippingAddress,
       token: generateToken(user._id),
     });
   } else {
@@ -58,6 +62,7 @@ const login = asyncHandler(async (req, res) => {
       email: user.email,
       isAdmin: user.isAdmin,
       isSeller: user.isSeller,
+      shippingAddress: user.shippingAddress,
       token: generateToken(user._id),
     });
   } else {
@@ -79,6 +84,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
       email: user.email,
       isAdmin: user.isAdmin,
       isSeller: user.isSeller,
+      shippingAddress: user.shippingAddress,
     });
   } else {
     res.status(404);
@@ -98,6 +104,19 @@ const updateUserprofile = asyncHandler(async (req, res) => {
     if (req.body.password) {
       user.password = req.body.password;
     }
+    const { address, city, postalCode, state } = req.body;
+    if (address) {
+      user.shippingAddress.address = address;
+    }
+    if (city) {
+      user.shippingAddress.city = city;
+    }
+    if (postalCode) {
+      user.shippingAddress.postalCode = postalCode;
+    }
+    if (state) {
+      user.shippingAddress.state = state;
+    }
     const updatedUser = await user.save();
 
     res.status(200).json({
@@ -105,6 +124,8 @@ const updateUserprofile = asyncHandler(async (req, res) => {
       name: updatedUser.name,
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
+      isSeller: updatedUser.isSeller,
+      shippingAddress: updatedUser.shippingAddress,
       token: generateToken(updatedUser._id),
     });
   } else {
@@ -112,6 +133,38 @@ const updateUserprofile = asyncHandler(async (req, res) => {
     throw new error("user not found");
   }
 });
+
+// @desc    update user address
+// @route   PUT /api/users/profile
+// @access  private
+//const updateUserAddress = asyncHandler(async (req, res) => {
+//const user = await User.findById(req.user._id);
+//const { address, city, postalCode, state } = req.body;
+
+//if (user) {
+////user.name = req.body.name || user.name;
+////user.email = req.body.email || user.email;
+////if (req.body.password) {
+////user.password = req.body.password;
+////}
+//user.shippingAddress.address = address;
+//user.shippingAddress.city = city;
+//user.shippingAddress.postalCode = postalCode;
+//user.shippingAddress.state = state;
+//const updatedUser = await user.save();
+
+//res.status(200).json({
+//_id: updatedUser._id,
+//name: updatedUser.name,
+//email: updatedUser.email,
+//isAdmin: updatedUser.isAdmin,
+//token: generateToken(updatedUser._id),
+//});
+//} else {
+//res.status(401);
+//throw new error("user not found");
+//}
+//});
 
 module.exports = {
   login,
