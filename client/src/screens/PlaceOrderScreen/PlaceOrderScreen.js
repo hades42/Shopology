@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message";
 import CheckoutSteps from "../../components/CheckoutStep/CheckoutStep";
 import { Container } from "react-bootstrap";
-//import { createOrder } from "../actions/orderActions";
+import { createOrder } from "../../actions/orderAction";
 
 const PlaceOrderScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -23,33 +23,31 @@ const PlaceOrderScreen = ({ history }) => {
     +cart.itemPrices + +cart.shippingPrice + +cart.taxPrice
   );
 
-  const error = "";
-
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-  //const orderCreate = useSelector((state) => state.orderCreate);
-  //const { order, success, error } = orderCreate;
 
-  //useEffect(() => {
-  //if (success) {
-  //history.push(`/order/${order._id}`);
-  //}
-  //// eslint-disable-next-line
-  //}, [history, success]);
+  const orderCreate = useSelector((state) => state.orderCreate);
+  const { order, success, error } = orderCreate;
+
+  useEffect(() => {
+    if (success) {
+      history.push(`/order/${order._id}`);
+    }
+    // eslint-disable-next-line
+  }, [history, success]);
 
   const placeOrderHandler = () => {
-    //dispatch(
-    //createOrder({
-    //orderItems: cart.cartItems,
-    //shippingAddress: cart.shippingAddress,
-    //paymentMethod: cart.paymentMethod,
-    //itemPrices: cart.itemPrices,
-    //taxPrice: cart.taxPrice,
-    //shippingPrice: cart.shippingPrice,
-    //totalPrice: cart.totalPrice,
-    //})
-    //);
-    console.log("Order");
+    dispatch(
+      createOrder({
+        orderItems: cart.cartItems,
+        shippingAddress: userInfo.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        itemPrices: cart.itemPrices,
+        taxPrice: cart.taxPrice,
+        shippingPrice: cart.shippingPrice,
+        totalPrice: cart.totalPrice,
+      })
+    );
   };
   return (
     <>
