@@ -11,6 +11,9 @@ import LoginScreen from "./screens/Auth/LoginScreen/LoginScreen";
 import RegisterScreen from "./screens/Auth/RegisterScreen/RegisterScreen";
 import UserProfile from "./screens/Profile/User/UserProfile";
 import CartScreen from "./screens/CartScreen/CartScreen";
+import ShippingScreen from "./screens/Shipping/ShippingScreen";
+import PaymentScreen from "./screens/PaymentScreen/PaymentScreen";
+import PlaceOrderScreen from "./screens/PlaceOrderScreen/PlaceOrderScreen";
 
 function App() {
   return (
@@ -18,7 +21,10 @@ function App() {
       <ScrollToTop />
       <Navigation cartQty={"0"}></Navigation>
       <main className={classes.mainSection}>
+        <Route path="/shipping" component={ShippingScreen}></Route>
+        <Route path="/payment" component={PaymentScreen}></Route>
         <Route path="/product/:id" component={ProductScreen}></Route>
+        <Route path="/placeorder" component={PlaceOrderScreen}></Route>
         <Route path="/shop" component={Shop}></Route>
         <Route path="/login" component={LoginScreen}></Route>
         <Route path="/register" component={RegisterScreen}></Route>
