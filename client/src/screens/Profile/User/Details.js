@@ -45,7 +45,6 @@ const Details = ({ history }) => {
       dispatch(updateUserProfile({ id: user._id, name, email, password }));
     }
   };
-  console.log(success + " " + updateLoading);
   return (
     <div className={classes.wrapper}>
       <h2>User Profile</h2>
