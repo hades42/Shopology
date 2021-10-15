@@ -104,7 +104,8 @@ const updateUserprofile = asyncHandler(async (req, res) => {
     if (req.body.password) {
       user.password = req.body.password;
     }
-    const { address, city, postalCode, state } = req.body;
+    const { address, city, postalCode, state, phone, fullname } = req.body;
+    console.log(fullname);
     if (address) {
       user.shippingAddress.address = address;
     }
@@ -116,6 +117,12 @@ const updateUserprofile = asyncHandler(async (req, res) => {
     }
     if (state) {
       user.shippingAddress.state = state;
+    }
+    if (phone) {
+      user.shippingAddress.phone = phone;
+    }
+    if (fullname) {
+      user.shippingAddress.fullname = fullname;
     }
     const updatedUser = await user.save();
 
