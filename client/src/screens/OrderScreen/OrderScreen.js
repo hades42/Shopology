@@ -72,6 +72,9 @@ const OrderScreen = ({ match, history }) => {
   };
 
   const deliverHandler = () => {};
+  const getDate = (date) => {
+    return new Date(date).toString();
+  };
 
   return loading ? (
     <Loader />
@@ -79,25 +82,29 @@ const OrderScreen = ({ match, history }) => {
     <Message variant="danger">{error}</Message>
   ) : (
     <>
-      <Container>
-        <h1>Order {order._id}</h1>
+      <Container className="mt-5">
         <Row>
           <Col md={8}>
             <ListGroup variant="flush">
               <ListGroup.Item>
+                <h1>Order {order._id}</h1>
                 <h2>Shipping</h2>
                 <p>
-                  <strong>Name: </strong> {order.user.name}
+                  <strong>Full Name: </strong> {order.shippingAddress.fullname}
                 </p>
                 <p>
                   <strong>Email: </strong>{" "}
                   <a href={`mailto:${order.user.email}`}>{order.user.email}</a>
                 </p>
                 <p>
+                  <strong>Phone number: </strong>
+                  {order.shippingAddress.phone}{" "}
+                </p>
+                <p className="mb-3">
                   <strong>Address: </strong>
-                  {order.shippingAddress.address}, {order.shippingAddress.city}{" "}
+                  {order.shippingAddress.address}, {order.shippingAddress.city},{" "}
                   {order.shippingAddress.postalCode},{" "}
-                  {order.shippingAddress.country}
+                  {order.shippingAddress.state}
                 </p>
                 {order.isDelivered ? (
                   <Message variant="success">
@@ -109,12 +116,14 @@ const OrderScreen = ({ match, history }) => {
               </ListGroup.Item>
               <ListGroup.Item>
                 <h2>Payment Method</h2>
-                <p>
+                <p className="mb-3">
                   <strong>Method: </strong>
                   {order.paymentMethod}
                 </p>
                 {order.isPaid ? (
-                  <Message variant="success">Paid on {order.paidAt}</Message>
+                  <Message variant="success">
+                    Paid on {getDate(order.paidAt)}
+                  </Message>
                 ) : (
                   <Message variant="danger">Not Paid</Message>
                 )}
