@@ -59,7 +59,6 @@ const Addresses = () => {
   const saveAddressHandler = (e) => {
     e.preventDefault();
     const updateUser = {
-      ...userInfo,
       address,
       city,
       phone: mobile,
@@ -130,14 +129,16 @@ const Addresses = () => {
         <FormControl sx={{ m: 1, minWidth: 200 }}>
           <InputLabel id="demo-simple-select-autowidth-label">State</InputLabel>
           <Select autoWidth value={state} label="State" onChange={stateHandler}>
-            <MenuItem value={1}>New South Wales</MenuItem>
-            <MenuItem value={2}>Queensland</MenuItem>
-            <MenuItem value={3}>Northern Territory</MenuItem>
-            <MenuItem value={4}>Western Australia</MenuItem>
-            <MenuItem value={5}>South Australia</MenuItem>
-            <MenuItem value={6}>Victoria</MenuItem>
-            <MenuItem value={7}>Australian Capital Territory</MenuItem>
-            <MenuItem value={8}>Tasmania</MenuItem>
+            <MenuItem value={"New South Wales"}>New South Wales</MenuItem>
+            <MenuItem value={"Queensland"}>Queensland</MenuItem>
+            <MenuItem value={"Northern Territory"}>Northern Territory</MenuItem>
+            <MenuItem value={"Western Australia"}>Western Australia</MenuItem>
+            <MenuItem value={"South Australia"}>South Australia</MenuItem>
+            <MenuItem value={"Vistoria"}>Victoria</MenuItem>
+            <MenuItem value={"Austraian Capital Territory"}>
+              Australian Capital Territory
+            </MenuItem>
+            <MenuItem value={"Tasmania"}>Tasmania</MenuItem>
           </Select>
         </FormControl>
         <br />

@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const { protect } = require("../middlewares/authMiddleware");
-const { 
-    newOrder,
-    //viewOrder
- } = require("../controller/orderController");
+const {
+  addOrderItems,
+  getOrderById,
+  updateOrderToPaid,
+} = require("../controller/orderController");
 
-router.route("/new").post(protect, newOrder);
-
-// needs the order id to view the order
-// router.route("/view").get(viewOrder);
+router.route("/").post(protect, addOrderItems);
+router.route("/:id").get(protect, getOrderById);
+router.route("/:id/pay").put(protect, updateOrderToPaid);
 
 module.exports = router;

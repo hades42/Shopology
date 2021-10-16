@@ -1,0 +1,17 @@
+.wrapper {
+  margin: 0 20%;
+}
+.continue {
+  display: block;
+  background-color: #384aeb;
+  color: white;
+  border: 1px solid #384aeb;
+  margin-top: 20px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: all 0.2s linear;
+}
+.continue:hover {
+  background-color: transparent;
+  color: #384aeb;
+}
