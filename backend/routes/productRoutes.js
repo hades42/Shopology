@@ -4,11 +4,14 @@ const {
   getTrendingProducts,
   getTopProducts,
   getProductById,
-  getProducts
+  getProducts,
+  createProductReview,
 } = require("../controller/productController");
+const { protect } = require("../middlewares/authMiddleware");
 
+router.route("/:id/reviews").post(protect, createProductReview);
 router.route("/trending").get(getTrendingProducts);
 router.route("/top").get(getTopProducts);
 router.route("/:id").get(getProductById);
-router.route("/").get(getProducts)
+router.route("/").get(getProducts);
 module.exports = router;
