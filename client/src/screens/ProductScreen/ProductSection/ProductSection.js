@@ -51,7 +51,11 @@ const ProductSection = ({ product }) => {
             onChange={(e) => setQty(e.target.value)}
           ></input>
         </div>
-        <button onClick={cartHandler} className={classes.addCart}>
+        <button
+          disabled={product.countInStock === 0}
+          onClick={cartHandler}
+          className={classes.addCart}
+        >
           Add to Cart
         </button>
       </div>

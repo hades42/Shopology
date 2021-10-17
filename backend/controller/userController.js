@@ -105,7 +105,6 @@ const updateUserprofile = asyncHandler(async (req, res) => {
       user.password = req.body.password;
     }
     const { address, city, postalCode, state, phone, fullname } = req.body;
-    console.log(fullname);
     if (address) {
       user.shippingAddress.address = address;
     }
@@ -140,38 +139,6 @@ const updateUserprofile = asyncHandler(async (req, res) => {
     throw new error("user not found");
   }
 });
-
-// @desc    update user address
-// @route   PUT /api/users/profile
-// @access  private
-//const updateUserAddress = asyncHandler(async (req, res) => {
-//const user = await User.findById(req.user._id);
-//const { address, city, postalCode, state } = req.body;
-
-//if (user) {
-////user.name = req.body.name || user.name;
-////user.email = req.body.email || user.email;
-////if (req.body.password) {
-////user.password = req.body.password;
-////}
-//user.shippingAddress.address = address;
-//user.shippingAddress.city = city;
-//user.shippingAddress.postalCode = postalCode;
-//user.shippingAddress.state = state;
-//const updatedUser = await user.save();
-
-//res.status(200).json({
-//_id: updatedUser._id,
-//name: updatedUser.name,
-//email: updatedUser.email,
-//isAdmin: updatedUser.isAdmin,
-//token: generateToken(updatedUser._id),
-//});
-//} else {
-//res.status(401);
-//throw new error("user not found");
-//}
-//});
 
 module.exports = {
   login,

@@ -6,6 +6,7 @@ import Message from "../../components/Message";
 import CheckoutSteps from "../../components/CheckoutStep/CheckoutStep";
 import { Container } from "react-bootstrap";
 import { createOrder } from "../../actions/orderAction";
+import { cartReset } from "../../actions/cartAction";
 
 const PlaceOrderScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ const PlaceOrderScreen = ({ history }) => {
   useEffect(() => {
     if (success) {
       history.push(`/order/${order._id}`);
+      dispatch(cartReset());
     }
     // eslint-disable-next-line
   }, [history, success]);

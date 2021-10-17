@@ -5,9 +5,11 @@ const {
   addOrderItems,
   getOrderById,
   updateOrderToPaid,
+  getMyOrders,
 } = require("../controller/orderController");
 
 router.route("/").post(protect, addOrderItems);
+router.route("/myorder").get(protect, getMyOrders);
 router.route("/:id").get(protect, getOrderById);
 router.route("/:id/pay").put(protect, updateOrderToPaid);
 

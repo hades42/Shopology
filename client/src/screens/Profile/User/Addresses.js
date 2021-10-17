@@ -88,7 +88,9 @@ const Addresses = () => {
           }}
         ></DropNotif>
       )}
+      {loading && <Loader />}
       {updateLoading && <Loader />}
+      {error && <Message>{error}</Message>}
       {updateError && <Message variant="danger">{updateError}</Message>}
       <form onSubmit={saveAddressHandler}>
         <TextField
