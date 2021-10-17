@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const Order = require("../model/orderModel");
+const Product = require("../model/productModel");
 
 // @desc    Create new order
 // @route   POST /api/order
@@ -19,6 +20,12 @@ const addOrderItems = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("No order items");
   } else {
+    for (let i = 0; i < orderItems.length; i++) {
+      let tempProduct = await Product.findById(orderItems[i].product);
+      if (tempProduct.countInStock - orderItems[i].qty < 0) {
+        throw new Error(`${tempProduct.name} is not in stock`);
+      }
+    }
     const order = new Order({
       orderItems,
       user: req.user._id,
@@ -69,6 +76,12 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
     };
 
     const updatedOrder = await order.save();
+    const { orderItems } = order;
+    for (let i = 0; i < orderItems.length; i++) {
+      let tempProduct = await Product.findById(orderItems[i].product);
+      tempProduct.countInStock -= orderItems[i].qty;
+      const updatedPro = await tempProduct.save();
+    }
 
     res.json(updatedOrder);
   } else {
