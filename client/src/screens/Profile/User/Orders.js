@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 import Message from "../../../components/Message";
 import { listMyOrders } from "../../../actions/orderAction";
 import { useSelector, useDispatch } from "react-redux";
 import { Table, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import Loader from "../../../components/Loader";
 
 const Orders = () => {
   const dispatch = useDispatch();
@@ -75,7 +75,13 @@ const Orders = () => {
       );
     }
   }
-  return <div>{order}</div>;
+  return (
+    <>
+      {loading && <Loader />}
+      {error && <Message>{error}</Message>}
+      <div>{order}</div>
+    </>
+  );
 };
 
 export default Orders;
