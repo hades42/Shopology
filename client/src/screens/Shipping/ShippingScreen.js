@@ -9,11 +9,15 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import { updateUserProfile } from "../../actions/userAction";
 import Message from "../../components/Message";
+import { USER_UPDATE_PROFILE_RESET } from "../../constants/userConstants";
 
 const ShippingScreen = ({ history }) => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+  const { success } = userUpdateProfile;
 
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
@@ -24,6 +28,10 @@ const ShippingScreen = ({ history }) => {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
+    if (success) {
+      history.push("/payment");
+      dispatch({ type: USER_UPDATE_PROFILE_RESET });
+    }
     if (userInfo.shippingAddress.address) {
       setAddress(userInfo.shippingAddress.address);
     }
@@ -42,7 +50,7 @@ const ShippingScreen = ({ history }) => {
     if (userInfo.shippingAddress.postalCode) {
       setPostalCode(userInfo.shippingAddress.postalCode);
     }
-  }, []);
+  }, [success]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -58,7 +66,6 @@ const ShippingScreen = ({ history }) => {
         phone,
       };
       dispatch(updateUserProfile(updateUser));
-      history.push("/payment");
     }
   };
   return (
