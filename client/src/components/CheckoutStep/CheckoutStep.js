@@ -1,6 +1,5 @@
 import { Nav } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import classes from "./CheckoutStep.module.css";
 
 const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
   return (
