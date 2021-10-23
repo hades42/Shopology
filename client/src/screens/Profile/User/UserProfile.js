@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Request from "./Request";
 import { Container } from "react-bootstrap";
 import classes from "../../ProductScreen/ProductScreen.module.css";
+import UserListScreen from "../Admin/UserListScreen";
 
 const UserProfile = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
@@ -35,6 +36,8 @@ const UserProfile = ({ history }) => {
     selectionShow = <Orders />;
   } else if (selection === "4") {
     selectionShow = <Request />;
+  } else if (selection === "5") {
+    selectionShow = <UserListScreen />;
   }
 
   const logoutHandler = (e) => {
@@ -53,28 +56,42 @@ const UserProfile = ({ history }) => {
           >
             User Profile
           </li>
-          <li
-            className={classes.navItem}
-            data-selection="2"
-            onClick={changeSelection}
-          >
-            User Addresses
-          </li>
-
-          <li
-            className={classes.navItem}
-            data-selection="3"
-            onClick={changeSelection}
-          >
-            User Order
-          </li>
-          <li
-            className={classes.navItem}
-            data-selection="4"
-            onClick={changeSelection}
-          >
-            User Request
-          </li>
+          {userInfo && !userInfo.isAdmin && (
+            <li
+              className={classes.navItem}
+              data-selection="2"
+              onClick={changeSelection}
+            >
+              User Addresses
+            </li>
+          )}
+          {userInfo && !userInfo.isAdmin && (
+            <li
+              className={classes.navItem}
+              data-selection="3"
+              onClick={changeSelection}
+            >
+              User Order
+            </li>
+          )}
+          {userInfo && !userInfo.isAdmin && (
+            <li
+              className={classes.navItem}
+              data-selection="4"
+              onClick={changeSelection}
+            >
+              User Request
+            </li>
+          )}
+          {userInfo && userInfo.isAdmin && (
+            <li
+              className={classes.navItem}
+              data-selection="5"
+              onClick={changeSelection}
+            >
+              Manage Users
+            </li>
+          )}
         </ul>
         {selectionShow}
       </div>
