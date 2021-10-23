@@ -1,4 +1,3 @@
-import classes from "./App.module.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen/HomeScreen";
 import Navigation from "./components/Navigation/Navigation";
@@ -15,13 +14,14 @@ import ShippingScreen from "./screens/Shipping/ShippingScreen";
 import PaymentScreen from "./screens/PaymentScreen/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen/OrderScreen";
+import UserEditScreen from "./screens/Profile/Admin/UserEditScreen";
 
 function App() {
   return (
     <Router>
       <ScrollToTop />
       <Navigation cartQty={"0"}></Navigation>
-      <main className={classes.mainSection}>
+      <main>
         <Route path="/shipping" component={ShippingScreen}></Route>
         <Route path="/order/:id" component={OrderScreen}></Route>
         <Route path="/payment" component={PaymentScreen}></Route>
@@ -32,6 +32,7 @@ function App() {
         <Route path="/register" component={RegisterScreen}></Route>
         <Route path="/userProfile" component={UserProfile}></Route>
         <Route path="/cart" component={CartScreen} />
+        <Route path="/admin/user/:id/edit" component={UserEditScreen} />
         <Route path="/" component={HomeScreen} exact></Route>
       </main>
       <FooterArea></FooterArea>
