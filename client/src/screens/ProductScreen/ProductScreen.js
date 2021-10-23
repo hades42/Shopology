@@ -29,7 +29,7 @@ const ProductScreen = ({ match }) => {
   if (selection === "1") {
     selectionShow = <ProductDescription />;
   } else if (selection === "2") {
-    selectionShow = <ProductReview />;
+    selectionShow = <ProductReview productId={productId} />;
   }
   return (
     <Container>

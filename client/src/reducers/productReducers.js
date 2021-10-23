@@ -10,7 +10,11 @@ import {
   PRODUCT_DETAIL_REQUEST,
   PRODUCT_ALL_REQUEST,
   PRODUCT_ALL_SUCCESS,
-  PRODUCT_ALL_FAIL
+  PRODUCT_ALL_FAIL,
+  PRODUCT_CREATE_REVIEW_REQUEST,
+  PRODUCT_CREATE_REVIEW_SUCCESS,
+  PRODUCT_CREATE_REVIEW_FAIL,
+  PRODUCT_CREATE_REVIEW_RESET,
 } from "../constants/productConstants";
 
 export const productTrendingReducer = (state = { products: [] }, action) => {
@@ -63,9 +67,9 @@ export const productAllReducer = (
     case PRODUCT_ALL_REQUEST:
       return { loading: true, products: { reviews: [] } };
     case PRODUCT_ALL_SUCCESS:
-      return { 
-        loading: false, 
-        products: action.payload.pageProducts, 
+      return {
+        loading: false,
+        products: action.payload.pageProducts,
         pageCount: action.payload.pageCount,
         electronicsCount: action.payload.electronicsCount,
         menCount: action.payload.menCount,
@@ -85,7 +89,7 @@ export const productAllReducer = (
         tkCount: action.payload.tkCount,
         thkCount: action.payload.thkCount,
         fkCount: action.payload.fkCount,
-        fikCount: action.payload.fikCount
+        fikCount: action.payload.fikCount,
       };
     case PRODUCT_ALL_FAIL:
       return { loading: false, error: action.payload };
@@ -94,3 +98,17 @@ export const productAllReducer = (
   }
 };
 
+export const reviewCreateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case PRODUCT_CREATE_REVIEW_REQUEST:
+      return { loading: true };
+    case PRODUCT_CREATE_REVIEW_SUCCESS:
+      return { loading: false, success: true };
+    case PRODUCT_CREATE_REVIEW_FAIL:
+      return { loading: false, error: action.payload };
+    case PRODUCT_CREATE_REVIEW_RESET:
+      return {};
+    default:
+      return state;
+  }
+};

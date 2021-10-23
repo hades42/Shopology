@@ -23,6 +23,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
     for (let i = 0; i < orderItems.length; i++) {
       let tempProduct = await Product.findById(orderItems[i].product);
       if (tempProduct.countInStock - orderItems[i].qty < 0) {
+        res.status(400);
         throw new Error(`${tempProduct.name} is not in stock`);
       }
     }
