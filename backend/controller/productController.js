@@ -322,10 +322,26 @@ const createProductReview = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    Delete a product
+// @route   DELETE /api/products/:id
+// @access  Prive/admin
+const deleteProduct = asyncHandler(async (req, res) => {
+  const product = await Product.findById(req.params.id);
+
+  if (product) {
+    await product.remove();
+    res.json({ message: "Product Remove!" });
+  } else {
+    res.status(404);
+    throw new Error("Product not found");
+  }
+});
+
 module.exports = {
   getTrendingProducts,
   getTopProducts,
   getProductById,
   getProducts,
   createProductReview,
+  deleteProduct,
 };
