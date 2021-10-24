@@ -1,20 +1,15 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Container, Form, Button, Col, Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../../../components/Message";
 import Loader from "../../../../components/Loader";
-import {
-  getProductDetail,
-  updateProduct,
-} from "../../../../actions/productActions";
-import { PRODUCT_UPDATE_RESET } from "../../../../constants/productConstants";
+import { createProduct } from "../../../../actions/productActions";
+import { PRODUCT_CREATE_RESET } from "../../../../constants/productConstants";
 import DropNotif from "../../../../components/Modal/Modal";
 
-const ProductEditScreen = ({ match, history }) => {
-  const productId = match.params.id;
-
+const ProductCreateScreen = ({ match, history }) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [image, setImage] = useState("");
@@ -26,36 +21,13 @@ const ProductEditScreen = ({ match, history }) => {
 
   const dispatch = useDispatch();
 
-  const productDetail = useSelector((state) => state.productDetail);
-  const { loading, error, product } = productDetail;
-  const currentId = product._id;
-
-  const productUpdate = useSelector((state) => state.productUpdate);
-  const {
-    loading: loadingUpdate,
-    error: errorUpdate,
-    success: successUpdate,
-  } = productUpdate;
-
-  useEffect(() => {
-    if (!product.name || currentId !== productId) {
-      dispatch(getProductDetail(productId));
-    } else {
-      setName(product.name);
-      setPrice(product.price);
-      setImage(product.image);
-      setBrand(product.brand);
-      setCategory(product.category);
-      setCountInStock(product.countInStock);
-      setDescription(product.description);
-    }
-  }, [dispatch, productId, currentId]);
+  const productCreate = useSelector((state) => state.productCreate);
+  const { loading, error, product, success } = productCreate;
 
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(
-      updateProduct({
-        _id: productId,
+      createProduct({
         name,
         price,
         image,
@@ -94,15 +66,16 @@ const ProductEditScreen = ({ match, history }) => {
         <Link to="/userProfile" className="btn btn-primary my-3">
           Go Back
         </Link>
-        <h1>Edit Product</h1>
-        {loadingUpdate && <Loader />}
-        {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
-        {successUpdate && (
+        <h1>Create Product</h1>
+        {loading && <Loader />}
+        {error && <Message variant="danger">{error}</Message>}
+        {success && (
           <DropNotif
-            heading="Update Product"
-            text="Update Product Successfully"
+            heading="Create Product"
+            text="Create Product Successfully"
             resetData={() => {
-              dispatch({ type: PRODUCT_UPDATE_RESET });
+              history.push(`/admin/product/${product._id}/edit`);
+              dispatch({ type: PRODUCT_CREATE_RESET });
             }}
           ></DropNotif>
         )}
@@ -180,6 +153,7 @@ const ProductEditScreen = ({ match, history }) => {
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
               >
+                <option value=""></option>
                 <option value="Books">Books</option>
                 <option value="Games">Games</option>
                 <option value="Electronics">Electronics</option>
@@ -201,14 +175,8 @@ const ProductEditScreen = ({ match, history }) => {
             </Form.Group>
 
             <Button className="mt-3" type="submit" variant="primary">
-              Update
+              Create product
             </Button>
-            <Link
-              to={`/product/${product._id}`}
-              className="btn btn-primary mt-3 ms-3"
-            >
-              Go to product
-            </Link>
           </Form>
         )}
       </Container>
@@ -216,4 +184,4 @@ const ProductEditScreen = ({ match, history }) => {
   );
 };
 
-export default ProductEditScreen;
+export default ProductCreateScreen;

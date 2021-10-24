@@ -363,6 +363,28 @@ const updatedProduct = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    Create a product
+// @route   POST /api/products/:id
+// @access  Private/Admin
+const createProduct = asyncHandler(async (req, res) => {
+  const { name, price, description, image, brand, category, countInStock } =
+    req.body;
+
+  const product = new Product({
+    name,
+    price,
+    seller: req.user._id,
+    image,
+    brand,
+    category,
+    countInStock,
+    description,
+  });
+
+  const createdProduct = await product.save();
+  res.status(201).json(createdProduct);
+});
+
 module.exports = {
   getTrendingProducts,
   getTopProducts,
@@ -371,4 +393,5 @@ module.exports = {
   createProductReview,
   deleteProduct,
   updatedProduct,
+  createProduct,
 };
