@@ -8,6 +8,7 @@ import Request from "./Request";
 import { Container } from "react-bootstrap";
 import classes from "../../ProductScreen/ProductScreen.module.css";
 import UserListScreen from "../Admin/UserListScreen";
+import ProductListScreen from "../Admin/ProductList/ProductListScreen";
 
 const UserProfile = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
@@ -38,6 +39,8 @@ const UserProfile = ({ history }) => {
     selectionShow = <Request />;
   } else if (selection === "5") {
     selectionShow = <UserListScreen />;
+  } else if (selection === "6") {
+    selectionShow = <ProductListScreen />;
   }
 
   const logoutHandler = (e) => {
@@ -90,6 +93,15 @@ const UserProfile = ({ history }) => {
               onClick={changeSelection}
             >
               Manage Users
+            </li>
+          )}
+          {userInfo && userInfo.isAdmin && (
+            <li
+              className={classes.navItem}
+              data-selection="6"
+              onClick={changeSelection}
+            >
+              Manage Products
             </li>
           )}
         </ul>
