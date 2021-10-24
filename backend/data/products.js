@@ -70,7 +70,8 @@ const products = [
     countInStock: 0,
     rating: 4,
     numReviews: 12,
-  },{
+  },
+  {
     name: "Airpods Wireless Bluetooth Headphones",
     image: "/images/airpods.jpg",
     description:
@@ -141,7 +142,8 @@ const products = [
     countInStock: 0,
     rating: 4,
     numReviews: 12,
-  },{
+  },
+  {
     name: "Airpods Wireless Bluetooth Headphones",
     image: "/images/airpods.jpg",
     description:
@@ -212,7 +214,8 @@ const products = [
     countInStock: 0,
     rating: 4,
     numReviews: 12,
-  },{
+  },
+  {
     name: "Airpods Wireless Bluetooth Headphones",
     image: "/images/airpods.jpg",
     description:
@@ -283,7 +286,8 @@ const products = [
     countInStock: 0,
     rating: 4,
     numReviews: 12,
-  },{
+  },
+  {
     name: "Airpods Wireless Bluetooth Headphones",
     image: "/images/airpods.jpg",
     description:
@@ -354,7 +358,8 @@ const products = [
     countInStock: 0,
     rating: 4,
     numReviews: 12,
-  },{
+  },
+  {
     name: "Airpods Wireless Bluetooth Headphones",
     image: "/images/airpods.jpg",
     description:
@@ -425,7 +430,8 @@ const products = [
     countInStock: 0,
     rating: 4,
     numReviews: 12,
-  },{
+  },
+  {
     name: "Airpods Wireless Bluetooth Headphones",
     image: "/images/airpods.jpg",
     description:
@@ -496,7 +502,8 @@ const products = [
     countInStock: 0,
     rating: 4,
     numReviews: 12,
-  },{
+  },
+  {
     name: "Airpods Wireless Bluetooth Headphones",
     image: "/images/airpods.jpg",
     description:
