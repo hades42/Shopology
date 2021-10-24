@@ -45,11 +45,11 @@ const ProductReview = ({ productId }) => {
         <div className={classes.ratingWrapper}>
           <div className={classes.ratingCard}>
             <h3>Overall</h3>
-            <h2>4.0</h2>
-            <h4>(3 Reviews)</h4>
+            <h2>{product.rating}</h2>
+            <h4>({product.numReviews} Reviews)</h4>
           </div>
           <div className={classes.ratingStart}>
-            <h4>Based on 3 Reviews </h4>
+            <h4>Based on {product.numReviews} Reviews </h4>
             <ul className={classes.list}>
               <li>
                 <div className={classes.startTitle}>5 Star</div>

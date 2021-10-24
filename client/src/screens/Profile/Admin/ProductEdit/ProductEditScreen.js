@@ -149,7 +149,7 @@ const ProductEditScreen = ({ match, history }) => {
               {uploading && <Loader />}
             </Form.Group>
             <Col xs={6} md={4}>
-              <Image src={image} rounded />
+              <Image className="img-fluid" src={image} rounded />
             </Col>
 
             <Form.Group controlId="brand">

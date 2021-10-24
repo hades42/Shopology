@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { LinkContainer } from "react-router-bootstrap";
 import { Table, Button, Row, Col, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../../../components/Message";
 import Loader from "../../../../components/Loader";
@@ -8,7 +9,6 @@ import { Pagination } from "@mui/material";
 import { getProducts } from "../../../../actions/productActions";
 import { deleteProduct } from "../../../../actions/productActions";
 import DropNotif from "../../../../components/Modal/Modal";
-import { USER_DELETE_RESET } from "../../../../constants/userConstants";
 import { PRODUCT_DELETE_RESET } from "../../../../constants/productConstants";
 
 const ProductListScreen = ({ history, match }) => {
@@ -29,14 +29,8 @@ const ProductListScreen = ({ history, match }) => {
   } = productDelete;
 
   useEffect(() => {
-    if (!userInfo) {
-      history.push("/login");
-    }
     dispatch(getProducts("", "", "", "", "", page));
   }, [dispatch, page, history, userInfo]);
-  const createProductHandler = () => {
-    console.log("Create product");
-  };
 
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure?")) {
@@ -54,13 +48,13 @@ const ProductListScreen = ({ history, match }) => {
           <h1>Products</h1>
         </Col>
         <Col className="text-end">
-          <Button
-            className="my-3"
+          <Link
+            className="my-3 btn btn-primary"
+            to="/admin/product/create"
             style={{ marginLeft: "auto" }}
-            onClick={createProductHandler}
           >
             <i className="fas fa-plus"></i> Create Product
-          </Button>
+          </Link>
         </Col>
       </Row>
       {loading ? (
