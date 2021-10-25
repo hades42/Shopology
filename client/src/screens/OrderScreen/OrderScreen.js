@@ -14,8 +14,16 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../components/Loader";
 import Message from "../../components/Message";
-import { getOrderDetails, payOrder } from "../../actions/orderAction";
-import { ORDER_PAY_RESET } from "../../constants/orderConstant";
+import {
+  getOrderDetails,
+  payOrder,
+  deliverOrder,
+} from "../../actions/orderAction";
+import {
+  ORDER_PAY_RESET,
+  ORDER_UPDATE_DELIVER_RESET,
+} from "../../constants/orderConstant";
+import DropNotif from "../../components/Modal/Modal";
 
 const OrderScreen = ({ match, history }) => {
   const orderId = match.params.id;
@@ -31,6 +39,9 @@ const OrderScreen = ({ match, history }) => {
 
   const orderPay = useSelector((state) => state.orderPay);
   const { loading: loadingPay, success: sucessPay } = orderPay;
+
+  const orderDeliver = useSelector((state) => state.orderDeliver);
+  const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
 
   useEffect(() => {
     if (!userInfo) {
@@ -71,7 +82,9 @@ const OrderScreen = ({ match, history }) => {
     dispatch(payOrder(orderId, paymentResult));
   };
 
-  const deliverHandler = () => {};
+  const deliverHandler = () => {
+    dispatch(deliverOrder(order));
+  };
   const getDate = (date) => {
     return new Date(date).toString();
   };
@@ -209,20 +222,28 @@ const OrderScreen = ({ match, history }) => {
                     )}
                   </ListGroup.Item>
                 )}
-                {userInfo &&
-                  userInfo.isAdmin &&
-                  order.isPaid &&
-                  !order.isDelivered && (
-                    <ListGroup.Item>
-                      <Button
-                        type="button"
-                        className="btn btn-block"
-                        onClick={deliverHandler}
-                      >
-                        Mark as deliver
-                      </Button>
-                    </ListGroup.Item>
-                  )}
+                {loadingDeliver && <Loader />}
+                {successDeliver && (
+                  <DropNotif
+                    heading="Mark Delivered"
+                    text="Mark as delivered successfully"
+                    resetData={() => {
+                      dispatch({ type: ORDER_UPDATE_DELIVER_RESET });
+                      dispatch(getOrderDetails(orderId));
+                    }}
+                  ></DropNotif>
+                )}
+                {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                  <ListGroup.Item>
+                    <Button
+                      type="button"
+                      className="btn btn-block"
+                      onClick={deliverHandler}
+                    >
+                      Mark as Delivered
+                    </Button>
+                  </ListGroup.Item>
+                )}
               </ListGroup>
             </Card>
           </Col>

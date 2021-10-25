@@ -9,6 +9,7 @@ import { Container } from "react-bootstrap";
 import classes from "../../ProductScreen/ProductScreen.module.css";
 import UserListScreen from "../Admin/UserListScreen";
 import ProductListScreen from "../Admin/ProductList/ProductListScreen";
+import OrderListScreen from "../Admin/OrderList/OrderListScreen";
 
 const UserProfile = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
@@ -41,6 +42,8 @@ const UserProfile = ({ history }) => {
     selectionShow = <UserListScreen />;
   } else if (selection === "6") {
     selectionShow = <ProductListScreen />;
+  } else if (selection === "7") {
+    selectionShow = <OrderListScreen />;
   }
 
   const logoutHandler = (e) => {
@@ -102,6 +105,15 @@ const UserProfile = ({ history }) => {
               onClick={changeSelection}
             >
               Manage Products
+            </li>
+          )}
+          {userInfo && userInfo.isAdmin && (
+            <li
+              className={classes.navItem}
+              data-selection="7"
+              onClick={changeSelection}
+            >
+              Manage Orders
             </li>
           )}
         </ul>

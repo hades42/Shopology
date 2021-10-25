@@ -107,7 +107,7 @@ const Shop = () => {
                   { value: "price_desc", label: "Price desc." },
                 ]}
               />
-              <SearchBox className="w-25" />
+              <SearchBox className="w-50" />
             </FilterBar>
             <ProductsContainer>
               {loading ? (
