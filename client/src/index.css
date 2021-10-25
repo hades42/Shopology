@@ -25,3 +25,13 @@ main {
 footer {
   min-height: 15vh;
 }
+
+.ais-Hits-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  list-style: none;
+  gap: 30px;
+}
+.ais-Hits {
+  margin-bottom: 30px;
+}
