@@ -168,6 +168,25 @@ export const CartCircle = styled.div`
   color: #fff;
   font-size: 9px;
 `
-export const loginButton = styled.button`
+export const Button = styled.a`
+  display: inline-block;
+  border: 1px solid #384aeb;
+  border-radius: 30px;
+  font-weight: 500;
+  color: white;
+  background-color: #384aeb;
+  padding: 10px 35px;
+  text-decoration: none;
+  transition: all 0.2s linear;
 
+  &:hover {
+    background-color: white;
+    color: #384aeb;
+  }
+`
+export const LogoutButton = styled.li`
+  padding: 0.5rem 1rem;
+  :hover {
+    color: #fff;
+  }
 `
