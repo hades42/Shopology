@@ -35,23 +35,17 @@ const Navigation = ({ cartQty }) => {
 
   let home = null;
   let shop = null;
-  let pages = null;
   let contact = null;
   let shopCategory = null;
   let productDetails = null;
-  let productCheckout = null;
-  let confirmation = null;
   let shoppingCart = null;
   let login = null;
   let register = null;
-  let tracking = null;
 
   if (url === "") {
     home = "true";
   } else if (url === "shop") {
     shop = "true";
-  } else if (url === "pages") {
-    pages = "true";
   } else if (url === "contact") {
     contact = "true";
   } else if (url === "shop-category") {
@@ -60,36 +54,18 @@ const Navigation = ({ cartQty }) => {
   } else if (url === "product-details") {
     shop = "true";
     productDetails = "true";
-  } else if (url === "product-checkout") {
-    shop = "true";
-    productCheckout = "true";
-  } else if (url === "confirmation") {
-    shop = "true";
-    confirmation = "true";
   } else if (url === "cart") {
     shop = "true";
     shoppingCart = "true";
   } else if (url === "login") {
-    pages = "true";
     login = "true";
-  } else if (url === "regsiter") {
-    pages = "true";
-    register = "true";
-  } else if (url === "tracking") {
-    pages = "true";
-    tracking = "true";
   } else {
     home = null;
     shop = null;
-    pages = null;
     contact = null;
     shopCategory = null;
-    productDetails = null;
-    productCheckout = null;
-    confirmation = null;
     shoppingCart = null;
     login = null;
-    tracking = null;
     register = null;
   }
 
@@ -120,16 +96,6 @@ const Navigation = ({ cartQty }) => {
                   </NavLinks>
                 </SubItem>
                 <SubItem>
-                  <NavLinks active={productCheckout} to="/product-checkout">
-                    Product Checkout
-                  </NavLinks>
-                </SubItem>
-                <SubItem>
-                  <NavLinks active={confirmation} to="/confirmation">
-                    Confirmation
-                  </NavLinks>
-                </SubItem>
-                <SubItem>
                   <NavLinks active={shoppingCart} to="/cart">
                     Shopping Cart
                   </NavLinks>
@@ -137,41 +103,9 @@ const Navigation = ({ cartQty }) => {
               </SubMenu>
             </NavItem>
             <NavItem>
-              <NavLinks active={pages} to="/pages">
-                Pages
+              <NavLinks active={login} to="/login">
+                Login
               </NavLinks>
-              <SubMenu>
-                <SubItem>
-                  <NavLinks active={login} to="/login">
-                    Login
-                  </NavLinks>
-                </SubItem>
-                <SubItem>
-                  <NavLinks active={register} to="/register">
-                    Product Details
-                  </NavLinks>
-                </SubItem>
-                <SubItem>
-                  <NavLinks active={tracking} to="/tracking">
-                    Tracking
-                  </NavLinks>
-                </SubItem>
-              </SubMenu>
-            </NavItem>
-            <NavItem>
-              <NavLinks active={contact} to="/contact">
-                Contact
-              </NavLinks>
-            </NavItem>
-            <NavItem>
-              <NavSearch>
-                <SearchIcon />
-                <SearchInput
-                  placeholder="Search..."
-                  type="text"
-                  name="search"
-                />
-              </NavSearch>
             </NavItem>
             <NavItem>
               <NavLinks to="/cart">
