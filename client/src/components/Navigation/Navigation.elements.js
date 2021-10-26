@@ -56,7 +56,7 @@ export const NavMenu = styled.ul`
   justify-content: space-around;
   list-style: none;
   text-align: center;
-  min-width: 800px;
+  min-width: 500px;
   @media screen and (max-width: 960px) {
     background: #fff;
     display: flex;
