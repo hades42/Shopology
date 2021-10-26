@@ -17,6 +17,7 @@ This is project for COMP3120.
   - [Install Dependencies (frontend & backend)](#install-dependencies--frontend---backend-)
   - [Run](#run)
   - [Seed Database](#seed-database)
+- [Project Layout](#project-layout)
 - [License](#license)
 
 ## Features
@@ -104,6 +105,59 @@ ahihi2@test.com (Customer)
 
 ahihi3@test.com (Customer)
 123456
+```
+
+## Project Layout
+
+### Front-end layout
+
+```
+src/                        Root directory of react app
+├── App.js                  Layout of the whole application
+├── App.test.js             Testing for the application
+├── actions/                Store the action of global store(Redux)
+├── components/             Store all the re-usable components
+├── constants/              Store the constants for all the reducers(Redux)
+├── index.css               Apply global styling
+├── index.js                Main entry point for the application
+├── media/                  Store logo
+├── reducers/               Reducers for global state(Redux)
+├── screens/                Multiple screens for each main link in (react-router)
+│   ├── Auth/               Authentication screen (login, register,etc)
+│   ├── CartScreen/         Cart page
+│   ├── HomeScreen/         Home page
+│   ├── OrderScreen/        Order page
+│   ├── PaymentScreen/      Payment page
+│   ├── PlaceOrderScreen/   PlaceOrder page
+│   ├── ProductScreen/      Product page
+│   ├── Profile/            Profile page
+│   │   ├── Admin/          Admin Screen page
+│   │   └── User/           User Screen page
+│   └── Shipping/
+├── setupTests.js/          Set up test for frontend
+└── store.js                Main store for global state(Redux)
+```
+
+### Back-end layout
+
+```
+backend/
+├── app.js                      Main entry for REST API of the application
+├── config/                     Config folder (currently, only setup for database)
+├── controller/                 Main logic of the API
+├── data/                       Testing data
+├── middlewares/                Middlewares
+│   ├── authMiddleware.js           Middlewares for checking token
+│   └── errorHandlers.js            Middlewares for handling any errors
+├── model/                      Model data for mongodb
+├── routes/                     All the main routes of the API
+├── seeder.js                   Script for auto import and destroy the data (testing purpose only)
+├── server.js                   Run the server
+├── test/                       All the tests for API
+├── uploads/                    Static folder contains all the image
+└── utils/                      Contain all re-usable functions
+    └── generateToken.js            Currently, only having function for generate JWT tokens
+
 ```
 
 ## License
