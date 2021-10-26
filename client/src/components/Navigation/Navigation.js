@@ -12,11 +12,11 @@ import {
   SubMenu,
   SubItem,
   CartCircle,
+  Button
 } from "./Navigation.elements";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
 import logo from "../../media/logo.svg";
-import Button from '@mui/material/Button'
 import { useSelector } from "react-redux";
 
 const Navigation = () => {
@@ -110,7 +110,7 @@ const Navigation = () => {
             </NavItem>
             <NavItem>
               {userInfo != null ?
-                <NavLinks to={'/userProfile'}><Button variant="outlined">{userInfo.name}</Button></NavLinks> : 
+                <NavLinks to={'/userProfile'}><Button>{userInfo.name}</Button></NavLinks> : 
                 <NavLinks active={login} to="/login"><Button>Login</Button></NavLinks>
               }
             </NavItem>
