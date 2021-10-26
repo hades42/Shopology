@@ -25,7 +25,7 @@ const Navigation = () => {
   const {cartItems} = cart
 
   const userLogin = useSelector((state) => state.userLogin);
-  const { loading, error, userInfo } = userLogin;
+  const { userInfo } = userLogin;
   
   const [click, setClick] = useState(false);
 
@@ -35,19 +35,14 @@ const Navigation = () => {
 
   let home = null;
   let shop = null;
-  let contact = null;
   let shopCategory = null;
   let productDetails = null;
   let shoppingCart = null;
-  let login = null;
-  let register = null;
 
   if (url === "") {
     home = "true";
   } else if (url === "shop") {
     shop = "true";
-  } else if (url === "contact") {
-    contact = "true";
   } else if (url === "shop-category") {
     shop = "true";
     shopCategory = "true";
@@ -57,16 +52,11 @@ const Navigation = () => {
   } else if (url === "cart") {
     shop = "true";
     shoppingCart = "true";
-  } else if (url === "login") {
-    login = "true";
   } else {
     home = null;
     shop = null;
-    contact = null;
     shopCategory = null;
     shoppingCart = null;
-    login = null;
-    register = null;
   }
 
   return (
@@ -130,7 +120,7 @@ const Navigation = () => {
                   </>
                 :
                   <>
-                    <NavLinks active={login} to="/login">
+                    <NavLinks to="/login">
                       <Button>Login</Button>
                     </NavLinks>
                     <SubMenu>
