@@ -76,19 +76,23 @@ const productSchema = mongoose.Schema(
     timestamps: true,
   }
 );
-
-productSchema.plugin(mongooseAlgolia, {
-  appId: process.env.ALGOLIA_APP_ID,
-  apiKey: process.env.ALGOLIA_API_KEY,
-  indexName: "ecommercial_app", //The name of the index in Algolia, you can also pass in a function
-  debug: true,
-});
+if (process.env.NODE_ENV != "test") {
+  productSchema.plugin(mongooseAlgolia, {
+    appId: process.env.ALGOLIA_APP_ID,
+    apiKey: process.env.ALGOLIA_API_KEY,
+    indexName: "ecommercial_app", //The name of the index in Algolia, you can also pass in a function
+    debug: true,
+  });
+}
 
 const Product = mongoose.model("Product", productSchema);
-Product.SyncToAlgolia();
-Product.SetAlgoliaSettings({
-  searchableAttributes: ["name", "brand", "category", "description", "price"],
-  attributesForFaceting: ["category", "brand", "price"],
-});
+
+if (process.env.NODE_ENV != "test") {
+  Product.SyncToAlgolia();
+  Product.SetAlgoliaSettings({
+    searchableAttributes: ["name", "brand", "category", "description", "price"],
+    attributesForFaceting: ["category", "brand", "price"],
+  });
+}
 
 module.exports = Product;
