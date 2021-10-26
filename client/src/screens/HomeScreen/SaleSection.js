@@ -8,7 +8,7 @@ const SaleSection = () => {
           <h3>Up to 50% Off</h3>
           <h4>Winter Sale</h4>
           <p>Him she'd let them sixth saw light</p>
-          <a href="/">Shop Now</a>
+          <a href="/shop">Shop Now</a>
         </div>
       </Container>
     </div>
