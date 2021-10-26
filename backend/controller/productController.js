@@ -126,9 +126,10 @@ const getProducts = asyncHandler(async (req, res) => {
 const getTrendingProducts = asyncHandler(async (req, res) => {
   const products = await Product.find({}).sort({ rating: -1 });
 
-  if (products) {
+  if (products.length > 0) {
     res.json(products.slice(0, 8));
   } else {
+    res.status(404);
     throw new Error("Products not found");
   }
 });
@@ -139,9 +140,10 @@ const getTrendingProducts = asyncHandler(async (req, res) => {
 const getTopProducts = asyncHandler(async (req, res) => {
   const products = await Product.find({}).sort({ rating: -1 });
 
-  if (products) {
+  if (products.length > 0) {
     res.json(products.slice(0, 4));
   } else {
+    res.status(404);
     throw new Error("Products not found");
   }
 });
