@@ -111,7 +111,23 @@ const Navigation = () => {
             <NavItem>
               {userInfo != null ?
                 <NavLinks to={'/userProfile'}><Button>{userInfo.name}</Button></NavLinks> : 
-                <NavLinks active={login} to="/login"><Button>Login</Button></NavLinks>
+                <>
+                  <NavLinks active={login} to="/login">
+                    <Button>Login</Button>
+                  </NavLinks>
+                  <SubMenu>
+                    <SubItem>
+                      <NavLinks to="/login">
+                        Login
+                      </NavLinks>
+                    </SubItem>
+                    <SubItem>
+                      <NavLinks to="/register">
+                        Register
+                      </NavLinks>
+                    </SubItem>
+                  </SubMenu>
+                </>
               }
             </NavItem>
           </NavMenu>
