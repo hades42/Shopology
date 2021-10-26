@@ -1,14 +1,17 @@
 const mongoose = require("mongoose");
 
 const connectDB = async () => {
-  console.log(process.env.NODE_ENV);
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URI, {
+    const conn = await mongoose.connect(process.env.MONGO_URL, {
       dbName: "ecommerce",
     });
-    console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline);
+    if (process.env.NODE_ENV !== "test") {
+      console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline);
+    }
   } catch (error) {
-    console.error(`Error ${error}`.red.underline.bold);
+    if (process.env.NODE_ENV !== "test") {
+      console.error(`Error ${error}`.red.underline.bold);
+    }
     process.exit(1);
   }
 };
