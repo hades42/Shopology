@@ -109,25 +109,43 @@ const Navigation = () => {
               </NavLinks>
             </NavItem>
             <NavItem>
-              {userInfo != null ?
-                <NavLinks to={'/userProfile'}><Button>{userInfo.name}</Button></NavLinks> : 
-                <>
-                  <NavLinks active={login} to="/login">
-                    <Button>Login</Button>
-                  </NavLinks>
-                  <SubMenu>
-                    <SubItem>
-                      <NavLinks to="/login">
-                        Login
-                      </NavLinks>
-                    </SubItem>
-                    <SubItem>
-                      <NavLinks to="/register">
-                        Register
-                      </NavLinks>
-                    </SubItem>
-                  </SubMenu>
-                </>
+              {userInfo != null
+                ?
+                  <>
+                    <NavLinks to={'/userProfile'}>
+                      <Button>{userInfo.name}</Button>
+                    </NavLinks>
+                    <SubMenu>
+                      <SubItem>
+                        <NavLinks to="/userProfile">
+                          User Profile
+                        </NavLinks>
+                      </SubItem>
+                      <SubItem>
+                        <NavLinks to="/register">
+                          Logout
+                        </NavLinks>
+                      </SubItem>
+                    </SubMenu>
+                  </>
+                :
+                  <>
+                    <NavLinks active={login} to="/login">
+                      <Button>Login</Button>
+                    </NavLinks>
+                    <SubMenu>
+                      <SubItem>
+                        <NavLinks to="/login">
+                          Login
+                        </NavLinks>
+                      </SubItem>
+                      <SubItem>
+                        <NavLinks to="/register">
+                          Register
+                        </NavLinks>
+                      </SubItem>
+                    </SubMenu>
+                  </>
               }
             </NavItem>
           </NavMenu>
