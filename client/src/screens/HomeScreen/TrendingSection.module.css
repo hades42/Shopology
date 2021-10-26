@@ -13,10 +13,16 @@
   display: inline-block;
   border-bottom: 2px solid #384aeb;
   padding-bottom: 8px;
-}
+} 
 .showcase {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
   margin-bottom: 100px;
+}
+
+@media screen and (max-width: 700px) {
+  .showcase {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

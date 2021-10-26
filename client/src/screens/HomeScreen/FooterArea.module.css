@@ -63,3 +63,27 @@
     padding: 195px 0 120px;
   }
 }
+
+@media screen and (max-width: 700px) {
+  .content{
+    margin-top: 70px;
+    display: grid;
+    grid-template-areas: 
+      "mission mission mission"
+      "quickLinks contact contact"
+      "quickLinks contact contact"
+    ;
+  }
+  .mission {
+    grid-area: mission;
+    margin: 10px 0;
+  }
+  .quickLink {
+    grid-area: quickLinks;
+    margin-left: 0;
+  }
+  .contact .card {
+    grid-area: contact;
+    margin-bottom: 50px;
+  }
+}
