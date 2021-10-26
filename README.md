@@ -1,5 +1,10 @@
 # COMP3120 Group Assignment
 
+![Statements](https://img.shields.io/badge/statements-43.64%25-red.svg?style=flat)
+![Branches](https://img.shields.io/badge/branches-14.09%25-red.svg?style=flat)
+![Functions](https://img.shields.io/badge/functions-28%25-red.svg?style=flat)
+![Lines](https://img.shields.io/badge/lines-44.2%25-red.svg?style=flat)
+
 ### Env Variables
 
 Create a .env file in the root and add the following
