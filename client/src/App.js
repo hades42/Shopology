@@ -22,7 +22,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <Navigation cartQty={"0"}></Navigation>
+      <Navigation />
       <main>
         <Route path="/shipping" component={ShippingScreen}></Route>
         <Route path="/order/:id" component={OrderScreen}></Route>

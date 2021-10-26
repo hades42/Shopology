@@ -57,7 +57,7 @@ const MainSection = () => {
                 meat beho upon own earth without morning over third. Their male
                 dry. They are great appear whose land fly grass.
               </p>
-              <a href="/">Browse Now</a>
+              <a href="/shop">Browse Now</a>
             </div>
           </div>
         </Container>
