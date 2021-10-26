@@ -1,9 +1,36 @@
-# COMP3120 Group Assignment
+![Logo](./client/src/media/logo.svg)
 
 ![Statements](https://img.shields.io/badge/statements-43.64%25-red.svg?style=flat)
 ![Branches](https://img.shields.io/badge/branches-14.09%25-red.svg?style=flat)
 ![Functions](https://img.shields.io/badge/functions-28%25-red.svg?style=flat)
 ![Lines](https://img.shields.io/badge/lines-44.2%25-red.svg?style=flat)
+
+> eCommerce platform built with MERN stack (MongoDB, ExpressJS, ReactJS, Nodejs)
+
+This is project for COMP3120.
+
+## Table of Contents
+
+- [Features](#features)
+- [Usage](#usage)
+  - [Env Variables](#env-variables)
+  - [Install Dependencies (frontend & backend)](#install-dependencies--frontend---backend-)
+  - [Run](#run)
+  - [Seed Database](#seed-database)
+- [License](#license)
+
+## Features
+
+- Full featured shopping cart
+- Product reviews and rating
+- Top products carousel
+- Instant search for any product with Algolia search engine
+- User profile with orders
+- Admin products, orders, users management
+- Checkout process
+- PayPal/ credit cart integration
+
+## Usage
 
 ### Env Variables
 
@@ -11,7 +38,18 @@ Create a .env file in the root and add the following
 
 ```
 NODE_ENV = development
-PORT = 5000
+PORT = 3001
+MONGO_URL = your mongodb uri
+JWT_SECRET = set your secret key for JWT token
+PAYPAL_CLIENT_ID = your paypal client id
+ALGOLIA_APP_ID = your algolia application API
+ALGOLIA_API_KEY = your algolia admin api
+```
+
+Create a .env file in the **client/** folder
+
+```
+SKIP_PREFLIGHT_CHECK=true
 ```
 
 ### Install Dependencies (frontend & backend)
@@ -25,7 +63,7 @@ npm install
 ### Run
 
 ```
-# Run frontend (:3000) & backend (:5000)
+# Run frontend (:3000) & backend (:3001)
 npm run dev
 
 # Run backend only (with nodemon)
@@ -36,6 +74,36 @@ npm run server
 
 # Run frontend only
 npm run client
+
+# Test
+npm run test
+```
+
+**Note**: for seeding the data, you should destroy data first then import them.
+
+### Seed Database
+
+You can use the following commands to seed the database with some sample users and products as well as destroy all data
+
+```
+# Import data
+npm run data:import
+
+# Destroy data
+npm run data:destroy
+```
+
+**Sample User logins**
+
+```
+ahihi@test.com (Admin)
+123456
+
+ahihi2@test.com (Customer)
+123456
+
+ahihi3@test.com (Customer)
+123456
 ```
 
 ## License
