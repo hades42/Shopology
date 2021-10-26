@@ -184,3 +184,9 @@ export const Button = styled.a`
     color: #384aeb;
   }
 `
+export const LogoutButton = styled.li`
+  padding: 0.5rem 1rem;
+  :hover {
+    color: #fff;
+  }
+`

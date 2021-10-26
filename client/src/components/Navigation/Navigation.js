@@ -12,14 +12,17 @@ import {
   SubMenu,
   SubItem,
   CartCircle,
-  Button
+  Button,
+  LogoutButton
 } from "./Navigation.elements";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
 import logo from "../../media/logo.svg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from '../../actions/userAction'
 
 const Navigation = () => {
+  const dispatch = useDispatch()
 
   const cart = useSelector((state) => state.cart)
   const {cartItems} = cart
@@ -27,10 +30,14 @@ const Navigation = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   
-  const [click, setClick] = useState(false);
+  const [click, setClick] = useState(false)
 
-  const clickHandler = () => setClick(!click);
+  const clickHandler = () => setClick(!click)
 
+  const logoutHandler = () => {
+    console.log("logout")
+    dispatch(logout())
+  }
   var url = window.location.href.split("/")[3];
 
   let home = null;
@@ -112,9 +119,9 @@ const Navigation = () => {
                         </NavLinks>
                       </SubItem>
                       <SubItem>
-                        <NavLinks to="/register">
+                        <LogoutButton onClick={logoutHandler}>
                           Logout
-                        </NavLinks>
+                        </LogoutButton>
                       </SubItem>
                     </SubMenu>
                   </>
