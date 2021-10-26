@@ -103,18 +103,17 @@ const Navigation = () => {
               </SubMenu>
             </NavItem>
             <NavItem>
-              <NavLinks active={login} to="/login">
-                Login
-              </NavLinks>
-            </NavItem>
-            <NavItem>
               <NavLinks to="/cart">
                 <CartIcon />
                 <CartCircle>{cartItems.length}</CartCircle>
               </NavLinks>
             </NavItem>
-            {userInfo != null ?
-            <NavLinks to={'/userProfile'}><Button variant="outlined">{userInfo.name}</Button></NavLinks> : <></>}
+            <NavItem>
+              {userInfo != null ?
+                <NavLinks to={'/userProfile'}><Button variant="outlined">{userInfo.name}</Button></NavLinks> : 
+                <NavLinks active={login} to="/login"><Button>Login</Button></NavLinks>
+              }
+            </NavItem>
           </NavMenu>
         </NavbarContainer>
       </Nav>
