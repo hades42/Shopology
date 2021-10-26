@@ -8,9 +8,6 @@ import {
   NavMenu,
   NavItem,
   NavLinks,
-  NavSearch,
-  SearchIcon,
-  SearchInput,
   CartIcon,
   SubMenu,
   SubItem,
@@ -20,9 +17,12 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
 import logo from "../../media/logo.svg";
 import Button from '@mui/material/Button'
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
-const Navigation = ({ cartQty }) => {
+const Navigation = () => {
+
+  const cart = useSelector((state) => state.cart)
+  const {cartItems} = cart
 
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
@@ -110,7 +110,7 @@ const Navigation = ({ cartQty }) => {
             <NavItem>
               <NavLinks to="/cart">
                 <CartIcon />
-                <CartCircle>{cartQty}</CartCircle>
+                <CartCircle>{cartItems.length}</CartCircle>
               </NavLinks>
             </NavItem>
             {userInfo != null ?
