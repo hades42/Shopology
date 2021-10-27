@@ -38,4 +38,8 @@ router.post("/", upload.single("image"), (req, res) => {
   res.send(`/${req.file.path}`);
 });
 
+router.post("/descripion", upload.single("image"), (req, res) => {
+  res.send(`![image](/${req.file.path})`);
+});
+
 module.exports = router;

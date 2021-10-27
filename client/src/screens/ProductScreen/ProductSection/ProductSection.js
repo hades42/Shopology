@@ -41,7 +41,6 @@ const ProductSection = ({ product }) => {
             </a>
           </li>
         </ul>
-        <p className={classes.productDesc}>{product.description}</p>
         <div className={classes.productCount}>
           <label htmlFor="quantity">Quantity: </label>
           <input

@@ -11,6 +11,7 @@ import {
 } from "../../../../actions/productActions";
 import { PRODUCT_UPDATE_RESET } from "../../../../constants/productConstants";
 import DropNotif from "../../../../components/Modal/Modal";
+import MarkdownEditor from "../../../../components/TextEditor/MarkdownEditor";
 
 const ProductEditScreen = ({ match, history }) => {
   const productId = match.params.id;
@@ -23,6 +24,7 @@ const ProductEditScreen = ({ match, history }) => {
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState("");
   const [uploading, setUploading] = useState(false);
+  const [uploadingDesc, setUploadingDesc] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -86,6 +88,36 @@ const ProductEditScreen = ({ match, history }) => {
       console.error(error);
       setUploading(false);
     }
+  };
+
+  const uploadImageForDesc = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("image", file);
+    setUploadingDesc(true);
+
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+      const { data } = await axios.post(
+        "/api/upload/descripion",
+        formData,
+        config
+      );
+
+      setDescription(description + "\n" + data);
+      setUploadingDesc(false);
+    } catch (error) {
+      console.error(error);
+      setUploadingDesc(false);
+    }
+  };
+
+  const onChange = (value) => {
+    setDescription(value);
   };
 
   return (
@@ -190,14 +222,16 @@ const ProductEditScreen = ({ match, history }) => {
               </Form.Control>
             </Form.Group>
 
-            <Form.Group controlId="description">
+            <Form.Group className="mt-3" controlId="description">
               <Form.Label>Description</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              ></Form.Control>
+              <Form.File
+                className="mb-3"
+                id="image-file"
+                custom
+                onChange={uploadImageForDesc}
+              ></Form.File>
+              {uploadingDesc && <Loader />}
+              <MarkdownEditor text={description} onChange={onChange} />
             </Form.Group>
 
             <Button className="mt-3" type="submit" variant="primary">
