@@ -219,7 +219,9 @@ describe("Testing product API", () => {
               .expect(200)
               .then((res) => {
                 for (const key of Object.entries(newUpdate)) {
-                  expect(newUpdate.key).toBe(res.body.key);
+                  expect(newUpdate[key[0]].toString()).toBe(
+                    res.body[key[0]].toString()
+                  );
                 }
               });
 
@@ -303,6 +305,29 @@ describe("Testing product API", () => {
       .then(async (res) => {
         const user = res.body;
         const { token } = user;
+        const newProduct = {
+          name: "Ahihi",
+          price: "1234",
+          description: "Ahihi",
+          image: "ahihi",
+          brand: "ahihi",
+          category: "ahihi",
+          countInStock: "999",
+        };
+        await api
+          .post(`/api/products/`)
+          .send(newProduct)
+          .set({
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          })
+          .then((res) => {
+            for (const key of Object.entries(newProduct)) {
+              expect(res.body[key[0]].toString()).toEqual(
+                newProduct[key[0]].toString()
+              );
+            }
+          });
       });
   });
 
