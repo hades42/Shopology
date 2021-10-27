@@ -245,9 +245,18 @@ export const StyledInputBase = sty(InputBase)(({ theme }) => ({
 
 export const ProductsContainer = styled.div`
   margin: 3%;
-`;
+`
 export const PageNav = styled.div`
   display: flex;
   justify-content: center;
-`;
+`
+export const SearchAndFilters = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+export const MobileFilterBar = styled(FilterBar)`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+`
 
