@@ -43,17 +43,6 @@ const Navigation = () => {
     dispatch(logout())
   }
 
-  const dropdownHandler = () => {
-    let panel = document.getElementById("shopPanel")
-    if(panel.style.display === 'block') {
-      console.log("true")
-      panel.style.display = 'none'
-    } else {
-      console.log("false")
-      panel.style.display = 'block'
-    }
-  }
-  
   var url = window.location.href.split("/")[3];
 
   let home = null;
