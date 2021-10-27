@@ -104,12 +104,12 @@ const Navigation = () => {
               }
               <SubMenu>
                 <SubItem>
-                  <NavLinks active={shop} to="/shop">
+                  <NavLinks active={shop} to="/shop" onClick={clickHandler}>
                     Shop Category
                   </NavLinks>
                 </SubItem>
                 <SubItem>
-                  <NavLinks active={shoppingCart} to="/cart">
+                  <NavLinks active={shoppingCart} to="/cart" onClick={clickHandler}>
                     Shopping Cart
                   </NavLinks>
                 </SubItem>
