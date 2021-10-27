@@ -80,7 +80,7 @@ const Navigation = () => {
           </HamBurgerIcon>
           <NavMenu click={click}>
             <NavItem>
-              <NavLinks active={home} to="/">
+              <NavLinks active={home} to="/" onClick={clickHandler}>
                 Home
               </NavLinks>
             </NavItem>
