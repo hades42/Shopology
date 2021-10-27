@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Subscribe from "../../screens/HomeScreen/Subscribe";
 import Hit from "../Hit/Hit";
 import {
@@ -18,8 +18,7 @@ import {
   PageNav,
 } from "./Shop.elements.js";
 import Stack from "@mui/material/Stack";
-import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../actions/productActions";
+import { useSelector } from "react-redux";
 import Loader from "../../components/Loader";
 import Message from "../../components/Message";
 import algoliasearch from "algoliasearch/lite";
@@ -40,25 +39,6 @@ const searchClient = algoliasearch(
 );
 
 const Shop = () => {
-  const dispatch = useDispatch();
-  const [page, setPage] = useState(1);
-  const [sortBy, setSortBy] = useState("");
-  const [categoryFilter, setCategoryFilter] = useState("");
-  const [colorFilter, setColorFilter] = useState("");
-  const [priceFilter, setPriceFilter] = useState("");
-  const [search, setSearch] = useState("");
-  useEffect(() => {
-    dispatch(
-      getProducts(
-        search,
-        categoryFilter,
-        colorFilter,
-        priceFilter,
-        sortBy,
-        page
-      )
-    );
-  }, [dispatch]);
 
   const productAll = useSelector((state) => state.productAll);
   const { loading, error } = productAll;
