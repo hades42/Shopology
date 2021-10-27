@@ -1,0 +1,85 @@
+.container {
+  position: relative;
+}
+.main {
+  display: flex;
+}
+.editor {
+  display: block;
+  width: 50%;
+}
+
+.markdown {
+  display: block;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  width: 50%;
+  height: 100vh;
+  border: 1px solid #aaaaaa;
+  padding: 20px;
+  overflow: scroll;
+  background-color: white;
+}
+
+.expand {
+  display: block;
+  width: 100%;
+}
+.close {
+  display: none;
+}
+
+.markdown h1,
+.markdown h2 {
+  padding-bottom: 0.3em;
+  border-bottom: 2px solid #eaecef;
+}
+.markdown img {
+  max-width: 100%;
+  margin: 20px 0;
+}
+.controlMain {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  background-color: white;
+  padding: 13px 10px;
+  color: #aaaaaa;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.option {
+  margin-right: 20px;
+}
+.option label {
+  margin-right: 10px;
+}
+.option select {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+  border-top-width: 1.02px;
+  border-radius: 4px;
+  outline: none;
+  -webkit-transition: all 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding: 7px 13px;
+  cursor: pointer;
+}
+.option select:hover {
+  border: 1px solid black;
+}
+.btnOption {
+  margin-right: 1.5rem;
+  border: 1px solid #aaaaaa;
+  padding: 4px 15px;
+  cursor: pointer;
+  border-radius: 3px;
+}
