@@ -18,7 +18,8 @@ import {
   PageNav,
   SearchAndFilters,
   MobileFilterBar,
-  MobileProducts
+  MobileProducts,
+  MobileFilterButton
 } from "./Shop.elements.js";
 import Stack from "@mui/material/Stack";
 import { useSelector } from "react-redux";
@@ -62,7 +63,7 @@ const Shop = () => {
                 <SearchAndFilters>
                   <SearchBox />
                   <MobileFilterBar>
-                    <button>Category Filters</button>
+                    <MobileFilterButton>Category Filters</MobileFilterButton>
                     <SortBy
                       defaultRefinement="ecommercial_app"
                       className="me-3"

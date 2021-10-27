@@ -261,8 +261,16 @@ export const MobileFilterBar = styled(FilterBar)`
   flex-direction: row;
   justify-content: space-around;
   margin-left: 0px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 `
 export const MobileProducts = styled(ProductsContainer)`
   margin-bottom: -50px;
 `
-
+export const MobileFilterButton = styled.button`
+  background: #fff;
+  border: 1px solid #d6d6e7;
+  padding: 2%;
+  box-shadow: 0 1px 0 0 rgb(35 38 59 / 5%);
+  outline: medium none currentcolor;
+`
