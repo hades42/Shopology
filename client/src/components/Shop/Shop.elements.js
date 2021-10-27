@@ -263,6 +263,6 @@ export const MobileFilterBar = styled(FilterBar)`
   margin-left: 0px;
 `
 export const MobileProducts = styled(ProductsContainer)`
-
+  margin-bottom: -50px;
 `
 
