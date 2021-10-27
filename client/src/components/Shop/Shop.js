@@ -55,16 +55,12 @@ const Shop = () => {
   const productAll = useSelector((state) => state.productAll);
   const { loading, error } = productAll;
 
-  const [filterOpen, setFilterOpen] = useState(false)
-
   const mobileFilterHandler = () => {
-    setFilterOpen(!filterOpen)
-  }
-
-  if(filterOpen === true) {
-    document.getElementById("overlay").style.display = 'block'
-  } else {
-    document.getElementById("overlay").style.display = 'none'
+    if(document.getElementById("overlay").style.display === 'block') {
+      document.getElementById("overlay").style.display = 'none'
+    } else {
+      document.getElementById("overlay").style.display = 'block'
+    }
   }
 
   return (
