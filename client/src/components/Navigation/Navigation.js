@@ -87,7 +87,7 @@ const Navigation = () => {
             <NavItem>
               {mobile
                 ?
-                  <MobileNavItem>Shop</MobileNavItem>
+                  <MobileNavItem active={shop}>Shop</MobileNavItem>
                 :
                   <NavLinks active={shop} to="/shop">Shop</NavLinks>
               }

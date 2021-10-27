@@ -176,6 +176,7 @@ export const MobileButton = styled(Button)`
   }
 `
 export const MobileNavItem = styled(NavItem)`
+  color: ${({ active }) => (active ? "#4b59f7" : "#000")};
   :hover {
     color: #4b59f7;
   }
