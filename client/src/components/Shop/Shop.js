@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Subscribe from "../../screens/HomeScreen/Subscribe";
 import Hit from "../Hit/Hit";
 import {
@@ -19,7 +19,8 @@ import {
   SearchAndFilters,
   MobileFilterBar,
   MobileProducts,
-  MobileFilterButton
+  MobileFilterButton,
+  MobileFilterOverlay
 } from "./Shop.elements.js";
 import Stack from "@mui/material/Stack";
 import { useSelector } from "react-redux";
@@ -54,6 +55,18 @@ const Shop = () => {
   const productAll = useSelector((state) => state.productAll);
   const { loading, error } = productAll;
 
+  const [filterOpen, setFilterOpen] = useState(false)
+
+  const mobileFilterHandler = () => {
+    setFilterOpen(!filterOpen)
+  }
+
+  if(filterOpen === true) {
+    document.getElementById("overlay").style.display = 'block'
+  } else {
+    document.getElementById("overlay").style.display = 'none'
+  }
+
   return (
     <>
       <InstantSearch indexName="ecommercial_app" searchClient={searchClient}>
@@ -63,7 +76,8 @@ const Shop = () => {
                 <SearchAndFilters>
                   <SearchBox />
                   <MobileFilterBar>
-                    <MobileFilterButton>Category Filters</MobileFilterButton>
+                    <MobileFilterButton onClick={mobileFilterHandler}>Category Filters</MobileFilterButton>
+                    <MobileFilterOverlay id="overlay" onClick={mobileFilterHandler}></MobileFilterOverlay>
                     <SortBy
                       defaultRefinement="ecommercial_app"
                       className="me-3"

@@ -274,3 +274,16 @@ export const MobileFilterButton = styled.button`
   box-shadow: 0 1px 0 0 rgb(35 38 59 / 5%);
   outline: medium none currentcolor;
 `
+export const MobileFilterOverlay = styled.div`
+  position: fixed;
+  display: none; 
+  width: 100%;
+  height: 80%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+`
