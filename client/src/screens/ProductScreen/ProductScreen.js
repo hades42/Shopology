@@ -27,7 +27,7 @@ const ProductScreen = ({ match }) => {
 
   let selectionShow;
   if (selection === "1") {
-    selectionShow = <ProductDescription />;
+    selectionShow = <ProductDescription content={product.description} />;
   } else if (selection === "2") {
     selectionShow = <ProductReview productId={productId} />;
   }
