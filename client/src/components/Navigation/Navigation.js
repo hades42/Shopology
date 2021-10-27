@@ -14,7 +14,8 @@ import {
   CartCircle,
   Button,
   LogoutButton,
-  NavDrop
+  MobileButton,
+  MobileNavItem
 } from "./Navigation.elements";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
@@ -38,39 +39,37 @@ const Navigation = () => {
   const clickHandler = () => setClick(!click)
 
   const logoutHandler = () => {
-    console.log("logout")
+    clickHandler()
     dispatch(logout())
   }
 
   const dropdownHandler = () => {
-    alert("dropped")
+    let panel = document.getElementById("shopPanel")
+    if(panel.style.display === 'block') {
+      console.log("true")
+      panel.style.display = 'none'
+    } else {
+      console.log("false")
+      panel.style.display = 'block'
+    }
   }
   
   var url = window.location.href.split("/")[3];
 
   let home = null;
   let shop = null;
-  let shopCategory = null;
-  let productDetails = null;
   let shoppingCart = null;
 
   if (url === "") {
     home = "true";
   } else if (url === "shop") {
     shop = "true";
-  } else if (url === "shop-category") {
-    shop = "true";
-    shopCategory = "true";
-  } else if (url === "product-details") {
-    shop = "true";
-    productDetails = "true";
   } else if (url === "cart") {
     shop = "true";
     shoppingCart = "true";
   } else {
     home = null;
     shop = null;
-    shopCategory = null;
     shoppingCart = null;
   }
 
@@ -90,7 +89,7 @@ const Navigation = () => {
           <HamBurgerIcon onClick={clickHandler}>
             {click ? <FaTimes /> : <FaBars />}
           </HamBurgerIcon>
-          <NavMenu onClick={clickHandler} click={click}>
+          <NavMenu click={click}>
             <NavItem>
               <NavLinks active={home} to="/">
                 Home
@@ -99,26 +98,25 @@ const Navigation = () => {
             <NavItem>
               {mobile
                 ?
-                  <NavDrop onClick={dropdownHandler}>Shop</NavDrop>
+                  <MobileNavItem>Shop</MobileNavItem>
                 :
                   <NavLinks active={shop} to="/shop">Shop</NavLinks>
               }
-              
               <SubMenu>
                 <SubItem>
-                  <NavLinks active={shopCategory} to="/shop">
+                  <NavLinks active={shop} to="/shop" onClick={clickHandler}>
                     Shop Category
                   </NavLinks>
                 </SubItem>
                 <SubItem>
-                  <NavLinks active={shoppingCart} to="/cart">
+                  <NavLinks active={shoppingCart} to="/cart" onClick={clickHandler}>
                     Shopping Cart
                   </NavLinks>
                 </SubItem>
               </SubMenu>
             </NavItem>
             <NavItem>
-              <NavLinks to="/cart">
+              <NavLinks to="/cart" onClick={clickHandler}>
                 <CartIcon />
                 <CartCircle>{cartItems.length}</CartCircle>
               </NavLinks>
@@ -127,12 +125,17 @@ const Navigation = () => {
               {userInfo != null
                 ?
                   <>
-                    <NavLinks to={'/userProfile'}>
-                      <Button>{userInfo.name}</Button>
-                    </NavLinks>
+                    {mobile
+                      ?
+                        <MobileButton>{userInfo.name}</MobileButton>
+                      :
+                        <NavLinks to={'/userProfile'}>
+                          <Button>{userInfo.name}</Button>
+                        </NavLinks>
+                    }       
                     <SubMenu>
                       <SubItem>
-                        <NavLinks to="/userProfile">
+                        <NavLinks to="/userProfile" onClick={clickHandler}>
                           User Profile
                         </NavLinks>
                       </SubItem>
@@ -145,17 +148,22 @@ const Navigation = () => {
                   </>
                 :
                   <>
-                    <NavLinks to="/login">
-                      <Button>Login</Button>
-                    </NavLinks>
+                  {mobile
+                    ?
+                      <MobileButton>Login</MobileButton>
+                    :
+                      <NavLinks to="/login">
+                        <Button>Login</Button>
+                      </NavLinks>
+                  }
                     <SubMenu>
                       <SubItem>
-                        <NavLinks to="/login">
+                        <NavLinks to="/login" onClick={clickHandler}>
                           Login
                         </NavLinks>
                       </SubItem>
                       <SubItem>
-                        <NavLinks to="/register">
+                        <NavLinks to="/register" onClick={clickHandler}>
                           Register
                         </NavLinks>
                       </SubItem>
