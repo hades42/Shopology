@@ -90,7 +90,7 @@ const Navigation = () => {
           <HamBurgerIcon onClick={clickHandler}>
             {click ? <FaTimes /> : <FaBars />}
           </HamBurgerIcon>
-          <NavMenu onClick={clickHandler} click={click}>
+          <NavMenu click={click}>
             <NavItem>
               <NavLinks active={home} to="/">
                 Home
