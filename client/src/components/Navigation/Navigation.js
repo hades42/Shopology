@@ -40,7 +40,7 @@ const Navigation = () => {
   const clickHandler = () => setClick(!click)
 
   const logoutHandler = () => {
-    console.log("logout")
+    clickHandler()
     dispatch(logout())
   }
 
@@ -144,7 +144,7 @@ const Navigation = () => {
                   <>
                     {mobile
                       ?
-                        <MobileButton>{userInfo.name} Mobile</MobileButton>
+                        <MobileButton>{userInfo.name}</MobileButton>
                       :
                         <NavLinks to={'/userProfile'}>
                           <Button>{userInfo.name}</Button>
@@ -152,7 +152,7 @@ const Navigation = () => {
                     }       
                     <SubMenu>
                       <SubItem>
-                        <NavLinks to="/userProfile">
+                        <NavLinks to="/userProfile" onClick={clickHandler}>
                           User Profile
                         </NavLinks>
                       </SubItem>
