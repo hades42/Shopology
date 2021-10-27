@@ -2,6 +2,7 @@ import styled, { keyframes } from "styled-components";
 import { styled as sty, alpha } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import InputBase from "@mui/material/InputBase";
+import { ImCross } from "react-icons/im";
 
 export const ShopCategory = styled.div`
   display: flex;
@@ -245,9 +246,54 @@ export const StyledInputBase = sty(InputBase)(({ theme }) => ({
 
 export const ProductsContainer = styled.div`
   margin: 3%;
-`;
+`
 export const PageNav = styled.div`
   display: flex;
   justify-content: center;
-`;
-
+`
+export const SearchAndFilters = styled.div`
+  padding-top: 10px;
+  background: #f1f6f7;
+  display: flex;
+  flex-direction: column;
+`
+export const MobileFilterBar = styled(FilterBar)`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-left: 0px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+`
+export const MobileProducts = styled(ProductsContainer)`
+  margin-bottom: -50px;
+`
+export const MobileFilterButton = styled.button`
+  background: #fff;
+  border: 1px solid #d6d6e7;
+  padding: 2%;
+  box-shadow: 0 1px 0 0 rgb(35 38 59 / 5%);
+  outline: medium none currentcolor;
+`
+export const MobileFilterOverlay = styled.div`
+  position: fixed;
+  display: none; 
+  width: 100%;
+  height: 70%;
+  top: 30%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  z-index: 2;
+  cursor: pointer;
+  border-top: 1px solid red;
+  overflow-y: scroll;
+`
+export const CloseOverlay = styled(ImCross)`
+  position: fixed;
+  color: #000;
+  top: 31%;
+  left: 92.5%;
+  margin: 1%;
+`

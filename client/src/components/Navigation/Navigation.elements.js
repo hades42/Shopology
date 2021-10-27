@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { ImSearch, ImCart } from "react-icons/im";
+import { ImCart } from "react-icons/im";
 
 export const Nav = styled.nav`
   background: #fff;
@@ -176,6 +176,7 @@ export const MobileButton = styled(Button)`
   }
 `
 export const MobileNavItem = styled(NavItem)`
+  color: ${({ active }) => (active ? "#4b59f7" : "#000")};
   :hover {
     color: #4b59f7;
   }

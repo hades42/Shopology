@@ -43,17 +43,6 @@ const Navigation = () => {
     dispatch(logout())
   }
 
-  const dropdownHandler = () => {
-    let panel = document.getElementById("shopPanel")
-    if(panel.style.display === 'block') {
-      console.log("true")
-      panel.style.display = 'none'
-    } else {
-      console.log("false")
-      panel.style.display = 'block'
-    }
-  }
-  
   var url = window.location.href.split("/")[3];
 
   let home = null;
@@ -91,14 +80,14 @@ const Navigation = () => {
           </HamBurgerIcon>
           <NavMenu click={click}>
             <NavItem>
-              <NavLinks active={home} to="/">
+              <NavLinks active={home} to="/" onClick={clickHandler}>
                 Home
               </NavLinks>
             </NavItem>
             <NavItem>
               {mobile
                 ?
-                  <MobileNavItem>Shop</MobileNavItem>
+                  <MobileNavItem active={shop}>Shop</MobileNavItem>
                 :
                   <NavLinks active={shop} to="/shop">Shop</NavLinks>
               }
