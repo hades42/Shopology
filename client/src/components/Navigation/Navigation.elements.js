@@ -72,6 +72,7 @@ export const NavMenu = styled.ul`
   }
 `;
 export const SubMenu = styled.ul`
+  display: block;
   pointer-events: none;
   position: absolute;
   z-index: 998;
@@ -113,7 +114,6 @@ export const NavLinks = styled(Link)`
     pointer-events: auto;
     opacity: 1;
     transform: translateY(0%);
-  
   }
   @media screen and (max-width: 960px) {
     text-align: center;
@@ -167,4 +167,19 @@ export const LogoutButton = styled.li`
 `
 export const NavDrop = styled.p`
 
+`
+export const MobileSubMenu = styled(SubMenu)`
+  display: none;
+  opacity: 1;
+  top: 10;
+`
+export const MobileButton = styled(Button)`
+  :hover {
+    color: #4b59f7;
+  }
+  :hover + ${SubMenu} {
+    pointer-events: auto;
+    opacity: 1;
+    transform: translateY(0%);
+  }
 `

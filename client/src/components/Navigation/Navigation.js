@@ -14,7 +14,9 @@ import {
   CartCircle,
   Button,
   LogoutButton,
-  NavDrop
+  NavDrop,
+  MobileSubMenu,
+  MobileButton
 } from "./Navigation.elements";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
@@ -43,34 +45,32 @@ const Navigation = () => {
   }
 
   const dropdownHandler = () => {
-    alert("dropped")
+    let panel = document.getElementById("shopPanel")
+    if(panel.style.display === 'block') {
+      console.log("true")
+      panel.style.display = 'none'
+    } else {
+      console.log("false")
+      panel.style.display = 'block'
+    }
   }
   
   var url = window.location.href.split("/")[3];
 
   let home = null;
   let shop = null;
-  let shopCategory = null;
-  let productDetails = null;
   let shoppingCart = null;
 
   if (url === "") {
     home = "true";
   } else if (url === "shop") {
     shop = "true";
-  } else if (url === "shop-category") {
-    shop = "true";
-    shopCategory = "true";
-  } else if (url === "product-details") {
-    shop = "true";
-    productDetails = "true";
   } else if (url === "cart") {
     shop = "true";
     shoppingCart = "true";
   } else {
     home = null;
     shop = null;
-    shopCategory = null;
     shoppingCart = null;
   }
 
@@ -99,23 +99,38 @@ const Navigation = () => {
             <NavItem>
               {mobile
                 ?
-                  <NavDrop onClick={dropdownHandler}>Shop</NavDrop>
+                  <>
+                    <NavDrop onClick={dropdownHandler}>Shop</NavDrop>
+                    <MobileSubMenu id="shopPanel">
+                      <SubItem>
+                        <NavLinks active={shop} to="/shop">
+                          Shop Category
+                        </NavLinks>
+                      </SubItem>
+                      <SubItem>
+                        <NavLinks active={shoppingCart} to="/cart">
+                          Shopping Cart
+                        </NavLinks>
+                      </SubItem>
+                    </MobileSubMenu>
+                  </>
                 :
-                  <NavLinks active={shop} to="/shop">Shop</NavLinks>
+                  <>
+                    <NavLinks active={shop} to="/shop">Shop</NavLinks>
+                    <SubMenu>
+                      <SubItem>
+                        <NavLinks active={shop} to="/shop">
+                          Shop Category
+                        </NavLinks>
+                      </SubItem>
+                      <SubItem>
+                        <NavLinks active={shoppingCart} to="/cart">
+                          Shopping Cart
+                        </NavLinks>
+                      </SubItem>
+                    </SubMenu>
+                  </>
               }
-              
-              <SubMenu>
-                <SubItem>
-                  <NavLinks active={shopCategory} to="/shop">
-                    Shop Category
-                  </NavLinks>
-                </SubItem>
-                <SubItem>
-                  <NavLinks active={shoppingCart} to="/cart">
-                    Shopping Cart
-                  </NavLinks>
-                </SubItem>
-              </SubMenu>
             </NavItem>
             <NavItem>
               <NavLinks to="/cart">
@@ -127,9 +142,14 @@ const Navigation = () => {
               {userInfo != null
                 ?
                   <>
-                    <NavLinks to={'/userProfile'}>
-                      <Button>{userInfo.name}</Button>
-                    </NavLinks>
+                    {mobile
+                      ?
+                        <MobileButton>{userInfo.name} Mobile</MobileButton>
+                      :
+                        <NavLinks to={'/userProfile'}>
+                          <Button>{userInfo.name}</Button>
+                        </NavLinks>
+                    }       
                     <SubMenu>
                       <SubItem>
                         <NavLinks to="/userProfile">
