@@ -74,8 +74,8 @@ const Shop = () => {
                   <SearchBox />
                   <MobileFilterBar>
                     <MobileFilterButton onClick={overlayHandler}>Category Filters</MobileFilterButton>
-                    <MobileFilterOverlay id="overlay" onClick={overlayHandler}>
-                      <CloseOverlay />
+                    <MobileFilterOverlay id="overlay">
+                      <CloseOverlay onClick={overlayHandler}/>
                     </MobileFilterOverlay>
                     <SortBy
                       defaultRefinement="ecommercial_app"
