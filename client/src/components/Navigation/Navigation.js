@@ -14,9 +14,8 @@ import {
   CartCircle,
   Button,
   LogoutButton,
-  NavDrop,
-  MobileSubMenu,
-  MobileButton
+  MobileButton,
+  MobileNavItem
 } from "./Navigation.elements";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
@@ -99,38 +98,22 @@ const Navigation = () => {
             <NavItem>
               {mobile
                 ?
-                  <>
-                    <NavDrop onClick={dropdownHandler}>Shop</NavDrop>
-                    <MobileSubMenu id="shopPanel">
-                      <SubItem>
-                        <NavLinks active={shop} to="/shop">
-                          Shop Category
-                        </NavLinks>
-                      </SubItem>
-                      <SubItem>
-                        <NavLinks active={shoppingCart} to="/cart">
-                          Shopping Cart
-                        </NavLinks>
-                      </SubItem>
-                    </MobileSubMenu>
-                  </>
+                  <MobileNavItem>Shop</MobileNavItem>
                 :
-                  <>
-                    <NavLinks active={shop} to="/shop">Shop</NavLinks>
-                    <SubMenu>
-                      <SubItem>
-                        <NavLinks active={shop} to="/shop">
-                          Shop Category
-                        </NavLinks>
-                      </SubItem>
-                      <SubItem>
-                        <NavLinks active={shoppingCart} to="/cart">
-                          Shopping Cart
-                        </NavLinks>
-                      </SubItem>
-                    </SubMenu>
-                  </>
+                  <NavLinks active={shop} to="/shop">Shop</NavLinks>
               }
+              <SubMenu>
+                <SubItem>
+                  <NavLinks active={shop} to="/shop">
+                    Shop Category
+                  </NavLinks>
+                </SubItem>
+                <SubItem>
+                  <NavLinks active={shoppingCart} to="/cart">
+                    Shopping Cart
+                  </NavLinks>
+                </SubItem>
+              </SubMenu>
             </NavItem>
             <NavItem>
               <NavLinks to="/cart">

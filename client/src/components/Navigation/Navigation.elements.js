@@ -165,14 +165,6 @@ export const LogoutButton = styled.li`
     color: #fff;
   }
 `
-export const NavDrop = styled.p`
-
-`
-export const MobileSubMenu = styled(SubMenu)`
-  display: none;
-  opacity: 1;
-  top: 10;
-`
 export const MobileButton = styled(Button)`
   :hover {
     color: #4b59f7;
@@ -181,5 +173,15 @@ export const MobileButton = styled(Button)`
     pointer-events: auto;
     opacity: 1;
     transform: translateY(0%);
+  }
+`
+export const MobileNavItem = styled(NavItem)`
+  :hover {
+    color: #4b59f7;
+  }
+  :hover + ${SubMenu} {
+    pointer-events: auto;
+    opacity: 1;
+    transform: translateY(-50%);
   }
 `
