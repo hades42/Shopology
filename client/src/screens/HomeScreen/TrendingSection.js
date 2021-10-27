@@ -10,7 +10,11 @@ import Message from "../../components/Message";
 const TrendingSection = () => {
   const dispatch = useDispatch();
   const productTrending = useSelector((state) => state.productTrending);
-  const { loading, error, products } = productTrending;
+  let { loading, error, products } = productTrending;
+
+  if(window.screen.width <= 700) {
+    products = products.slice(0, 6)
+  }
 
   useEffect(() => {
     dispatch(trendingProducts());

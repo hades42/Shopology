@@ -28,3 +28,9 @@
   font-weight: 500;
   color: #777;
 }
+
+@media screen and (max-width: 700px) {
+  .content a {
+    font-size: 13px
+  }
+}

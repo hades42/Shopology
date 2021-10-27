@@ -56,16 +56,17 @@ export const NavMenu = styled.ul`
   justify-content: space-around;
   list-style: none;
   text-align: center;
-  min-width: 800px;
+  width: 500px;
   @media screen and (max-width: 960px) {
     background: #fff;
     display: flex;
     flex-direction: column;
-    height: 90vh;
+    justify-content: flex-start;
+    height: 100vh;
     width: 100%;
     position: absolute;
     top: 70px;
-    left: ${({ click }) => (click ? "-50%" : "-215%")};
+    left: ${({ click }) => (click ? "-0%" : "-100%")};
     opacity: 1;
     transition: all 0.5s ease;
   }
@@ -116,32 +117,6 @@ export const NavLinks = styled(Link)`
   }
   @media screen and (max-width: 960px) {
     text-align: center;
-    padding: 2rem;
-    display: table;
-  }
-`
-export const NavSearch = styled.div`
-  display: flex;
-  justify-content: flex-start;
-`
-export const SearchIcon = styled(ImSearch)`
-  margin-top: 27px;
-  font-size: 25px;
-`
-export const SearchInput = styled.input`
-  margin-top: 22px;
-  width: 100px;
-  box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 15px;
-  font-size: 14px;
-  padding: 6px 12px;
-  -webkit-transition: width 0.4s ease-in-out;
-  transition: width 0.4s ease-in-out;
-  :focus,
-  :active {
-    outline: none;
-    width: 300px;
   }
 `
 export const CartIcon = styled(ImCart)`
@@ -189,4 +164,7 @@ export const LogoutButton = styled.li`
   :hover {
     color: #fff;
   }
+`
+export const NavDrop = styled.p`
+
 `
