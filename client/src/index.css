@@ -52,3 +52,22 @@ footer {
     gap: 15px;
   }
 }
+
+.CodeMirror {
+  height: 100vh !important;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  padding: 7px;
+}
+th,
+td {
+  text-align: center !important;
+}
+
+.CodeMirror {
+  height: 100vh !important;
+}
