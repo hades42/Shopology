@@ -13,7 +13,8 @@ import {
   SubItem,
   CartCircle,
   Button,
-  LogoutButton
+  LogoutButton,
+  NavDrop
 } from "./Navigation.elements";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
@@ -22,6 +23,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from '../../actions/userAction'
 
 const Navigation = () => {
+  let mobile = false
+
   const dispatch = useDispatch()
 
   const cart = useSelector((state) => state.cart)
@@ -38,6 +41,11 @@ const Navigation = () => {
     console.log("logout")
     dispatch(logout())
   }
+
+  const dropdownHandler = () => {
+    alert("dropped")
+  }
+  
   var url = window.location.href.split("/")[3];
 
   let home = null;
@@ -66,6 +74,12 @@ const Navigation = () => {
     shoppingCart = null;
   }
 
+  if(window.screen.width < 1000) {
+    mobile = true
+  } else {
+    mobile = false
+  }
+
   return (
     <IconContext.Provider value={{ color: "#000" }}>
       <Nav>
@@ -83,9 +97,13 @@ const Navigation = () => {
               </NavLinks>
             </NavItem>
             <NavItem>
-              <NavLinks active={shop} to="/shop">
-                Shop
-              </NavLinks>
+              {mobile
+                ?
+                  <NavDrop onClick={dropdownHandler}>Shop</NavDrop>
+                :
+                  <NavLinks active={shop} to="/shop">Shop</NavLinks>
+              }
+              
               <SubMenu>
                 <SubItem>
                   <NavLinks active={shopCategory} to="/shop">
