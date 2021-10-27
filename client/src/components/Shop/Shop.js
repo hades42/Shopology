@@ -16,7 +16,9 @@ import {
   FilterBar,
   ProductsContainer,
   PageNav,
-  SearchAndFilters
+  SearchAndFilters,
+  MobileFilterBar,
+  MobileProducts
 } from "./Shop.elements.js";
 import Stack from "@mui/material/Stack";
 import { useSelector } from "react-redux";
@@ -58,8 +60,8 @@ const Shop = () => {
             ?
               <>
                 <SearchAndFilters>
-                  <SearchBox className="w-100"/>
-                  <FilterBar>
+                  <SearchBox />
+                  <MobileFilterBar>
                     <button>Category Filters</button>
                     <SortBy
                       defaultRefinement="ecommercial_app"
@@ -70,8 +72,25 @@ const Shop = () => {
                         { value: "price_desc", label: "Price desc." },
                       ]}
                     />
-                  </FilterBar>
+                  </MobileFilterBar>
                 </SearchAndFilters>
+                <MobileProducts>
+                  {loading ? (
+                    <Loader />
+                    ) : error ? (
+                      <Message>{error}</Message>
+                    ) : (
+                    <>
+                      <Configure hitsPerPage={8} />
+                      <Hits hitComponent={Hit} />
+                    </>
+                  )}
+                  <PageNav>
+                    <Stack spacing={2}>
+                      <Pagination />
+                    </Stack>
+                  </PageNav>
+                </MobileProducts>
               </>
             :
               <>

@@ -251,6 +251,8 @@ export const PageNav = styled.div`
   justify-content: center;
 `
 export const SearchAndFilters = styled.div`
+  padding-top: 10px;
+  background: #f1f6f7;
   display: flex;
   flex-direction: column;
 `
@@ -258,5 +260,9 @@ export const MobileFilterBar = styled(FilterBar)`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  margin-left: 0px;
+`
+export const MobileProducts = styled(ProductsContainer)`
+
 `
 
