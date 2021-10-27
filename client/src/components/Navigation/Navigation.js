@@ -175,12 +175,12 @@ const Navigation = () => {
                   }
                     <SubMenu>
                       <SubItem>
-                        <NavLinks to="/login">
+                        <NavLinks to="/login" onClick={clickHandler}>
                           Login
                         </NavLinks>
                       </SubItem>
                       <SubItem>
-                        <NavLinks to="/register">
+                        <NavLinks to="/register" onClick={clickHandler}>
                           Register
                         </NavLinks>
                       </SubItem>
