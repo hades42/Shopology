@@ -165,9 +165,14 @@ const Navigation = () => {
                   </>
                 :
                   <>
-                    <NavLinks to="/login">
-                      <Button>Login</Button>
-                    </NavLinks>
+                  {mobile
+                    ?
+                      <MobileButton>Login</MobileButton>
+                    :
+                      <NavLinks to="/login">
+                        <Button>Login</Button>
+                      </NavLinks>
+                  }
                     <SubMenu>
                       <SubItem>
                         <NavLinks to="/login">
