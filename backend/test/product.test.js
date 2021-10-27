@@ -238,6 +238,74 @@ describe("Testing product API", () => {
       });
   });
 
+  // @desc    Delete a product
+  // @route   DELETE /api/products/:id
+  // @access  Prive/admin
+  test("Delete a product", async () => {
+    const auth = {
+      email: "ahihi@test.com",
+      password: "123456",
+    };
+    await api
+      .post("/api/user/login")
+      .send(auth)
+      .set("Content-Type", "application/json")
+      .expect(200)
+      .then(async (res) => {
+        const user = res.body;
+        const { token } = user;
+
+        await api
+          .get("/api/products/top")
+          .expect(200)
+          .then(async (res) => {
+            const product = res.body[0];
+
+            await api
+              .delete(`/api/products/${product._id}`)
+              .set({
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              })
+              .expect(200)
+              .then((res) => {
+                expect(res.body.message).toBe("Product Remove!");
+              });
+
+            await api
+              .delete(`/api/products/61888cd5b66318d9cb9902f9`)
+              .set({
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              })
+              .expect(404)
+              .then((res) => {
+                expect(res.body.message).toBe("Product not found");
+              });
+          });
+      });
+  });
+
+  // @desc    Create a product
+  // @route   POST /api/products/:id
+  // @access  Private/Admin
+  test("Create a product", async () => {
+    const auth = {
+      email: "ahihi@test.com",
+      password: "123456",
+    };
+
+    await api
+      .post("/api/user/login")
+      .send(auth)
+      .set("Content-Type", "application/json")
+      .expect(200)
+      .then(async (res) => {
+        const user = res.body;
+        const { token } = user;
+      });
+  });
+
   afterAll(() => {
     mongoose.disconnect();
   });
