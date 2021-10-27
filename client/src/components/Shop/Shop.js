@@ -76,6 +76,33 @@ const Shop = () => {
                     <MobileFilterButton onClick={overlayHandler}>Category Filters</MobileFilterButton>
                     <MobileFilterOverlay id="overlay">
                       <CloseOverlay onClick={overlayHandler}/>
+                        <SideBarCategories>
+                        <CategoryHeading>Browse Categories</CategoryHeading>
+                        <CategoryList>
+                          <CategoryListItem>
+                            <RefinementList attribute="category" />
+                          </CategoryListItem>
+                        </CategoryList>
+                      </SideBarCategories>
+                      <SidebarFilters>
+                        <SidebarFilterHeading>Product Filters</SidebarFilterHeading>
+                        <ProductFilter>
+                          <FilterHeading>Brand</FilterHeading>
+                          <CategoryList>
+                            <CategoryListItem>
+                              <RefinementList attribute="brand" />
+                            </CategoryListItem>
+                          </CategoryList>
+                        </ProductFilter>
+                        <ProductFilter>
+                          <FilterHeading>Price</FilterHeading>
+                          <CategoryList>
+                            <CategoryListItem>
+                              <CustomRangeSlider attribute="price" />
+                            </CategoryListItem>
+                          </CategoryList>
+                        </ProductFilter>
+                      </SidebarFilters>
                     </MobileFilterOverlay>
                     <SortBy
                       defaultRefinement="ecommercial_app"
