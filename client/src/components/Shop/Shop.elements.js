@@ -2,6 +2,7 @@ import styled, { keyframes } from "styled-components";
 import { styled as sty, alpha } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import InputBase from "@mui/material/InputBase";
+import { ImCross } from "react-icons/im";
 
 export const ShopCategory = styled.div`
   display: flex;
@@ -278,12 +279,18 @@ export const MobileFilterOverlay = styled.div`
   position: fixed;
   display: none; 
   width: 100%;
-  height: 80%;
-  top: 0;
+  height: 53%;
+  top: 27%;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.5);
+  background-color: #fff;
   z-index: 2;
   cursor: pointer;
+  border-top: 1px solid black;
+`
+export const CloseOverlay = styled(ImCross)`
+  color: #000;
+  float: right;
+  margin: 1%;
 `

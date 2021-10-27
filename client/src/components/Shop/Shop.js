@@ -20,7 +20,8 @@ import {
   MobileFilterBar,
   MobileProducts,
   MobileFilterButton,
-  MobileFilterOverlay
+  MobileFilterOverlay,
+  CloseOverlay
 } from "./Shop.elements.js";
 import Stack from "@mui/material/Stack";
 import { useSelector } from "react-redux";
@@ -55,7 +56,7 @@ const Shop = () => {
   const productAll = useSelector((state) => state.productAll);
   const { loading, error } = productAll;
 
-  const mobileFilterHandler = () => {
+  const overlayHandler = () => {
     if(document.getElementById("overlay").style.display === 'block') {
       document.getElementById("overlay").style.display = 'none'
     } else {
@@ -72,8 +73,10 @@ const Shop = () => {
                 <SearchAndFilters>
                   <SearchBox />
                   <MobileFilterBar>
-                    <MobileFilterButton onClick={mobileFilterHandler}>Category Filters</MobileFilterButton>
-                    <MobileFilterOverlay id="overlay" onClick={mobileFilterHandler}></MobileFilterOverlay>
+                    <MobileFilterButton onClick={overlayHandler}>Category Filters</MobileFilterButton>
+                    <MobileFilterOverlay id="overlay" onClick={overlayHandler}>
+                      <CloseOverlay />
+                    </MobileFilterOverlay>
                     <SortBy
                       defaultRefinement="ecommercial_app"
                       className="me-3"
