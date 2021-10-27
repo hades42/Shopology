@@ -116,7 +116,7 @@ const Navigation = () => {
               </SubMenu>
             </NavItem>
             <NavItem>
-              <NavLinks to="/cart">
+              <NavLinks to="/cart" onClick={clickHandler}>
                 <CartIcon />
                 <CartCircle>{cartItems.length}</CartCircle>
               </NavLinks>
