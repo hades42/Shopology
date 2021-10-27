@@ -291,7 +291,9 @@ export const MobileFilterOverlay = styled.div`
   overflow-y: scroll;
 `
 export const CloseOverlay = styled(ImCross)`
+  position: fixed;
   color: #000;
-  float: right;
+  top: 31%;
+  left: 92.5%;
   margin: 1%;
 `
