@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import Details from "./Details";
 import Addresses from "./Addresses";
 import Orders from "./Orders";
-import { logout } from "../../../actions/userAction";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Request from "./Request";
 import { Container } from "react-bootstrap";
 import classes from "../../ProductScreen/ProductScreen.module.css";
@@ -14,8 +13,6 @@ import OrderListScreen from "../Admin/OrderList/OrderListScreen";
 const UserProfile = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!userInfo) {
@@ -45,11 +42,6 @@ const UserProfile = ({ history }) => {
   } else if (selection === "7") {
     selectionShow = <OrderListScreen />;
   }
-
-  const logoutHandler = (e) => {
-    e.preventDefault();
-    dispatch(logout());
-  };
 
   return (
     <Container>

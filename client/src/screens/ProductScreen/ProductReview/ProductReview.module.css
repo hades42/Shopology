@@ -71,3 +71,17 @@
   background-color: transparent;
   color: #384aeb;
 }
+
+@media screen and (max-width: 800px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .leftSide {
+    width: 100%;
+  }
+  .rightSide {
+    padding-left: 0px;
+    width: 100%;
+  }
+}
