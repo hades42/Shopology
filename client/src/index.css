@@ -60,7 +60,7 @@ footer {
 table,
 th,
 td {
-  border: 1px solid black;
+  border: 1px solid #212529 !important;
   padding: 7px;
 }
 th,
