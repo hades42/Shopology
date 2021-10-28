@@ -24,9 +24,6 @@ const Addresses = () => {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-
   const userDetail = useSelector((state) => state.userDetail);
   const { loading, error, user } = userDetail;
 
