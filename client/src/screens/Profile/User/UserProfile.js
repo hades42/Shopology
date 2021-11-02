@@ -9,6 +9,7 @@ import classes from "../../ProductScreen/ProductScreen.module.css";
 import UserListScreen from "../Admin/UserListScreen";
 import ProductListScreen from "../Admin/ProductList/ProductListScreen";
 import OrderListScreen from "../Admin/OrderList/OrderListScreen";
+import { PageContent } from "./UserProfile.elements"
 
 const UserProfile = ({ history }) => {
   let mobile = false
@@ -55,7 +56,11 @@ const UserProfile = ({ history }) => {
     <Container>
       {mobile
         ?
-          <>LOL</>
+          <>
+            <PageContent>
+              {selectionShow}
+            </PageContent>
+          </>
         :
           <>
             <div className={classes["selection-container"]}>
