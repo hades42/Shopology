@@ -107,6 +107,62 @@
        });
    });
  
+   // @desc     Get order
+   // @route   GET /api/order/:id
+   // @access  Customer user
+   test("Get order", async () => {
+     const auth = {
+       email: "ahihi3@test.com",
+       password: "123456",
+     };
+
+     const products = (await api.get("/api/products/top")).body
+
+     await api
+       .post("/api/user/login")
+       .send(auth)
+       .set("Content-Type", "application/json")
+       .expect(200)
+       .then(async (res) => {
+         const user = res.body;
+         const { token } = user;
+
+         const newOrder = {
+            user: user._id,
+            orderItems:[{name:products[0].name,qty:1,image:products[0].image,price:products[0].price, product:products[0]._id}],
+            shippingAddress:{fullname:"Van Nguyen Nguyen",phone:"234234",address:"fghfgh",city:"fghfghfgh",postalCode:"2204",state:"New South Wales"},
+            paymentMethod:"PalPal",
+            taxPrice: "7.5",
+            shippingPrice: "30",
+            totalPrice: 50,            
+         };
+
+         await api
+           .post(`/api/order/`)
+           .send(newOrder)
+           .set({
+             "Content-Type": "application/json",
+             Authorization: `Bearer ${token}`,
+           })
+           .then(async (res) => {
+                const orderId = String(res.body._id)
+
+                await api
+                    .get(`/api/order/${orderId}`)
+                    .set({
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    })
+                    .then(async (res) => {
+                        const order = res.body;
+                        expect(String(order._id)).toEqual(String(orderId))
+                    })
+                })
+            });
+   });
+
+
+
    afterAll(() => {
      mongoose.disconnect();
    });
