@@ -9,7 +9,7 @@ import classes from "../../ProductScreen/ProductScreen.module.css";
 import UserListScreen from "../Admin/UserListScreen";
 import ProductListScreen from "../Admin/ProductList/ProductListScreen";
 import OrderListScreen from "../Admin/OrderList/OrderListScreen";
-import { PageContent } from "./UserProfile.elements"
+import { PageContent, PageSelector } from "./UserProfile.elements"
 
 const UserProfile = ({ history }) => {
   let mobile = false
@@ -52,14 +52,32 @@ const UserProfile = ({ history }) => {
     mobile = false
   }
 
+  function currentPage(page) {
+    if (page === "1") {
+      return "User Profile"
+    } else if (page === "2") {
+      return "User Address"
+    } else if (page === "3") {
+      return "User Order"
+    } else if(page === "4") {
+      return "User Request"
+    } else if (page === "5") {
+      return "Manage Users"
+    } else if (page === "6") {
+      return "Manage Products"
+    } else if (page === "7") {
+      return "Manage Orders"
+    } else {
+      return "Invalid Page"
+    }
+  }
   return (
     <Container>
       {mobile
         ?
           <>
-            <PageContent>
-              {selectionShow}
-            </PageContent>
+            <PageSelector> Current Page: {currentPage(selection)}</PageSelector>
+            <PageContent>{selectionShow}</PageContent>
           </>
         :
           <>
