@@ -52,7 +52,7 @@ const UserProfile = ({ history }) => {
             data-selection="1"
             onClick={changeSelection}
           >
-            User Profile
+            User &nbsp; Profile
           </li>
           {userInfo && !userInfo.isAdmin && (
             <li
@@ -69,7 +69,7 @@ const UserProfile = ({ history }) => {
               data-selection="3"
               onClick={changeSelection}
             >
-              User Order
+              User Orders
             </li>
           )}
           {userInfo && !userInfo.isAdmin && (
@@ -78,7 +78,7 @@ const UserProfile = ({ history }) => {
               data-selection="4"
               onClick={changeSelection}
             >
-              User Request
+              User &nbsp; Requests
             </li>
           )}
           {userInfo && userInfo.isAdmin && (
@@ -111,6 +111,7 @@ const UserProfile = ({ history }) => {
         </ul>
         {selectionShow}
       </div>
+      <div style={{marginBottom: "100px"}}></div>
     </Container>
   );
 };

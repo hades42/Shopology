@@ -15,7 +15,7 @@ const RangeSlider = ({ min, max, currentRefinement, canRefine, refine }) => {
       setStateMin(currentRefinement.min);
       setStateMax(currentRefinement.max);
     }
-  }, [currentRefinement.min, currentRefinement.max]);
+  }, [canRefine, currentRefinement.min, currentRefinement.max]);
 
   if (min === max) {
     return null;

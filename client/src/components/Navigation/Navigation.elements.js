@@ -143,7 +143,7 @@ export const CartCircle = styled.div`
   color: #fff;
   font-size: 9px;
 `
-export const Button = styled.a`
+export const Button = styled.button`
   display: inline-block;
   border: 1px solid #384aeb;
   border-radius: 30px;

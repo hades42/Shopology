@@ -31,7 +31,7 @@ const FooterArea = () => {
             <div className={classes.wrapContact}>
               <div className={classes.card}>
                 <div className={classes.icon}>
-                  <i class="fas fa-location-arrow"></i>
+                  <i className="fas fa-location-arrow"></i>
                 </div>
                 <div className={classes["card-content"]}>
                   <h4>Head Office</h4>
@@ -40,7 +40,7 @@ const FooterArea = () => {
               </div>
               <div className={classes.card}>
                 <div className={classes.icon}>
-                  <i class="fas fa-phone"></i>
+                  <i className="fas fa-phone"></i>
                 </div>
                 <div className={classes["card-content"]}>
                   <h4>Phone Number</h4>
@@ -50,7 +50,7 @@ const FooterArea = () => {
               </div>
               <div className={classes.card}>
                 <div className={classes.icon}>
-                  <i class="fas fa-envelope"></i>
+                  <i className="fas fa-envelope"></i>
                 </div>
                 <div className={classes["card-content"]}>
                   <h4>Head Office</h4>
