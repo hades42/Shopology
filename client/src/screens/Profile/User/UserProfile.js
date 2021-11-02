@@ -9,11 +9,8 @@ import classes from "../../ProductScreen/ProductScreen.module.css";
 import UserListScreen from "../Admin/UserListScreen";
 import ProductListScreen from "../Admin/ProductList/ProductListScreen";
 import OrderListScreen from "../Admin/OrderList/OrderListScreen";
-import { PageContent, PageSelector } from "./UserProfile.elements"
 
 const UserProfile = ({ history }) => {
-  let mobile = false
-
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -46,109 +43,74 @@ const UserProfile = ({ history }) => {
     selectionShow = <OrderListScreen />;
   }
 
-  if(window.screen.width < 1000) {
-    mobile = true
-  } else {
-    mobile = false
-  }
-
-  function currentPage(page) {
-    if (page === "1") {
-      return "User Profile"
-    } else if (page === "2") {
-      return "User Address"
-    } else if (page === "3") {
-      return "User Order"
-    } else if(page === "4") {
-      return "User Request"
-    } else if (page === "5") {
-      return "Manage Users"
-    } else if (page === "6") {
-      return "Manage Products"
-    } else if (page === "7") {
-      return "Manage Orders"
-    } else {
-      return "Invalid Page"
-    }
-  }
   return (
     <Container>
-      {mobile
-        ?
-          <>
-            <PageSelector> Current Page: {currentPage(selection)}</PageSelector>
-            <PageContent>{selectionShow}</PageContent>
-          </>
-        :
-          <>
-            <div className={classes["selection-container"]}>
-              <ul className={classes.navSelection}>
-                <li
-                  className={classes.navItem}
-                  data-selection="1"
-                  onClick={changeSelection}
-                >
-                  User Profile
-                </li>
-                {userInfo && !userInfo.isAdmin && (
-                  <li
-                    className={classes.navItem}
-                    data-selection="2"
-                    onClick={changeSelection}
-                  >
-                    User Addresses
-                  </li>
-                )}
-                {userInfo && !userInfo.isAdmin && (
-                  <li
-                    className={classes.navItem}
-                    data-selection="3"
-                    onClick={changeSelection}
-                  >
-                    User Order
-                  </li>
-                )}
-                {userInfo && !userInfo.isAdmin && (
-                  <li
-                    className={classes.navItem}
-                    data-selection="4"
-                    onClick={changeSelection}
-                  >
-                    User Request
-                  </li>
-                )}
-                {userInfo && userInfo.isAdmin && (
-                  <li
-                    className={classes.navItem}
-                    data-selection="5"
-                    onClick={changeSelection}
-                  >
-                    Manage Users
-                  </li>
-                )}
-                {userInfo && userInfo.isAdmin && (
-                  <li
-                    className={classes.navItem}
-                    data-selection="6"
-                    onClick={changeSelection}
-                  >
-                    Manage Products
-                  </li>
-                )}
-                {userInfo && userInfo.isAdmin && (
-                  <li
-                    className={classes.navItem}
-                    data-selection="7"
-                    onClick={changeSelection}
-                  >
-                    Manage Orders
-                  </li>
-                )}
-              </ul>
-              {selectionShow}
-            </div>
-          </>
-      }
+      <div className={classes["selection-container"]}>
+        <ul className={classes.navSelection}>
+          <li
+            className={classes.navItem}
+            data-selection="1"
+            onClick={changeSelection}
+          >
+            User Profile
+          </li>
+          {userInfo && !userInfo.isAdmin && (
+            <li
+              className={classes.navItem}
+              data-selection="2"
+              onClick={changeSelection}
+            >
+              User Addresses
+            </li>
+          )}
+          {userInfo && !userInfo.isAdmin && (
+            <li
+              className={classes.navItem}
+              data-selection="3"
+              onClick={changeSelection}
+            >
+              User Order
+            </li>
+          )}
+          {userInfo && !userInfo.isAdmin && (
+            <li
+              className={classes.navItem}
+              data-selection="4"
+              onClick={changeSelection}
+            >
+              User Request
+            </li>
+          )}
+          {userInfo && userInfo.isAdmin && (
+            <li
+              className={classes.navItem}
+              data-selection="5"
+              onClick={changeSelection}
+            >
+              Manage Users
+            </li>
+          )}
+          {userInfo && userInfo.isAdmin && (
+            <li
+              className={classes.navItem}
+              data-selection="6"
+              onClick={changeSelection}
+            >
+              Manage Products
+            </li>
+          )}
+          {userInfo && userInfo.isAdmin && (
+            <li
+              className={classes.navItem}
+              data-selection="7"
+              onClick={changeSelection}
+            >
+              Manage Orders
+            </li>
+          )}
+        </ul>
+        {selectionShow}
+      </div>
     </Container>
   );
 };
