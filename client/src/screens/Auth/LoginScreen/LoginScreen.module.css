@@ -1,8 +1,8 @@
 .wrapper {
   display: flex;
-  /*justify-content: center;*/
+  flex-direction: row;
   margin: 50px 0;
-  box-shadow: 0px 10px 40px 0px rgb(56 74 235 / 10%);
+  box-shadow: 0px 10px 40px 0px rgb(56 74 235 / 30%);
 }
 .leftSide {
   width: 50%;
@@ -82,5 +82,21 @@
 @media (min-width: 1000px) {
   .leftSide {
     height: 610px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .wrapper {
+    flex-direction: column;  
+  }
+  
+  .leftSide {
+    width: 100%;
+  }
+
+  .rightSide {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 30px;
   }
 }
