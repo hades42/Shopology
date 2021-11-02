@@ -9,7 +9,7 @@ const SubProduct = ({ item }) => {
 
   useEffect(() => {
     dispatch(addToCart(item.product, Number(subQty)));
-  }, [subQty, dispatch]);
+  }, [item.product, subQty, dispatch]);
 
   const changeQty = (e) => {
     if (e.target.value > item.countInStock) {
