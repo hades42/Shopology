@@ -18,6 +18,7 @@ This is project for COMP3120.
   - [Run](#run)
   - [Seed Database](#seed-database)
 - [Testing](#testing)
+- [Deployment](#deployment)
 - [Project Layout](#project-layout)
 - [License](#license)
 
