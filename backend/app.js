@@ -20,16 +20,26 @@ if (process.env.NODE_ENV === "development") {
 //Parse json data
 app.use(express.json());
 
-// Test server
-app.get("/", (req, res) => {
-  res.send("API is running");
-});
-
 // Main Routes
 app.use("/api/products", productRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/order", orderRoutes);
 app.use("/api/upload", uploadRoutes);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(path.resolve("./"), "/client/build")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(
+      path.resolve(path.resolve("./"), "client", "build", "index.html")
+    )
+  );
+} else {
+  // Test server
+  app.get("/", (req, res) => {
+    res.send("API is running");
+  });
+}
 
 if (process.env.NODE_ENV != "test") {
   app.get("/api/config/paypal", (req, res) =>
