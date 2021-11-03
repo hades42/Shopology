@@ -17,6 +17,8 @@ This is project for COMP3120.
   - [Install Dependencies (frontend & backend)](#install-dependencies--frontend---backend-)
   - [Run](#run)
   - [Seed Database](#seed-database)
+- [Testing](#testing)
+- [Deployment](#deployment)
 - [Project Layout](#project-layout)
 - [License](#license)
 
@@ -157,8 +159,48 @@ backend/
 ├── uploads/                    Static folder contains all the image
 └── utils/                      Contain all re-usable functions
     └── generateToken.js            Currently, only having function for generate JWT tokens
+```
+
+## Testing
 
 ```
+npm run test
+```
+
+After running the script, you will get a **coverage** folder that contains details about all the test case as well as the percentage of coverage for the API.  
+You can open the file _coverage/lcov-report/index.html_ to have better visualization.
+
+## Deployment
+
+### Basic requirements
+
+1. Build optimized version for front-end
+
+```
+cd client
+npm run build
+```
+
+2. Push to Heroku
+
+There is a Heroku postbuild script, so if you push to Heroku, no need to build manually for deployment to Heroku.
+
+> **heroku-postbuild** script in package.json will tell Heroku to run after it install dependencies.
+
+```
+" set the name for your project
+heroku create <Your project's name>
+
+# Refer the Deploy script on Heroku website
+
+" when ever you want to push your change to the actualy website on heroku.
+git push heroku master
+```
+
+### Setting Config vars on Heroku
+
+We must not push .env but instead using Config Vars in setting section on Heroku to config environment variables. For example:  
+![image](./document/config.png)
 
 ## License
 
