@@ -11,7 +11,8 @@
     "data:import": "node backend/seeder",
     "data:destroy": "node backend/seeder -d",
     "test": "NODE_ENV=test jest --verbose --coverage --testPathPattern --detectOpenHandles backend",
-    "make-badges": "istanbul-badges-readme"
+    "make-badges": "istanbul-badges-readme",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "MIT",
