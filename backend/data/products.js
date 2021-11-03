@@ -60,18 +60,6 @@ const products = [
     numReviews: 10,
   },
   {
-    name: "Amazon Echo Dot 3rd Generation",
-    image: "/images/alexa.jpg",
-    description:
-      "Meet Echo Dot - Our most popular smart speaker with a fabric design. It is our most compact smart speaker that fits perfectly into small space",
-    brand: "Amazon",
-    category: "Electronics",
-    price: 29.99,
-    countInStock: 0,
-    rating: 4,
-    numReviews: 12,
-  },
-  {
     name: "Airpods Wireless Bluetooth Headphones",
     image: "/images/airpods.jpg",
     description:
@@ -130,18 +118,6 @@ const products = [
     countInStock: 7,
     rating: 3.5,
     numReviews: 10,
-  },
-  {
-    name: "Amazon Echo Dot 3rd Generation",
-    image: "/images/alexa.jpg",
-    description:
-      "Meet Echo Dot - Our most popular smart speaker with a fabric design. It is our most compact smart speaker that fits perfectly into small space",
-    brand: "Amazon",
-    category: "Men",
-    price: 29.99,
-    countInStock: 0,
-    rating: 4,
-    numReviews: 12,
   },
   {
     name: "Airpods Wireless Bluetooth Headphones",
@@ -204,18 +180,6 @@ const products = [
     numReviews: 10,
   },
   {
-    name: "Amazon Echo Dot 3rd Generation",
-    image: "/images/alexa.jpg",
-    description:
-      "Meet Echo Dot - Our most popular smart speaker with a fabric design. It is our most compact smart speaker that fits perfectly into small space",
-    brand: "Amazon",
-    category: "Women",
-    price: 29.99,
-    countInStock: 0,
-    rating: 4,
-    numReviews: 12,
-  },
-  {
     name: "Airpods Wireless Bluetooth Headphones",
     image: "/images/airpods.jpg",
     description:
@@ -274,18 +238,6 @@ const products = [
     countInStock: 7,
     rating: 3.5,
     numReviews: 10,
-  },
-  {
-    name: "Amazon Echo Dot 3rd Generation",
-    image: "/images/alexa.jpg",
-    description:
-      "Meet Echo Dot - Our most popular smart speaker with a fabric design. It is our most compact smart speaker that fits perfectly into small space",
-    brand: "Amazon",
-    category: "Sports",
-    price: 29.99,
-    countInStock: 0,
-    rating: 4,
-    numReviews: 12,
   },
   {
     name: "Airpods Wireless Bluetooth Headphones",
@@ -348,18 +300,6 @@ const products = [
     numReviews: 10,
   },
   {
-    name: "Amazon Echo Dot 3rd Generation",
-    image: "/images/alexa.jpg",
-    description:
-      "Meet Echo Dot - Our most popular smart speaker with a fabric design. It is our most compact smart speaker that fits perfectly into small space",
-    brand: "Amazon",
-    category: "Baby",
-    price: 29.99,
-    countInStock: 0,
-    rating: 4,
-    numReviews: 12,
-  },
-  {
     name: "Airpods Wireless Bluetooth Headphones",
     image: "/images/airpods.jpg",
     description:
@@ -418,18 +358,6 @@ const products = [
     countInStock: 7,
     rating: 3.5,
     numReviews: 10,
-  },
-  {
-    name: "Amazon Echo Dot 3rd Generation",
-    image: "/images/alexa.jpg",
-    description:
-      "Meet Echo Dot - Our most popular smart speaker with a fabric design. It is our most compact smart speaker that fits perfectly into small space",
-    brand: "Amazon",
-    category: "Automobile",
-    price: 29.99,
-    countInStock: 0,
-    rating: 4,
-    numReviews: 12,
   },
   {
     name: "Airpods Wireless Bluetooth Headphones",
@@ -492,18 +420,6 @@ const products = [
     numReviews: 10,
   },
   {
-    name: "Amazon Echo Dot 3rd Generation",
-    image: "/images/alexa.jpg",
-    description:
-      "Meet Echo Dot - Our most popular smart speaker with a fabric design. It is our most compact smart speaker that fits perfectly into small space",
-    brand: "Amazon",
-    category: "Books",
-    price: 29.99,
-    countInStock: 0,
-    rating: 4,
-    numReviews: 12,
-  },
-  {
     name: "Airpods Wireless Bluetooth Headphones",
     image: "/images/airpods.jpg",
     description:
@@ -562,18 +478,6 @@ const products = [
     countInStock: 7,
     rating: 3.5,
     numReviews: 10,
-  },
-  {
-    name: "Amazon Echo Dot 3rd Generation",
-    image: "/images/alexa.jpg",
-    description:
-      "Meet Echo Dot - Our most popular smart speaker with a fabric design. It is our most compact smart speaker that fits perfectly into small space",
-    brand: "Amazon",
-    category: "Games",
-    price: 29.99,
-    countInStock: 0,
-    rating: 4,
-    numReviews: 12,
   },
 ];
 
