@@ -14,6 +14,8 @@ export const requestSellerReducer = (state = { }, action) => {
       return { loading: false, success: true };
     case REQUEST_SELLER_FAIL:
       return { loading: false, error: action.payload };
+    case REQUEST_SELLER_RESET:
+      return { request: {} };
     default:
       return state;
   }
