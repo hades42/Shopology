@@ -24,7 +24,24 @@ const createRequest = asyncHandler(async (req, res) => {
 
 });
 
+// @desc    Get all the requests
+// @route   POST /api/request/all
+// @access  admin
+const getAllRequest = asyncHandler(async (req, res) => {
+
+  const result = await Request.find({});
+
+  if(result){
+      res.json(result)
+  } else {
+      res.status(404);
+      throw new Error("Couldn't get any requests")
+  }
+
+});
+
 
 module.exports = {
     createRequest,
+    getAllRequest,
 };
