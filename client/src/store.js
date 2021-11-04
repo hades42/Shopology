@@ -29,6 +29,9 @@ import {
   orderListsReducer,
   orderDeliverReducer,
 } from "./reducers/orderReducer";
+import {
+  requestSellerReducer,
+} from "./reducers/requestReducer";
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
@@ -68,6 +71,9 @@ const reducer = combineReducers({
   orderMyList: orderMyListReducer,
   orderLists: orderListsReducer,
   orderDeliver: orderDeliverReducer,
+
+  // Request reducer
+  requestSeller: requestSellerReducer,
 });
 
 const initialState = {
