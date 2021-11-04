@@ -10,7 +10,6 @@ const requestSchema = mongoose.Schema(
     description: {
         type: String,
         require: true,
-        default: "",
     }
   })
 
