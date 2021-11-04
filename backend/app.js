@@ -6,6 +6,7 @@ const productRoutes = require("./routes/productRoutes");
 const userRoutes = require("./routes/userRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const uploadRoutes = require("./routes/uploadRoutes");
+const requestRoutes = require("./routes/requestRoutes");
 
 const connectDB = require("./config/db");
 connectDB();
@@ -30,6 +31,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/order", orderRoutes);
 app.use("/api/upload", uploadRoutes);
+app.use("/api/request", requestRoutes);
 
 if (process.env.NODE_ENV != "test") {
   app.get("/api/config/paypal", (req, res) =>
