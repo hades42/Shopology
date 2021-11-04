@@ -31,6 +31,7 @@ import {
 } from "./reducers/orderReducer";
 import {
   requestSellerReducer,
+  getRequestSellerReducer,
 } from "./reducers/requestReducer";
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
@@ -74,6 +75,7 @@ const reducer = combineReducers({
 
   // Request reducer
   requestSeller: requestSellerReducer,
+  getRequestSeller: getRequestSellerReducer,
 });
 
 const initialState = {
