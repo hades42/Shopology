@@ -25,7 +25,7 @@ export const createRequest = (request) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post(`/api/request/seller`, request, config);
+    const { data } = await axios.post(`/api/request/newSeller`, request, config);
     console.log(data);
 
     dispatch({
