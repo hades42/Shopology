@@ -10,17 +10,27 @@
 This is project for COMP3120.
 
 ## Table of Contents
-
+- [Table of Contents](#table-of-contents)
+- [Purpose](#purpose)
 - [Features](#features)
 - [Usage](#usage)
   - [Env Variables](#env-variables)
-  - [Install Dependencies (frontend & backend)](#install-dependencies--frontend---backend-)
+  - [Install Dependencies (frontend & backend)](#install-dependencies-frontend--backend)
   - [Run](#run)
   - [Seed Database](#seed-database)
-- [Testing](#testing)
-- [Deployment](#deployment)
 - [Project Layout](#project-layout)
+  - [Front-end layout](#front-end-layout)
+  - [Back-end layout](#back-end-layout)
+- [Testing](#testing)
+- [Future implementations](#future-implementations)
+- [Roles](#roles)
+- [Deployment](#deployment)
+  - [Basic requirements](#basic-requirements)
+  - [Setting Config vars on Heroku](#setting-config-vars-on-heroku)
 - [License](#license)
+
+## Purpose
+The purpose of the application is to provide an e-commerce platform for consumers and vendors to buy & sell products. It takes inspiration on modern applications like eBay or Amazon. Data sources are self-generated, but they conform to some schema from Amazon products datasets [[1](https://data.world/promptcloud/fashion-products-on-amazon-com.)], [[2](https://data.world/promptcloud/amazon-product-listing)], [[3](https://jmcauley.ucsd.edu/data/amazon/)].
 
 ## Features
 
@@ -170,6 +180,20 @@ npm run test
 After running the script, you will get a **coverage** folder that contains details about all the test case as well as the percentage of coverage for the API.  
 You can open the file _coverage/lcov-report/index.html_ to have better visualization.
 
+
+## Future implementations
+1. Recommendation system for shoppers
+2. Social login using third-party vendors like Google, Facebook
+
+
+## Roles
+1. Van Nguyen Nguyen - front end developer
+2. Sujith Bellam - front end developer
+3. Sepehr Torfeh Nejad - back end developer
+4. Canh Thanh Nguyen - back end developer
+5. Communications and collaboration:\
+   i. The team had weekly meetings to discuss features to implement, and go over presentation for sprints\
+   ii. Pull requests are reviewed by at least 1 other team member. Merge conflicts are promptly resolved.
 ## Deployment
 
 ### Basic requirements
