@@ -55,7 +55,7 @@ const UserProfile = ({ history }) => {
             data-selection="1"
             onClick={changeSelection}
           >
-            User &nbsp; Profile
+            User Profile
           </li>
           {userInfo && !userInfo.isAdmin && (
             <li
@@ -81,7 +81,7 @@ const UserProfile = ({ history }) => {
               data-selection="4"
               onClick={changeSelection}
             >
-              User &nbsp; Requests
+              User Requests
             </li>
           )}
           {userInfo && userInfo.isAdmin && (
@@ -93,7 +93,7 @@ const UserProfile = ({ history }) => {
               Manage Users
             </li>
           )}
-          {userInfo && userInfo.isAdmin && (
+          {userInfo && (userInfo.isAdmin || userInfo.isSeller) && (
             <li
               className={classes.navItem}
               data-selection="6"
@@ -123,7 +123,7 @@ const UserProfile = ({ history }) => {
         </ul>
         {selectionShow}
       </div>
-      <div style={{marginBottom: "100px"}}></div>
+      <div style={{ marginBottom: "100px" }}></div>
     </Container>
   );
 };
