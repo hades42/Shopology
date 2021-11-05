@@ -10,7 +10,7 @@
 This is project for COMP3120.
 
 ## Demo
-- [Part 1[(https://user-images.githubusercontent.com/53460339/140501784-83cb14e9-0ecf-48fa-b1be-781cdf9ec593.mp4)
+- [Part 1](https://user-images.githubusercontent.com/53460339/140501784-83cb14e9-0ecf-48fa-b1be-781cdf9ec593.mp4)
 - [Part 2](https://user-images.githubusercontent.com/53460339/140501930-a563c18e-6a97-41ad-83fd-65b9893acc79.mp4)
 
 ## Table of Contents
