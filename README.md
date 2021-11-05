@@ -7,17 +7,12 @@
 
 > eCommerce platform built with MERN stack (MongoDB, ExpressJS, ReactJS, Nodejs)
 
-This is project for COMP3120.
-
-## Demo
-- [Part 1](https://user-images.githubusercontent.com/53460339/140501784-83cb14e9-0ecf-48fa-b1be-781cdf9ec593.mp4)
-- [Part 2](https://user-images.githubusercontent.com/53460339/140501930-a563c18e-6a97-41ad-83fd-65b9893acc79.mp4)
 
 ## Table of Contents
 
 
-- [Demo](#demo)
 - [Table of Contents](#table-of-contents)
+- [Demo](#demo)
 - [Purpose](#purpose)
 - [Features](#features)
 - [Usage](#usage)
@@ -34,6 +29,9 @@ This is project for COMP3120.
 - [Deployment](#deployment)
 - [License](#license)
 
+## Demo
+- [Part 1](https://user-images.githubusercontent.com/53460339/140501784-83cb14e9-0ecf-48fa-b1be-781cdf9ec593.mp4)
+- [Part 2](https://user-images.githubusercontent.com/53460339/140501930-a563c18e-6a97-41ad-83fd-65b9893acc79.mp4)
 ## Purpose
 The purpose of the application is to provide an e-commerce platform for consumers and vendors to buy & sell products. It takes inspiration on modern applications like eBay or Amazon. Data sources are self-generated, but they conform to some schema from Amazon products datasets [[1](https://data.world/promptcloud/fashion-products-on-amazon-com.)], [[2](https://data.world/promptcloud/amazon-product-listing)], [[3](https://jmcauley.ucsd.edu/data/amazon/)].
 
