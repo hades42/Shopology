@@ -1,6 +1,17 @@
 const asyncHandler = require("express-async-handler");
 const Product = require("../model/productModel");
 
+const getProductsForSeller = asyncHandler(async (req, res) => {
+  const user = req.user;
+  const products = await Product.find({ seller: user.id });
+  if (products) {
+    res.json(products);
+  } else {
+    res.status(400);
+    throw new Error("Cant get product lists");
+  }
+});
+
 // @desc    Fetch all products (according to pagination and sorting)
 // @route   GET /api/products
 // @access  Public (any one can hit this route)
@@ -396,4 +407,5 @@ module.exports = {
   deleteProduct,
   updatedProduct,
   createProduct,
+  getProductsForSeller,
 };
