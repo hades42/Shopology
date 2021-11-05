@@ -1,12 +1,12 @@
-Screenshots
+# Screenshots
 
-Full featured shopping cart 
+X - Full featured shopping cart 
 
-Product reviews and rating
+X - Product reviews and rating
 
 Top products carousel
 
-Instant search for any product with Algolia search engine
+X - Instant search for any product with Algolia search engine
 
 X - User profile with orders
 
