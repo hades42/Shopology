@@ -29,7 +29,7 @@ const createRequest = asyncHandler(async (req, res) => {
 // @access  admin
 const getAllRequest = asyncHandler(async (req, res) => {
 
-  const result = await Request.find({});
+  const result = await Request.find({}).populate("user","id name");
 
   if(result){
       res.json(result)
@@ -40,8 +40,24 @@ const getAllRequest = asyncHandler(async (req, res) => {
 
 });
 
+// @desc    Get request by id
+// @route   GET /api/request/:id
+// @access  admin 
+const getRequestById = asyncHandler(async (req, res) => {
+
+    const re = await Request.find(req.param.id).populate("user", "id name")
+
+    if(re){
+        res.json(re)
+    } else {
+        res.status(404);
+        throw new Error("Couldn't find the request")
+    }
+})
+
 
 module.exports = {
     createRequest,
     getAllRequest,
+    getRequestById,
 };
