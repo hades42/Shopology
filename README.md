@@ -44,6 +44,7 @@ The purpose of the application is to provide an e-commerce platform for consumer
 - Top products carousel
 - Instant search for any product with Algolia search engine
 - User profile with orders
+- Seller profiles with products
 - Admin products, orders, users management
 - Checkout process
 - PayPal/ credit cart integration
