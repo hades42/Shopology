@@ -47,6 +47,7 @@ The purpose of the application is to provide an e-commerce platform for consumer
 - Admin products, orders, users management
 - Checkout process
 - PayPal/ credit cart integration
+- User/Seller account elevation
 
 ## Usage
 
