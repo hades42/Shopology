@@ -27,6 +27,9 @@ import {
   PRODUCT_CREATE_SUCCESS,
   PRODUCT_CREATE_FAIL,
   PRODUCT_CREATE_RESET,
+  PRODUCT_FOR_SELLER_FAIL,
+  PRODUCT_FOR_SELLER_REQUEST,
+  PRODUCT_FOR_SELLER_SUCCESS,
 } from "../constants/productConstants";
 
 export const productTrendingReducer = (state = { products: [] }, action) => {
@@ -101,6 +104,19 @@ export const productAllReducer = (state = { products: [] }, action) => {
         fikCount: action.payload.fikCount,
       };
     case PRODUCT_ALL_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const productForSellerReducer = (state = { products: [] }, action) => {
+  switch (action.type) {
+    case PRODUCT_FOR_SELLER_REQUEST:
+      return { loading: true, products: [] };
+    case PRODUCT_FOR_SELLER_SUCCESS:
+      return { loading: false, products: action.payload };
+    case PRODUCT_FOR_SELLER_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;

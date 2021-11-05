@@ -10,6 +10,7 @@ import {
   productDeleteReducer,
   productUpdateReducer,
   productCreateReducer,
+  productForSellerReducer,
 } from "./reducers/productReducers";
 import {
   userLoginReducer,
@@ -50,6 +51,7 @@ const reducer = combineReducers({
   productTop: productTopReducer,
   productDetail: productDetailReducer,
   productAll: productAllReducer,
+  productForSeller: productForSellerReducer,
   productReviewCreate: reviewCreateReducer,
   productDelete: productDeleteReducer,
   productUpdate: productUpdateReducer,
@@ -80,7 +82,6 @@ const reducer = combineReducers({
   getRequestSeller: getRequestSellerReducer,
   getRequestById: getRequestByIdReducer,
   approveRequest: approveRequestReducer,
-
 });
 
 const initialState = {
