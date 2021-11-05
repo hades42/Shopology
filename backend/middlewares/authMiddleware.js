@@ -33,8 +33,8 @@ const protect = asyncHandler(async (req, res, next) => {
   }
 });
 
-const sellerProtect = (req, res, next) => {
-  if (req.user && req.user.isSeller) {
+const sellerAndAdminProtect = (req, res, next) => {
+  if (req.user && (req.user.isSeller || req.user.isAdmin)) {
     next();
   } else {
     res.status(401);
@@ -54,5 +54,5 @@ const adminProtect = (req, res, next) => {
 module.exports = {
   protect,
   adminProtect,
-  sellerProtect,
+  sellerAndAdminProtect,
 };
