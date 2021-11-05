@@ -9,7 +9,14 @@
 
 This is project for COMP3120.
 
+## Demo
+- [Part 1](https://user-images.githubusercontent.com/53460339/140501784-83cb14e9-0ecf-48fa-b1be-781cdf9ec593.mp4)
+- [Part 2](https://user-images.githubusercontent.com/53460339/140501930-a563c18e-6a97-41ad-83fd-65b9893acc79.mp4)
+
 ## Table of Contents
+
+
+- [Demo](#demo)
 - [Table of Contents](#table-of-contents)
 - [Purpose](#purpose)
 - [Features](#features)
@@ -24,6 +31,7 @@ This is project for COMP3120.
 - [Testing](#testing)
 - [Future implementations](#future-implementations)
 - [Roles](#roles)
+- [Deployment](#deployment)
 - [License](#license)
 
 ## Purpose
@@ -189,9 +197,10 @@ You can open the file _coverage/lcov-report/index.html_ to have better visualiza
 3. Sepehr Torfeh Nejad - back end developer
 4. Canh Thanh Nguyen - back end developer
 5. Communications and collaboration:\
-   i. The team had weekly meetings on Zoom to discuss features to implement, and go over presentation for sprints\
-   ii. Pull requests are reviewed by at least 1 other team member. Merge conflicts are promptly resolved.\
-   iii. Other text-based communication are conducted over a Discord server to discuss some development progress\
+   i. The team had weekly meetings to discuss features to implement, and go over presentation for sprints\
+   ii. Pull requests are reviewed by at least 1 other team member. Merge conflicts are promptly resolved.
+## Deployment
+- [Deployment document](https://github.com/MQCOMP3120-2021/group-web-project-group-a/blob/development/DEPLOYMENT.md)
 
 ## License
 
