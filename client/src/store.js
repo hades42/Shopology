@@ -32,6 +32,8 @@ import {
 import {
   requestSellerReducer,
   getRequestSellerReducer,
+  getRequestByIdReducer,
+  approveRequestReducer,
 } from "./reducers/requestReducer";
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
@@ -76,6 +78,9 @@ const reducer = combineReducers({
   // Request reducer
   requestSeller: requestSellerReducer,
   getRequestSeller: getRequestSellerReducer,
+  getRequestById: getRequestByIdReducer,
+  approveRequest: approveRequestReducer,
+
 });
 
 const initialState = {
