@@ -10,6 +10,11 @@ const requestSchema = mongoose.Schema(
     description: {
         type: String,
         require: true,
+    },
+    approved: {
+      type: Boolean,
+      default: false,
+      require: true,
     }
   })
 
