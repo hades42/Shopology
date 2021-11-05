@@ -23,6 +23,9 @@ import {
   PRODUCT_CREATE_REQUEST,
   PRODUCT_CREATE_SUCCESS,
   PRODUCT_CREATE_FAIL,
+  PRODUCT_FOR_SELLER_REQUEST,
+  PRODUCT_FOR_SELLER_SUCCESS,
+  PRODUCT_FOR_SELLER_FAIL,
 } from "../constants/productConstants";
 import axios from "axios";
 
@@ -95,11 +98,24 @@ export const getProducts =
     sortBy = "",
     pageNum = ""
   ) =>
-  async (dispatch) => {
+  async (dispatch, getState) => {
     try {
       dispatch({ type: PRODUCT_ALL_REQUEST });
+
+      const {
+        userLogin: { userInfo },
+      } = getState();
+
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+
       const { data } = await axios.get(
-        `/api/products/?search=${search}&categoryFilter=${categoryFilter}&colorFilter=${colorFilter}&priceFilter=${priceFilter}&sortBy=${sortBy}&pageNum=${pageNum}`
+        `/api/products/?search=${search}&categoryFilter=${categoryFilter}&colorFilter=${colorFilter}&priceFilter=${priceFilter}&sortBy=${sortBy}&pageNum=${pageNum}`,
+        config
       );
       dispatch({
         type: PRODUCT_ALL_SUCCESS,
@@ -115,6 +131,40 @@ export const getProducts =
       });
     }
   };
+
+export const getProductsForSeller = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: PRODUCT_FOR_SELLER_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.get("/api/products/seller", config);
+
+    dispatch({
+      type: PRODUCT_FOR_SELLER_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_FOR_SELLER_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
 
 export const createProductReview =
   (productId, review) => async (dispatch, getState) => {

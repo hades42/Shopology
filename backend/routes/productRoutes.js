@@ -9,16 +9,25 @@ const {
   deleteProduct,
   updatedProduct,
   createProduct,
+  getProductsForSeller,
 } = require("../controller/productController");
-const { protect, adminProtect, sellerAndAdminProtect} = require("../middlewares/authMiddleware");
+const {
+  protect,
+  adminProtect,
+  sellerAndAdminProtect,
+} = require("../middlewares/authMiddleware");
 
 router.route("/:id/reviews").post(protect, createProductReview);
 router.route("/trending").get(getTrendingProducts);
 router.route("/top").get(getTopProducts);
+router.route("/seller").get(protect, getProductsForSeller);
 router
   .route("/:id")
   .get(getProductById)
-  .delete(protect, adminProtect, deleteProduct)
-  .put(protect, adminProtect, updatedProduct);
-router.route("/").get(getProducts).post(protect, sellerAndAdminProtect, createProduct);
+  .delete(protect, sellerAndAdminProtect, deleteProduct)
+  .put(protect, sellerAndAdminProtect, updatedProduct);
+router
+  .route("/")
+  .get(getProducts)
+  .post(protect, sellerAndAdminProtect, createProduct);
 module.exports = router;

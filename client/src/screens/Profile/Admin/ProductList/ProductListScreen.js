@@ -6,17 +6,27 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../../../../components/Message";
 import Loader from "../../../../components/Loader";
 import { Pagination } from "@mui/material";
-import { getProducts } from "../../../../actions/productActions";
+import {
+  getProducts,
+  getProductsForSeller,
+} from "../../../../actions/productActions";
 import { deleteProduct } from "../../../../actions/productActions";
 import DropNotif from "../../../../components/Modal/Modal";
 import { PRODUCT_DELETE_RESET } from "../../../../constants/productConstants";
 
-const ProductListScreen = ({ history, match }) => {
+const ProductListScreen = () => {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
 
   const productAll = useSelector((state) => state.productAll);
   const { loading, error, products, pageCount } = productAll;
+
+  const productForSeller = useSelector((state) => state.productForSeller);
+  const {
+    loading: loadingForSeller,
+    error: errorForSeller,
+    products: productsSeller,
+  } = productForSeller;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -29,8 +39,12 @@ const ProductListScreen = ({ history, match }) => {
   } = productDelete;
 
   useEffect(() => {
-    dispatch(getProducts("", "", "", "", "", page));
-  }, [dispatch, page, history, userInfo]);
+    if (userInfo.isAdmin) {
+      dispatch(getProducts("", "", "", "", "", page));
+    } else if (userInfo.isSeller && !userInfo.isAdmin) {
+      dispatch(getProductsForSeller());
+    }
+  }, [dispatch, page, userInfo]);
 
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure?")) {
@@ -41,6 +55,18 @@ const ProductListScreen = ({ history, match }) => {
     setPage(value);
   };
 
+  let productsFinal;
+  if (userInfo.isAdmin) {
+    if (products) {
+      productsFinal = products;
+    }
+  } else if (userInfo.isSeller) {
+    if (productsSeller) {
+      productsFinal = productsSeller;
+    }
+  }
+
+  console.log(productsFinal);
   return (
     <Container className="mb-5">
       <Row className="align-items-center">
@@ -64,13 +90,17 @@ const ProductListScreen = ({ history, match }) => {
       ) : (
         <>
           {loadingDelete && <Loader />}
-          {errorDelete && <Message>{errorDelete}</Message>}
+          {errorDelete && <Message variant="danger">{errorDelete}</Message>}
           {successDelete && (
             <DropNotif
               heading="Delete Product"
               text="Delete product successfully"
               resetData={() => {
-                dispatch(getProducts("", "", "", "", "", page));
+                if (userInfo.isAdmin) {
+                  dispatch(getProducts("", "", "", "", "", page));
+                } else if (userInfo.isSeller && !userInfo.isAdmin) {
+                  dispatch(getProductsForSeller());
+                }
                 dispatch({ type: PRODUCT_DELETE_RESET });
               }}
             />
@@ -88,31 +118,32 @@ const ProductListScreen = ({ history, match }) => {
               </tr>
             </thead>
             <tbody>
-              {products.map((product) => (
-                <tr key={product._id}>
-                  <td>{product._id}</td>
-                  <td>{product.name}</td>
-                  <td>${product.price}</td>
-                  <td>{product.category}</td>
-                  <td>{product.brand}</td>
-                  <td>{product.rating}</td>
-                  <td>{product.countInStock}</td>
-                  <td>
-                    <LinkContainer to={`/admin/product/${product._id}/edit`}>
-                      <Button variant="light" className="btn-sm">
-                        <i className="fas fa-edit"></i>
+              {productsFinal &&
+                productsFinal.map((product) => (
+                  <tr key={product._id}>
+                    <td>{product._id}</td>
+                    <td>{product.name}</td>
+                    <td>${product.price}</td>
+                    <td>{product.category}</td>
+                    <td>{product.brand}</td>
+                    <td>{product.rating}</td>
+                    <td>{product.countInStock}</td>
+                    <td>
+                      <LinkContainer to={`/admin/product/${product._id}/edit`}>
+                        <Button variant="light" className="btn-sm">
+                          <i className="fas fa-edit"></i>
+                        </Button>
+                      </LinkContainer>
+                      <Button
+                        variant="danger"
+                        className="btn-sm"
+                        onClick={() => deleteHandler(product._id)}
+                      >
+                        <i className="fas fa-trash"></i>
                       </Button>
-                    </LinkContainer>
-                    <Button
-                      variant="danger"
-                      className="btn-sm"
-                      onClick={() => deleteHandler(product._id)}
-                    >
-                      <i className="fas fa-trash"></i>
-                    </Button>
-                  </td>
-                </tr>
-              ))}
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </Table>
           <Pagination
