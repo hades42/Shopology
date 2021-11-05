@@ -1,5 +1,8 @@
 ## Deployment
 
+### Project URL:
+https://comp3120-shopology.herokuapp.com
+
 ### Basic requirements
 
 1. Build optimized version for front-end
