@@ -9,6 +9,7 @@ import classes from "../../ProductScreen/ProductScreen.module.css";
 import UserListScreen from "../Admin/UserListScreen";
 import ProductListScreen from "../Admin/ProductList/ProductListScreen";
 import OrderListScreen from "../Admin/OrderList/OrderListScreen";
+import ManageRequestScreen from "../Admin/ManageRequest/ManageRequestScreen";
 
 const UserProfile = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
@@ -41,6 +42,8 @@ const UserProfile = ({ history }) => {
     selectionShow = <ProductListScreen />;
   } else if (selection === "7") {
     selectionShow = <OrderListScreen />;
+  } else if (selection === "8") {
+    selectionShow = <ManageRequestScreen />;
   }
 
   return (
@@ -106,6 +109,15 @@ const UserProfile = ({ history }) => {
               onClick={changeSelection}
             >
               Manage Orders
+            </li>
+          )}
+          {userInfo && userInfo.isAdmin && (
+            <li
+              className={classes.navItem}
+              data-selection="8"
+              onClick={changeSelection}
+            >
+              Manage requests
             </li>
           )}
         </ul>

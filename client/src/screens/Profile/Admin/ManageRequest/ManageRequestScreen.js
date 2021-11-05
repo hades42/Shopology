@@ -29,6 +29,7 @@ const ManageRequestScreen = ({history}) => {
                   <th>Request ID</th>
                   <th>User ID</th>
                   <th>User Name</th>
+                  <th>Approved</th>
                   <th>Description</th>
                 </tr>
               </thead>
@@ -38,6 +39,16 @@ const ManageRequestScreen = ({history}) => {
                     <td>{r._id}</td>
                     <td>{r.user._id}</td>
                     <td>{r.user.name}</td>
+                    <td>
+                      {r.approved ? (
+                        <i
+                          className="fas fa-check"
+                          style={{ color: "green" }}
+                        ></i>
+                      ) : (
+                        <i className="fas fa-times" style={{ color: "red" }}></i>
+                      )}
+                    </td>
                     <td>
                       <LinkContainer to={`/request/${r._id}`}>
                         <Button variant="light" className="btn-sm">

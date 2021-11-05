@@ -61,8 +61,6 @@ const Request = ({match, history}) => {
     <>
       <Container className="mb-5">
         <h1>Request to become a Seller</h1>
-        {loading && <Loader />}
-        {error && <Message variant="danger">{error}</Message>}
         {success && (
           <DropNotif
             heading="Create Seller Request"
