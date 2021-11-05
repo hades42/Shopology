@@ -9,6 +9,9 @@
 
 This is project for COMP3120.
 
+## Demo
+- [Part1[(https://github.com/MQCOMP3120-2021/group-web-project-group-a/blob/demo-video/SCREENSHOTS/Demo-p1.mp4)
+
 ## Table of Contents
 - [Table of Contents](#table-of-contents)
 - [Purpose](#purpose)
