@@ -8,9 +8,6 @@ const ProductSection = ({ product }) => {
   const [qty, setQty] = useState(1);
   const [showModal, setShowModal] = useState(false);
 
-  if (!qty || qty < 1) {
-    setQty(1);
-  }
   if (qty > product.countInStock) {
     setQty(product.countInStock);
   }

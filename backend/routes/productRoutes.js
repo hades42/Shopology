@@ -10,7 +10,7 @@ const {
   updatedProduct,
   createProduct,
 } = require("../controller/productController");
-const { protect, adminProtect } = require("../middlewares/authMiddleware");
+const { protect, adminProtect, sellerAndAdminProtect} = require("../middlewares/authMiddleware");
 
 router.route("/:id/reviews").post(protect, createProductReview);
 router.route("/trending").get(getTrendingProducts);
@@ -20,5 +20,5 @@ router
   .get(getProductById)
   .delete(protect, adminProtect, deleteProduct)
   .put(protect, adminProtect, updatedProduct);
-router.route("/").get(getProducts).post(protect, adminProtect, createProduct);
+router.route("/").get(getProducts).post(protect, sellerAndAdminProtect, createProduct);
 module.exports = router;

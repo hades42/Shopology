@@ -6,6 +6,7 @@ const productRoutes = require("./routes/productRoutes");
 const userRoutes = require("./routes/userRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const uploadRoutes = require("./routes/uploadRoutes");
+const requestRoutes = require("./routes/requestRoutes");
 
 const connectDB = require("./config/db");
 connectDB();
@@ -25,6 +26,14 @@ app.use("/api/products", productRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/order", orderRoutes);
 app.use("/api/upload", uploadRoutes);
+app.use("/api/request", requestRoutes);
+
+if (process.env.NODE_ENV != "test") {
+  app.use("/backend/uploads", express.static(path.join(__dirname, "/uploads")));
+  app.get("/api/config/paypal", (req, res) =>
+    res.send(process.env.PAYPAL_CLIENT_ID)
+  );
+}
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(path.resolve("./"), "/client/build")));
@@ -41,13 +50,6 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-if (process.env.NODE_ENV != "test") {
-  app.get("/api/config/paypal", (req, res) =>
-    res.send(process.env.PAYPAL_CLIENT_ID)
-  );
-
-  app.use("/backend/uploads", express.static(path.join(__dirname, "/uploads")));
-}
 // Error Handler
 app.use(notFound);
 app.use(errorHandler);
