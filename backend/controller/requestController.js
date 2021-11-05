@@ -11,11 +11,10 @@ const createRequest = asyncHandler(async (req, res) => {
 
   const isRequestExists = await Request.find({user: user.id})
 
-  console.log(isRequestExists)
 
-  if(isRequestExists){
+  if(isRequestExists.length > 0){
       res.status(400)
-      if(isRequestExists.approved){
+      if(isRequestExists[0].approved){
         throw new Error("Already request, and hase been approved")
       } else {
             throw new Error("Aleady requested, waiting for approval")
@@ -74,25 +73,26 @@ const getRequestById = asyncHandler(async (req, res) => {
 // @desc    Approve seller request
 // @route   PUT /api/request/approve/:id
 // @access  admin
-// @note    :id is user id, not a request id
 const approveUserRequest = asyncHandler(async (req, res) => {
-    
-    const user = await User.findById(req.params.id)
-
-    if(user){
-
-        user.isSeller = true
-        await user.save()
-        res.status(200)
-        res.json({
-            user: user._id,
-            isSeller: user.isSeller
-        })
-
-    } else {
-        res.status(404)
-        throw new Error("User not found")
+    const request = await Request.findById(req.params.id)
+    if(request) {
+        const user = await User.findById(request.user._id)
+        if(user){
+            user.isSeller = true
+            await user.save()
+            res.status(200)
+            res.json({
+                user: user._id,
+                isSeller: user.isSeller
+            })
+            request.approved = true
+            await request.save()
+        } else {
+            res.status(404)
+            throw new Error("User not found")
+        }
     }
+
 
 })
 

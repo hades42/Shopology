@@ -9,10 +9,10 @@ const {
 
 const { protect, adminProtect } = require("../middlewares/authMiddleware");
 
+router.route("/approve/:id").put(protect, adminProtect, approveUserRequest)
 router.route("/newSeller").post(protect, createRequest)
 router.route("/all").get(protect, adminProtect, getAllRequest)
 router.route("/:id").get(protect,adminProtect,getRequestById)
-router.route("/approve/:id").put(protect, adminProtect, approveUserRequest)
 
 
 module.exports = router;
