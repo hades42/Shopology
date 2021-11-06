@@ -7,6 +7,8 @@ import '@testing-library/jest-dom/extend-expect'
 import { render, fireEvent } from '@testing-library/react'
 import fs from 'fs'
 import Review from './components/Review/Review.js'
+// import ProductDescription from './screens/ProductScreen/ProductDescription/ProductDescription.js' // THIS IS CAUSING ERROR
+
 
 const sampleData = (fileName) => {
     const rawData = fs.readFileSync(fileName)
@@ -14,8 +16,8 @@ const sampleData = (fileName) => {
     return data
 }
 
-describe("Review component", () => {
-    test('renders content', () => {
+describe("Component", () => {
+    test('renders review ', () => {
         const review = sampleData(path.resolve(__dirname, "./sampleReview.json"));
 
 
@@ -27,5 +29,12 @@ describe("Review component", () => {
         )
 
         expect(component.container).toHaveTextContent('Very good product')
+    })
+
+    test('Product', () => {
+        const desc = "This is a dummy product description"
+        // const productDesc = render(<ProductDescription content={desc}/>)
+        // expect(productDesc.container).toHaveTextContent(desc)
+
     })
 })
